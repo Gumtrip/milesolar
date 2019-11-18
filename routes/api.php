@@ -13,20 +13,25 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
 Route::group([
-    'prefix'=>'v1',
-    'namespace'=>'Api'
-],function() {
+    'prefix' => 'v1',
+    'namespace' => 'Api',
+    'middleware' => 'throttle:' . config('api.rate_limits.access')
+], function () {
     Route::group([
-        'prefix'=>'admin',
-        'namespace'=>'Admin'
-    ],function(){
-        Route::group([
-            'namespace'=>'Product'],function(){
-            Route::resource('products','ProductController')->only(['index','show']);
+        'prefix' => 'admin',
+        'namespace' => 'Admin'
+    ], function () {
+        Route::group(['namespace' => 'Product'], function () {
+            Route::resource('products', 'ProductController')->only(['index', 'show']);
         });
+
+        Route::group(['namespace' => 'Auth', 'prefix' => 'auth'],
+            function ($api) {
+                $api->post('login', 'LoginController@login');
+                $api->delete('logout', 'LoginController@logout');
+            });
     });
+
+
 });
