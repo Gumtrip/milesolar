@@ -34,7 +34,7 @@ class LoginController extends Controller
      * @throws \ErrorException
      */
 
-    public function respondWithToken($token ='',$code=201)
+    private function respondWithToken($token ='',$code=201)
     {
         $token = $token ? $token : auth(self::GUARD)->user();
         $expiresIn = auth(self::GUARD)->factory()->getTTL() * config('api.jwt.ttl');
@@ -48,7 +48,7 @@ class LoginController extends Controller
     }
 
     public function logout(){
-//        Auth::guard(self::GUARD)->logout();
+        auth(self::GUARD)->logout();
         return response()->noContent();
     }
 }

@@ -23,7 +23,8 @@ Route::group([
         'namespace' => 'Admin'
     ], function () {
         Route::group(['namespace' => 'Product'], function () {
-            Route::resource('products', 'ProductController')->only(['index', 'show']);
+            Route::resource('products', 'ProductController')->only(['index', 'store', 'show', 'update', 'destroy']);
+            Route::resource('product_categories', 'ProductCategoryController')->only(['index', 'store', 'show', 'update', 'destroy']);
         });
 
         Route::group(['namespace' => 'Auth', 'prefix' => 'auth'],
