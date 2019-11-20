@@ -10,7 +10,8 @@ return [
         'sign' =>  env('SIGN_RATE_LIMITS', '10,1'),
     ],
     'jwt'=>[
-        'ttl'=>env('JWT_TTL',60)
+        'ttl'=>env('JWT_TTL',60),
+//        'refresh_ttl'=>env('JWT_REFRESH_TTL ',60)
     ],
 
 ];

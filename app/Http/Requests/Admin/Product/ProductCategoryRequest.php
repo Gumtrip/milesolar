@@ -3,9 +3,9 @@
 namespace App\Http\Requests\Admin\Product;
 
 use App\Http\Requests\Admin\BackendRequest as FormRequest;
-class ProductRequest extends FormRequest
-{
 
+class ProductCategoryRequest extends FormRequest
+{
 
     /**
      * Get the validation rules that apply to the request.
@@ -15,8 +15,7 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         $data = [
-            'title' => 'required',
-            'category_id' => 'required',
+            'title' => 'required'
         ];
         return $data;
     }

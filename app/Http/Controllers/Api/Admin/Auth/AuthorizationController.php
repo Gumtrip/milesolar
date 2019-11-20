@@ -6,14 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Auth\LoginRequest;
 use Auth;
 
-class LoginController extends Controller
+class AuthorizationController extends Controller
 {
     const GUARD='admin';
-    /** 登陆认证
+
+    /**
      * @param LoginRequest $request
-     * @return mixed|void
+     * @return mixed
+     * @throws \ErrorException
      */
-    public function login(LoginRequest $request)
+    public function store(LoginRequest $request)
     {
         if (!$token = auth(self::GUARD)->attempt($request->all())) {
             return response()->json->errorUnauthorized('用户名或密码错误');
@@ -21,7 +23,7 @@ class LoginController extends Controller
         return $this->respondWithToken($token);
     }
 
-    public function refreshToken()
+    public function update()
     {
         $token = auth(self::GUARD)->refresh();
         return self::respondWithToken($token,200);
@@ -47,8 +49,8 @@ class LoginController extends Controller
             ->setStatusCode($code);
     }
 
-    public function logout(){
+    public function destroy(){
         auth(self::GUARD)->logout();
-        return response()->noContent();
+        return response(null, 204);
     }
 }

@@ -26,11 +26,15 @@ Route::group([
             Route::resource('products', 'ProductController')->only(['index', 'store', 'show', 'update', 'destroy']);
             Route::resource('product_categories', 'ProductCategoryController')->only(['index', 'store', 'show', 'update', 'destroy']);
         });
+        Route::group(['namespace' => 'Article'], function () {
+            Route::resource('articles', 'ArticleController')->only(['index', 'store', 'show', 'update', 'destroy']);
+        });
 
         Route::group(['namespace' => 'Auth', 'prefix' => 'auth'],
             function ($api) {
-                $api->post('login', 'LoginController@login');
-                $api->delete('logout', 'LoginController@logout');
+                $api->post('authorization', 'AuthorizationController@store');
+                $api->put('authorization', 'AuthorizationController@update');
+                $api->delete('authorization', 'AuthorizationController@destroy');
             });
     });
 

@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources\Product;
 
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProductCategoryResource extends ResourceCollection
+class ProductCategoryResource extends JsonResource
 {
     /**
      * Transform the resource collection into an array.

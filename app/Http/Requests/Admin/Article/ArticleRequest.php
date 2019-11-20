@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin\Product;
+namespace App\Http\Requests\Admin\Article;
 
 use App\Http\Requests\Admin\BackendRequest as FormRequest;
-class ProductRequest extends FormRequest
+
+class ArticleRequest extends FormRequest
 {
 
 
@@ -14,10 +15,10 @@ class ProductRequest extends FormRequest
      */
     public function rules()
     {
-        $data = [
-            'title' => 'required',
-            'category_id' => 'required',
+        return [
+            'title'=>'required',
+            'intro'=>'required',
+            'desc'=>'required',
         ];
-        return $data;
     }
 }
