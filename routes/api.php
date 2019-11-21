@@ -29,6 +29,9 @@ Route::group([
         Route::group(['namespace' => 'Article'], function () {
             Route::resource('articles', 'ArticleController')->only(['index', 'store', 'show', 'update', 'destroy']);
         });
+        Route::group(['namespace' => 'Message'], function () {
+            Route::resource('messages', 'MessageController')->only(['index', 'show', 'destroy']);
+        });
 
         Route::group(['namespace' => 'Auth', 'prefix' => 'auth'],
             function ($api) {
@@ -37,6 +40,17 @@ Route::group([
                 $api->delete('authorization', 'AuthorizationController@destroy');
             });
     });
-
+    Route::group(['namespace'=>'Frontend'],function(){
+        Route::group(['namespace' => 'Product'], function () {
+            Route::resource('products', 'ProductController')->only(['index', 'show']);
+            Route::resource('product_categories', 'ProductCategoryController')->only(['index', 'show']);
+        });
+        Route::group(['namespace' => 'Article'], function () {
+            Route::resource('articles', 'ArticleController')->only(['index', 'show']);
+        });
+        Route::group(['namespace' => 'Message'], function () {
+            Route::resource('messages', 'MessageController')->only(['store']);
+        });
+    });
 
 });

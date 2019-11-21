@@ -14,7 +14,7 @@ class ProductCategoryController extends Controller
     {
         $depth = $request->depth;
         $categories = $productCategory->withDepth()->when($depth, function ($query) use ($depth) {
-            $depth = $depth<=2?$depth:2;
+            $depth = $depth <= 2 ? $depth : 2;
             $query->having('depth', '<=', $depth);
         })->get()->toTree();
         return new ProductCategoryResource($categories);
@@ -23,17 +23,12 @@ class ProductCategoryController extends Controller
     public function store(ProductCategoryRequest $request, ProductCategory $productCategory)
     {
         $parentId = $request->parent_id;
-        if ($parentId && $parentCategory = ProductCategory::withDepth()->find($parentId)) {
-            if ($parentCategory->depth <= 1) {
-                $productCategory = $parentCategory->children()->create($request->all());
-            } else {
-                return response('最多支持3级分类', 412);
-            }
+        if ($parentId && $parentCategory = ProductCategory::find($parentId)) {
+            $productCategory = $parentCategory->children()->create($request->all());
         } else {
             $productCategory->fill($request->all());
             $productCategory->makeRoot()->save();
         }
-        $productCategory::fixTree();
         return new ProductCategoryResource($productCategory);
 
     }
@@ -46,19 +41,13 @@ class ProductCategoryController extends Controller
     public function update(ProductCategoryRequest $request, ProductCategory $productCategory)
     {
         $parentId = $request->parent_id;
-        if ($parentId && $parentCategory = ProductCategory::withDepth()->find($parentId)) {
-            //这里需要保证父级dept=1,自身没有任何子节点
-            //这里需要保证父级dept=0,自身允许有一级子节点
-            if ($parentCategory->depth == 0||
-                ($parentCategory->depth == 1&&$productCategory->descendants->count()==0)) {
-                $productCategory->fill($request->all());
-                $productCategory->appendToNode($parentCategory)->save();
-            } else {
-                return response('最多支持3级分类', 412);
-            }
+        if ($parentId && $parentCategory = ProductCategory::find($parentId)) {
+            $productCategory->fill($request->all());
+            $productCategory->appendToNode($parentCategory)->save();
         } else {
             $productCategory->makeRoot()->update($request->all());
         }
+        $productCategory::fixTree();
         return new ProductCategoryResource($productCategory);
     }
 

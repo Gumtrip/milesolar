@@ -16,9 +16,10 @@ class CreateMessagesTable extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('product_id')->default(0)->comment('产品ID');
-            $table->string('email',50)->default('')->comment('邮箱');
-            $table->string('phone',30)->default('')->comment('电话');
-            $table->string('skype',60)->default('')->comment('skype');
+            $table->json('product_info')->nullable()->comment('产品快照');
+            $table->string('email',50)->comment('邮箱');
+            $table->string('phone',30)->nullable()->comment('电话');
+            $table->string('skype',60)->nullable()->comment('skype');
             $table->string('name')->comment('名字');
             $table->text('msg')->comment('名字');
             $table->timestamps();
