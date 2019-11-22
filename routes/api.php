@@ -33,11 +33,15 @@ Route::group([
             Route::resource('messages', 'MessageController')->only(['index', 'show', 'destroy']);
         });
 
-        Route::group(['namespace' => 'Auth', 'prefix' => 'auth'],
-            function ($api) {
-                $api->post('authorization', 'AuthorizationController@store');
-                $api->put('authorization', 'AuthorizationController@update');
-                $api->delete('authorization', 'AuthorizationController@destroy');
+        Route::group(['namespace' => 'Admin'], function () {
+            Route::resource('admins', 'AdminController')->only(['show']);
+            Route::post('admin/me', 'AdminController@me');
+        });
+
+        Route::group(['namespace' => 'Auth', 'prefix' => 'auth'],function () {
+                Route::post('authorization', 'AuthorizationController@store');
+                Route::put('authorization', 'AuthorizationController@update');
+                Route::delete('authorization', 'AuthorizationController@destroy');
             });
     });
     Route::group(['namespace'=>'Frontend'],function(){
