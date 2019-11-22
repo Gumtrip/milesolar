@@ -37,6 +37,9 @@ Route::group([
             Route::resource('admins', 'AdminController')->only(['show']);
             Route::post('admin/me', 'AdminController@me');
         });
+        Route::group(['namespace' => 'Image'], function () {
+            Route::post('images', 'ImageController@store');
+        });
 
         Route::group(['namespace' => 'Auth', 'prefix' => 'auth'],function () {
                 Route::post('authorization', 'AuthorizationController@store');
