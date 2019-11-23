@@ -28,6 +28,7 @@ Route::group([
         });
         Route::group(['namespace' => 'Article'], function () {
             Route::resource('articles', 'ArticleController')->only(['index', 'store', 'show', 'update', 'destroy']);
+            Route::resource('article_categories', 'ArticleCategoryController')->only(['index', 'store', 'show', 'update', 'destroy']);
         });
         Route::group(['namespace' => 'Message'], function () {
             Route::resource('messages', 'MessageController')->only(['index', 'show', 'destroy']);
@@ -54,6 +55,7 @@ Route::group([
         });
         Route::group(['namespace' => 'Article'], function () {
             Route::resource('articles', 'ArticleController')->only(['index', 'show']);
+
         });
         Route::group(['namespace' => 'Message'], function () {
             Route::resource('messages', 'MessageController')->only(['store']);
