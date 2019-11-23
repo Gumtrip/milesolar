@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    protected $fillable=['title','intro','desc','seo_title','seo_keywords','seo_desc','order'];
+    protected $fillable=['title','category_id','intro','desc','seo_title','seo_keywords','seo_desc','order'];
 
 }
