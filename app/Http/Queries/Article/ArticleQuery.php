@@ -12,7 +12,9 @@ class ArticleQuery extends QueryBuilder
     {
         parent::__construct(Article::query());
 
-        $this->allowedFilters([
+        $this->allowedAppends(['image'])
+            ->allowedIncludes(['category'])
+            ->allowedFilters([
                 'title',
             ])
         ->defaultSort('-id');
