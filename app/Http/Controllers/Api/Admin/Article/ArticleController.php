@@ -17,6 +17,7 @@ class ArticleController extends Controller
     }
     public function store(ArticleRequest $request,Article $article){
         $article->fill($request->all());
+        //移动并裁剪图片
         if($request->image){
             $article->addMedia(public_path($request->image))->toMediaCollection('article');
         }

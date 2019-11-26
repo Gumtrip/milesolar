@@ -21,7 +21,6 @@ class Article extends Model implements HasMedia
             ->nonQueued()//用队列创建文件夹总是报permission denied??
             ->sharpen(10)//锐化
         ;
-
     }
 
     public function getThumbAttribute(){

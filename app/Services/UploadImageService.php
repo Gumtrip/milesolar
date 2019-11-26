@@ -48,4 +48,12 @@ class UploadImageService
         ];
     }
 
+    /** 移动并
+     * @param $folder
+     * @param $id
+     */
+
+    public function uploadHandle($folder,$id){
+
+}
 }

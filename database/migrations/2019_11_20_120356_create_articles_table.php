@@ -17,6 +17,7 @@ class CreateArticlesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title',100)->comment('标题');
             $table->integer('category_id',100)->comment('分类ID');
+            $table->string('image',60)->comment('主图');
             $table->string('intro',150)->comment('简介');
             $table->text('desc')->comment('详情');
             $table->string('seo_title', 150)->nullable()->comment('SEO-标题');
