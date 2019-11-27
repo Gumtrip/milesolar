@@ -16,6 +16,7 @@ return [
     'name' => env('APP_NAME', 'Laravel'),
     'thumb_width'=>'480',//1920/4=480,宽度取1920px
     'thumb_height'=>'320',//1280/4=320,高度取1280px
+    'thumb_suffix'=>'thumb',//
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -162,7 +163,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        App\Providers\HelperServiceProvider::class,
         /*
          * Package Service Providers...
          */

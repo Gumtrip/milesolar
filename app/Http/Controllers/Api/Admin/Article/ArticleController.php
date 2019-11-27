@@ -25,9 +25,7 @@ class ArticleController extends Controller
             $article->save();
             if($image = $request->image){
                 $paths = $uploadImageService->moveAndCrop($image,self::FOLDER,$article->id);
-                $article->update([
-                    'image'=>$paths[0]
-                ]);
+                $article->update(['image'=>$paths[0]]);
             }
         });
         return new ArticleResource($article);

@@ -8,7 +8,6 @@ use Spatie\MediaLibrary\Models\Media;
 use Storage;
 class Article extends Model
 {
-    const THUMB_NAME = 'thumb';
     protected $fillable=['title','category_id','image','intro','desc','seo_title','seo_keywords','seo_desc','order'];
 
     public function getBigImgAttribute(){
@@ -17,11 +16,7 @@ class Article extends Model
 
 
     public function getThumbAttribute(){
-        $fileName = pathinfo($this->image,PATHINFO_FILENAME);
-        $ext = pathinfo($this->image,PATHINFO_EXTENSION);
-        $newFileName = $fileName.'-'.self::THUMB_NAME.'.'.$ext;
-        $dir = pathinfo($this->image,PATHINFO_DIRNAME);
-        $fullName = $dir.'/'.$newFileName;
+        $fullName = getThumbName($this->image);
         return asset(Storage::url($fullName));
     }
 
