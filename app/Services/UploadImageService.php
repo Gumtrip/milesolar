@@ -2,12 +2,12 @@
 
 
 namespace App\Services;
-use Str;
-
+use Storage;
+use File;
 class UploadImageService
 {
     protected $allowed_ext = ["png", "jpg", "gif", 'jpeg'];
-
+    CONST DISKS='public';
     /** 移动上传的图片到特定文件夹
      * @param $file
      * @param $folder
@@ -48,12 +48,44 @@ class UploadImageService
         ];
     }
 
-    /** 移动并
+    /** 移动并裁剪
+     * @param $images
      * @param $folder
      * @param $id
      */
 
-    public function uploadHandle($folder,$id){
+    public function moveAndCrop($images,$folder,$id){
+        if(!is_array($images)){
+            $imagesGroup[] = $images;
+        }else{
+            $imagesGroup = $images;
+        }
+        $path=[];
+        foreach ($imagesGroup as $image){
+            $path[] = $this->moveFiles($image,$folder,$id);
+            $this->cropImages();
+        }
+        return $path;
+    }
 
-}
+    private function moveFiles($images,$folder,$id){
+        $disk = Storage::disk(self::DISKS);
+        $dir = $folder.'/'.$id;
+        if(!$disk->exists($dir)){
+            $disk->makeDirectory($dir);
+        }
+
+        $file = public_path($images);//旧图全路径
+        $fileBaseName = pathinfo($file,PATHINFO_BASENAME);
+        $path = $dir.'/'.$fileBaseName;//新图全路径
+        $fullPath = config('filesystems.disks.public.root').'/'.$path;//新图全路径
+        if(File::exists($file)){
+            File::move($file,$fullPath);
+        }
+        return $path;
+    }
+
+    private function cropImages(){
+
+    }
 }

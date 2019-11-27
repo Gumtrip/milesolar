@@ -12,7 +12,7 @@ class ArticleQuery extends QueryBuilder
     {
         parent::__construct(Article::query());
 
-        $this->allowedAppends(['image'])
+        $this
             ->allowedIncludes(['category'])
             ->allowedFilters([
                 'title',
