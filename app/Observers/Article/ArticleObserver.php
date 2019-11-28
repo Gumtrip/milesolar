@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Observers;
+namespace App\Observers\Article;
 
+use App\Jobs\CompressImages;
 use App\Models\Article\Article;
 use App\Services\UploadImageService;
-
+use DB;
 class ArticleObserver
 {
     CONST FOLDER='article';
@@ -15,12 +16,11 @@ class ArticleObserver
      * @param  \App\Models\Article\Article  $article
      * @return void
      */
-    public function created(Article $article,UploadImageService $uploadImageService)
+    public function created(Article $article)
     {
-        if($image = $article->image){
-            $paths = $uploadImageService->moveAndCrop($image,self::FOLDER,$article->id);
-            $article->update(['image'=>$paths[0]]);
-        }
+        $uploadImageService = app (UploadImageService::class);
+        $paths = $uploadImageService->moveAndCompress($article->image,self::FOLDER,$article->id);
+        DB::table('articles')->where('id',$article->id)->update(['image'=>$paths[0]]);
     }
 
     /**
@@ -31,7 +31,11 @@ class ArticleObserver
      */
     public function updated(Article $article)
     {
-        //
+        if($article->isDirty('image')){
+            CompressImages::dispatch($article->image);
+            //删除旧图
+        }
+
     }
 
     /**

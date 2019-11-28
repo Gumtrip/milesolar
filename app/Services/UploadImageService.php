@@ -50,7 +50,7 @@ class UploadImageService
      * @return array
      */
 
-    public function moveAndCrop($images, $folder, $id)
+    public function moveAndCompress($images, $folder, $id)
     {
         if (!is_array($images)) {
             $imagesGroup[] = $images;
