@@ -62,7 +62,6 @@ class UploadImageService
             $paths[] = $this->moveFiles($image, $folder, $id);
         }
         foreach ($paths as $path) {
-//            $this->generateThumbImages($path);
             CompressImages::dispatch($path);
         }
         return $paths;

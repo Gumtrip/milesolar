@@ -46,8 +46,6 @@ class CompressImages implements ShouldQueue
             $constraint->upsize();
         });
 
-        // 对图片修改后进行保存
-        //这个文件夹新建的话，无法写入！
         //这个文件夹是快捷方式的话，无法写入
         //任务无法写入，请使用sudo php artisan horizon
         $image->save(public_path($thumbName));
