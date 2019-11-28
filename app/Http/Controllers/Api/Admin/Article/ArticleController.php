@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Api\Admin\Article;
 use App\Http\Requests\Admin\BackendRequest as Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Article\ArticleResource;
+use App\Jobs\CompressImages;
 use App\Models\Article\Article;
 use App\Http\Queries\Article\ArticleQuery;
 use App\Http\Requests\Admin\Article\ArticleRequest;
 use App\Services\UploadImageService;
 use DB;
 use Storage;
-
+use Image;
 class ArticleController extends Controller
 {
     CONST FOLDER='article';
@@ -32,6 +33,7 @@ class ArticleController extends Controller
     }
     public function show($id,ArticleQuery $articleQuery){
         $article = $articleQuery->findOrFail($id);
+        CompressImages::dispatch($article->image);
         return new ArticleResource($article);
     }
     public function update(ArticleRequest $request,Article $article){

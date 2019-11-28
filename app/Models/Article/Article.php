@@ -11,13 +11,13 @@ class Article extends Model
     protected $fillable=['title','category_id','image','intro','desc','seo_title','seo_keywords','seo_desc','order'];
 
     public function getBigImgAttribute(){
-        return asset(Storage::url($this->image));
+        return asset($this->image);
     }
 
 
     public function getThumbAttribute(){
         $fullName = getThumbName($this->image);
-        return asset(Storage::url($fullName));
+        return asset($fullName);
     }
 
     public function category(){
