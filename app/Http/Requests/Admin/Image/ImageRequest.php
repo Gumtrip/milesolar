@@ -11,20 +11,20 @@ class ImageRequest extends FormRequest
     public function rules()
     {
         return [
-            'images' => 'required|mimes:jpeg,bmp,png,gif|dimensions:min_width=200,min_height=200'
+            'image' => 'required|mimes:jpeg,bmp,png,gif|dimensions:min_width=200,min_height=200'
         ];
     }
 
     public function attributes(){
         return [
-            'images' => '图片'
+            'image' => '图片'
         ];
     }
 
     public function messages()
     {
         return [
-            'images.dimensions' => '图片的清晰度不够，宽和高需要 200px 以上',
+            'image.dimensions' => '图片的清晰度不够，宽和高需要 200px 以上',
         ];
     }
 }
