@@ -20,7 +20,7 @@ class ArticleObserver
     public function created(Article $article)
     {
         $uploadImageService = app (ImageHandleService::class);
-        $path = $uploadImageService->moveFiles($article->image,self::FOLDER,$article->id);
+        $path = $uploadImageService->moveFile($article->image,self::FOLDER,$article->id);
         CompressImages::dispatch($path);
         DB::table('articles')->where('id',$article->id)->update(['image'=>$path]);
     }

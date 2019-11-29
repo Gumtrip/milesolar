@@ -5,8 +5,6 @@ namespace App\Services;
 
 use Storage;
 use File;
-use Image;
-use App\Jobs\CompressImages;
 class ImageHandleService
 {
     protected $allowed_ext = ["png", "jpg", "gif", 'jpeg'];
@@ -48,7 +46,7 @@ class ImageHandleService
     }
 
 
-    public function moveFiles($images, $folder, $id)
+    public function moveFile($images, $folder, $id)
     {
         $disk = Storage::disk(self::DISKS);
         $dir = $folder . '/' . $id;
