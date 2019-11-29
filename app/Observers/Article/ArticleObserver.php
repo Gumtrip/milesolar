@@ -4,6 +4,7 @@ namespace App\Observers\Article;
 
 use App\Jobs\CompressImages;
 use App\Jobs\DeleteImages;
+use App\Jobs\DeleteAndCleanDir;
 use App\Models\Article\Article;
 use App\Services\ImageHandleService;
 use DB;
@@ -50,7 +51,7 @@ class ArticleObserver
      */
     public function deleted(Article $article)
     {
-        //
+        DeleteAndCleanDir::dispatch($article->image);
     }
 
     /**
