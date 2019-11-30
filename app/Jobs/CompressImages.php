@@ -19,6 +19,7 @@ class CompressImages implements ShouldQueue
      */
     public function __construct($path)
     {
+
         $this->path = $path;
     }
 

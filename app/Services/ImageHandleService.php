@@ -24,7 +24,7 @@ class ImageHandleService
             $folder_name = Storage::url($folder.'/'.$id) ;
             $upload_path = public_path($folder_name);
         }else{
-            $folder_name = "uploads/images/" . date("Ym", time()) . '/' . date("d", time()) . '/';
+            $folder_name = "/uploads/images/" . date("Ym", time()) . '/' . date("d", time());
             $upload_path = public_path($folder_name) ;
         }
         $extension = strtolower($file->getClientOriginalExtension()) ?: 'png';

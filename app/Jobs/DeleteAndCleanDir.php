@@ -21,6 +21,7 @@ class DeleteAndCleanDir implements ShouldQueue
      */
     public function __construct($path)
     {
+        if(!$path)return;
         $this->path = public_path($path);
     }
 
@@ -31,9 +32,9 @@ class DeleteAndCleanDir implements ShouldQueue
      */
     public function handle()
     {
-        $dir= (File::dirname($this->path));
-        if(File::isDirectory($dir)){
-            File::cleanDirectory($dir);
+        $dir= (File::dirname($this->path));//这里有bug！！！，如果传的值是空，那么public 就会是项目的跟目录，
+        if(File::isDirectory($dir)){//使用队列的时候，它的根目录变成了项目的根目录了
+            File::cleanDirectory($dir);//使用sudo php artisan horizon 的话，就会删除整个项目目录
             File::deleteDirectory($dir);
         }
     }
