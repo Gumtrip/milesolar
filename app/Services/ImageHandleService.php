@@ -8,7 +8,6 @@ use File;
 class ImageHandleService
 {
     protected $allowed_ext = ["png", "jpg", "gif", 'jpeg'];
-    CONST DISKS = 'public';
 
     /** 移动上传的图片到特定文件夹
      * @param $file
@@ -51,7 +50,7 @@ class ImageHandleService
         $filesRoot = config('filesystems.disks.public.root') ;
         $dir = $folder . '/' . $id;
         if (!File::isDirectory($filesRoot.'/'.$dir)) {
-            File::makeDirectory($filesRoot.'/'.$dir,0777);
+            File::makeDirectory($filesRoot.'/'.$dir,0755);
         }
 
         $file = public_path($images);//旧图全路径
@@ -60,6 +59,7 @@ class ImageHandleService
         $fullPath = $filesRoot . '/' . $path;//新图全路径
         if (File::exists($file)) {
             File::move($file, $fullPath);
+            File::chmod($fullPath,0755);
         }
         return Storage::url($path);
     }

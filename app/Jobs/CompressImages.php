@@ -8,6 +8,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Image;
+use File;
 class CompressImages
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -24,6 +25,7 @@ class CompressImages
     }
 
     /** TODO 始终无法解决 用任务无法写入的问题，删除也是
+     *
      * Execute the job.
      *
      * @return void
@@ -50,6 +52,7 @@ class CompressImages
             //这个文件夹是快捷方式的话，无法写入
             //任务无法写入，请使用sudo php artisan horizon
             $image->save(public_path($thumbName));
+            File::chmod(public_path($thumbName),0755);
         }
 
 
