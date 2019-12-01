@@ -48,16 +48,16 @@ class ImageHandleService
 
     public function moveFile($images, $folder, $id)
     {
-        $disk = Storage::disk(self::DISKS);
+        $filesRoot = config('filesystems.disks.public.root') ;
         $dir = $folder . '/' . $id;
-        if (!$disk->exists($dir)) {
-            $disk->makeDirectory($dir);
+        if (!File::isDirectory($filesRoot.'/'.$dir)) {
+            File::makeDirectory($filesRoot.'/'.$dir,0777);
         }
 
         $file = public_path($images);//旧图全路径
         $fileBaseName = pathinfo($file, PATHINFO_BASENAME);
         $path = $dir . '/' . $fileBaseName;//新图全路径
-        $fullPath = config('filesystems.disks.public.root') . '/' . $path;//新图全路径
+        $fullPath = $filesRoot . '/' . $path;//新图全路径
         if (File::exists($file)) {
             File::move($file, $fullPath);
         }

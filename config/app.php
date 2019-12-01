@@ -14,9 +14,20 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-    'thumb_width'=>'480',//1920/4=480,宽度取1920px
-    'thumb_height'=>'320',//1280/4=320,高度取1280px
-    'thumb_suffix'=>'thumb',//
+    'thumb_img'=>[
+        'sm'=>[
+            'name'=>'sm',
+            'size'=>'320'
+        ],
+        'mid'=>[
+            'name'=>'mid',//1920/4=480,宽度取1920px
+            'size'=>'480'
+        ],
+        'big'=>[
+            'name'=>'big',
+            'size'=>'1920'
+        ],
+    ],
     /*
     |--------------------------------------------------------------------------
     | Application Environment

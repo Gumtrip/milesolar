@@ -8,7 +8,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use File;
-class DeleteImages implements ShouldQueue
+class DeleteImages
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -32,8 +32,10 @@ class DeleteImages implements ShouldQueue
     {
 
         $this->deleteHandle($this->image);
-
-        $this->deleteHandle(getThumbName($this->image));
+        $imageSizes = config('app.thumb_img');
+        foreach($imageSizes as $size=>$thumb) {
+            $this->deleteHandle(getThumbName($this->image,$thumb['name']));
+        }
 
     }
     private function deleteHandle($image){//这里不用Storage::disk(self::DISKS)->exists($image)判断
