@@ -9,8 +9,6 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Jobs\Traits\CompressImages;
 use App\Models\Article\Article;
-use Image;
-use File;
 class CompressImgs
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels,CompressImages;

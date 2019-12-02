@@ -2,10 +2,8 @@
 
 
 namespace App\Jobs\Traits;
-
-
 use File;
-
+use Image;
 trait CompressImages
 {
     function compressHandle($path){

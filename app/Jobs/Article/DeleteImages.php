@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\Article;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use File;
 use App\Models\Article\Article;
 use App\Jobs\Traits\DelImages;
 
@@ -23,7 +22,7 @@ class DeleteImages
      */
     public function __construct(Article $article)
     {
-        $image = $article->image;
+        $image = $article->getOriginal('image');
         $this->image = public_path($image);
     }
 
