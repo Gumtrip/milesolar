@@ -8,9 +8,12 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use File;
+use App\Models\Article\Article;
+use App\Jobs\Traits\DelImages;
+
 class DeleteImages
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels,DelImages;
 
     protected $image;
     /**
@@ -18,8 +21,9 @@ class DeleteImages
      *
      * @return void
      */
-    public function __construct($image)
+    public function __construct(Article $article)
     {
+        $image = $article->image;
         $this->image = public_path($image);
     }
 
@@ -30,17 +34,11 @@ class DeleteImages
      */
     public function handle()
     {
-
-        $this->deleteHandle($this->image);
         $imageSizes = config('app.thumb_img');
+        $this->deleteHandle($this->image);
         foreach($imageSizes as $size=>$thumb) {
             $this->deleteHandle(getThumbName($this->image,$thumb['name']));
         }
+    }
 
-    }
-    private function deleteHandle($image){//这里不用Storage::disk(self::DISKS)->exists($image)判断
-        if(File::exists($image)){//因为Storage::disk(self::DISKS)会在路径前面加storage
-            File::delete($image);//数据库的值是带storage
-        }
-    }
 }

@@ -23,8 +23,8 @@ class ArticleObserver
     {
         $uploadImageService = app (ImageHandleService::class);
         $path = $uploadImageService->moveFile($article->image,self::FOLDER,$article->id);
-        CompressImages::dispatch($path);
-        MoveImageFrTx::dispatch($article);
+        CompressImages::dispatch($path);//压缩图片
+        MoveImageFrTx::dispatch($article);//将富文本的图片移动到正确的位置
         DB::table('articles')->where('id',$article->id)->update(['image'=>$path]);
     }
 

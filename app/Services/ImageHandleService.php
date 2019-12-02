@@ -65,8 +65,8 @@ class ImageHandleService
         $path = $dir . '/' . $fileBaseName;//新图全路径
         $fullPath = $filesRoot . '/' . $path;//新图全路径
         if (File::exists($file)) {
-            File::copy($file, $fullPath);
-//            File::move($file, $fullPath);
+//            File::copy($file, $fullPath);
+            File::move($file, $fullPath);
             File::chmod($fullPath,0755);
             return Storage::url($path);
         }else{
