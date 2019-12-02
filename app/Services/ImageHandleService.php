@@ -45,6 +45,12 @@ class ImageHandleService
         ];
     }
 
+    /** 移动本地图片
+     * @param $images
+     * @param $folder
+     * @param $id
+     * @return string
+     */
 
     public function moveFile($images, $folder, $id)
     {
@@ -64,7 +70,7 @@ class ImageHandleService
             File::chmod($fullPath,0755);
             return Storage::url($path);
         }else{
-            Log::warning('【'.$fullPath.'】图片不存在！');
+            return '';
         }
     }
 

@@ -40,7 +40,10 @@ class MoveImageFrTx
                 //这里很笨，直接遍历整个content 然后替换掉image
                 //图片多后者富文本内容多，会有效率问题
                 //TODO 找更好的方法一次替换，而不是通过遍历替换
-                $content = str_replace($image,asset($path),$content);
+                if($path){//如果图片存在，则移动，因为有可以能图片是第三方的！
+                    $content = str_replace($image,asset($path),$content);
+                }
+
             }
             DB::table('articles')->where('id',$this->article->id)->update(['desc'=>$content]);
         }else{//没有图片，直接返回
