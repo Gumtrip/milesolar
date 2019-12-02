@@ -5,6 +5,7 @@ namespace App\Observers\Article;
 use App\Jobs\CompressImages;
 use App\Jobs\DeleteImages;
 use App\Jobs\DeleteAndCleanDir;
+use App\Jobs\Article\MoveImageFrTx;
 use App\Models\Article\Article;
 use App\Services\ImageHandleService;
 use DB;
@@ -23,6 +24,7 @@ class ArticleObserver
         $uploadImageService = app (ImageHandleService::class);
         $path = $uploadImageService->moveFile($article->image,self::FOLDER,$article->id);
         CompressImages::dispatch($path);
+        MoveImageFrTx::dispatch($article);
         DB::table('articles')->where('id',$article->id)->update(['image'=>$path]);
     }
 

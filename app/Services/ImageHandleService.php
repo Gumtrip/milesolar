@@ -5,6 +5,7 @@ namespace App\Services;
 
 use Storage;
 use File;
+use Log;
 class ImageHandleService
 {
     protected $allowed_ext = ["png", "jpg", "gif", 'jpeg'];
@@ -58,10 +59,13 @@ class ImageHandleService
         $path = $dir . '/' . $fileBaseName;//新图全路径
         $fullPath = $filesRoot . '/' . $path;//新图全路径
         if (File::exists($file)) {
-            File::move($file, $fullPath);
+            File::copy($file, $fullPath);
+//            File::move($file, $fullPath);
             File::chmod($fullPath,0755);
+            return Storage::url($path);
+        }else{
+            Log::warning('【'.$fullPath.'】图片不存在！');
         }
-        return Storage::url($path);
     }
 
 

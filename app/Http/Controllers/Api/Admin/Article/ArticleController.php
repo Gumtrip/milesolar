@@ -8,7 +8,7 @@ use App\Http\Resources\Article\ArticleResource;
 use App\Models\Article\Article;
 use App\Http\Queries\Article\ArticleQuery;
 use App\Http\Requests\Admin\Article\ArticleRequest;
-
+use App\Jobs\Article\MoveImageFrTx;
 class ArticleController extends Controller
 {
 

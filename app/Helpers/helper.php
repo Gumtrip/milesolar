@@ -35,3 +35,6 @@ function handle_ckeditor_img($upload_dir,$id,$content){
     }
     return $content;
 }
+function matchImages($content){
+
+}
