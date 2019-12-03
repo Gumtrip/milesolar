@@ -25,6 +25,7 @@ Route::group([
         Route::group(['namespace' => 'Product'], function () {
             Route::resource('products', 'ProductController')->only(['index', 'store', 'show', 'update', 'destroy']);
             Route::resource('product_categories', 'ProductCategoryController')->only(['index', 'store', 'show', 'update', 'destroy']);
+            Route::get('product_category_trees', 'ProductCategoryController@showTree');
         });
         Route::group(['namespace' => 'Article'], function () {
             Route::resource('articles', 'ArticleController')->only(['index', 'store', 'show', 'update', 'destroy']);
@@ -53,6 +54,7 @@ Route::group([
         Route::group(['namespace' => 'Product'], function () {
             Route::resource('products', 'ProductController')->only(['index', 'show']);
             Route::resource('product_categories', 'ProductCategoryController')->only(['index', 'show']);
+
         });
         Route::group(['namespace' => 'Article'], function () {
             Route::resource('articles', 'ArticleController')->only(['index', 'show']);

@@ -12,12 +12,21 @@ class ProductCategoryController extends Controller
 {
     public function index(Request $request, ProductCategory $productCategory)
     {
-//        $depth = $request->depth;
-//        $categories = $productCategory->withDepth()->when($depth, function ($query) use ($depth) {
-//            $depth = $depth <= 2 ? $depth : 2;
-//            $query->having('depth', '<=', $depth);
-//        })->get()->toTree();
         $categories = $productCategory->withDepth()->paginate();
+        return  ProductCategoryResource::collection($categories);
+    }
+
+    public function showTree(Request $request, ProductCategory $productCategory){
+        $depth = $request->depth;
+        $id = $request->id;
+        $categories = $productCategory->withDepth()->when($depth, function ($query) use ($depth) {
+            $depth = $depth <= 2 ? $depth : 2;
+            return $query->having('depth', '<=', $depth);
+        })->when($id,function($query) use($id){
+            //在分类编辑页不能显示自己以及自己的子类
+            $descendantsAndSelf = ProductCategory::find($id);
+            return $query->whereNotIn('id','!=',$descendantsAndSelf->pluck('id'));
+        })->get()->toTree();
         return new ProductCategoryResource($categories);
     }
 
