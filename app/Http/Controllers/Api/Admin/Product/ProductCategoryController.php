@@ -17,7 +17,7 @@ class ProductCategoryController extends Controller
 //            $depth = $depth <= 2 ? $depth : 2;
 //            $query->having('depth', '<=', $depth);
 //        })->get()->toTree();
-        $categories = $productCategory->paginate();
+        $categories = $productCategory->withDepth()->paginate();
         return new ProductCategoryResource($categories);
     }
 
