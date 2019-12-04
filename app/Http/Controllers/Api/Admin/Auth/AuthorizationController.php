@@ -50,7 +50,7 @@ class AuthorizationController extends Controller
     }
 
     public function destroy(){
-        auth(self::GUARD)->logout();
+//        auth(self::GUARD)->logout();
         return response(null, 204);
     }
 }
