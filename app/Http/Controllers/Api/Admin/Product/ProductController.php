@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request,Product $product){
         $product->fill($request->all());
         $product->save();
-        return new ProductResource($product);
+        return response(null,201);
     }
     public function show($productId,ProductQuery $productQuery){
         $product = $productQuery->findOrFail($productId);
