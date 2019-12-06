@@ -24,8 +24,8 @@ class ProductCategoryController extends Controller
             return $query->having('depth', '<=', $depth);
         })->when($id,function($query) use($id){
             //在分类编辑页不能显示自己以及自己的子类
-            $descendantsAndSelf = ProductCategory::find($id);
-            return $query->whereNotIn('id','!=',$descendantsAndSelf->pluck('id'));
+            $descendantsAndSelf = ProductCategory::descendantsAndSelf($id);
+            return $query->whereNotIn('id',$descendantsAndSelf->pluck('id'));
         })->get()->toTree();
         return new ProductCategoryResource($categories);
     }
