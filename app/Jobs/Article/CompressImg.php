@@ -9,7 +9,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Jobs\Traits\CompressImages;
 use App\Models\Article\Article;
-class CompressImgs
+class CompressImg
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels,CompressImages;
     protected $path;

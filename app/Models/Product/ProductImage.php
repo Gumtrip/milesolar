@@ -6,5 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductImage extends Model
 {
-    //
+    protected $fillable=['path','order'];
+    protected $appends=['image'];
+    function product(){
+        return $this->belongsTo(Product::Class);
+    }
+
+
+
+
+    public function getImageAttribute(){
+        return asset($this->path);
+    }
 }

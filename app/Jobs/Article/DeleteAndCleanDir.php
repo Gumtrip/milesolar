@@ -14,6 +14,8 @@ class DeleteAndCleanDir
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels,DelAndCleanDir;
 
     protected $path;
+    CONST FOLDER = 'article';
+
     /** 清空文件所在的文件夹并且删除文件夹
      * Create a new job instance.
      *
@@ -21,9 +23,9 @@ class DeleteAndCleanDir
      */
     public function __construct(Article $article)
     {
-        $path = $article->image;
-        if(!$path||$path=='/')return;
-        $this->path = public_path($path);
+        $filesRoot = config('filesystems.disks.public.root') ;
+        $dir = self::FOLDER . '/' . $article->id;
+        $this->path = $filesRoot.'/'.$dir;
     }
 
     /**

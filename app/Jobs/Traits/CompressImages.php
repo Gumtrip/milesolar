@@ -11,6 +11,7 @@ trait CompressImages
         foreach($imageSizes as $size=>$thumb){
             $maxWidth = $thumb['size'];
             $thumbName = getThumbName($path,$thumb['name']);
+            if(File::exists(public_path($thumbName)))continue;
             // 先实例化，传参是文件的磁盘物理路径
             $image = Image::make(public_path($path));//用绝对路径
             // 进行大小调整的操作

@@ -33,7 +33,6 @@ class ArticleController extends Controller
 
     public function update(ArticleRequest $request, Article $article)
     {
-
         $article->update($request->all());
         return new ArticleResource($article);
     }

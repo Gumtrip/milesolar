@@ -15,7 +15,7 @@ class CreateProductImagesTable extends Migration
     {
         Schema::create('product_images', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name',150)->comment('名称');
+            $table->string('path',150)->comment('路径');
             $table->integer('product_id')->comment('产品id');
             $table->integer('order')->default(0)->comment('排序');
             $table->timestamps();

@@ -2,7 +2,7 @@
 
 namespace App\Observers\Article;
 
-use App\Jobs\Article\CompressImgs;
+use App\Jobs\Article\CompressImg;
 use App\Jobs\Article\DeleteImages;
 use App\Jobs\Article\DeleteAndCleanDir;
 use App\Jobs\Article\MoveImageFrTx;
@@ -24,7 +24,7 @@ class ArticleObserver
         $uploadImageService = app (ImageHandleService::class);
         $path = $uploadImageService->moveFile($article->image,self::FOLDER,$article->id);
         $article->image = $path;
-        CompressImgs::dispatch($article);//压缩图片
+        CompressImg::dispatch($article);//压缩图片
         MoveImageFrTx::dispatch($article);//将富文本的图片移动到正确的位置
         DB::table('articles')->where('id',$article->id)->update(['image'=>$path]);
     }
@@ -39,7 +39,7 @@ class ArticleObserver
     {
         if($article->isDirty('image')){
             //压缩新图
-            CompressImgs::dispatch($article);
+            CompressImg::dispatch($article);
             //删除旧图
             DeleteImages::dispatch($article);
         }
