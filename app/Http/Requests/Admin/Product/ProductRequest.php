@@ -17,6 +17,7 @@ class ProductRequest extends FormRequest
         $data = [
             'title' => 'required',
             'category_id' => 'required',
+            'images' => 'required|array',
         ];
         return $data;
     }

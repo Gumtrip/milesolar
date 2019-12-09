@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Product\ProductRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Product\Product;
 use App\Models\Product\ProductImage;
+use App\Models\Product\ProductInfo;
 use App\Http\Resources\Product\ProductResource;
 use App\Http\Queries\Product\ProductQuery;
 use App\Services\ImageHandleService;
@@ -14,6 +15,7 @@ use App\Services\ImageHandleService;
 class ProductController extends Controller
 {
     CONST FOLDER='product';
+    CONST CONTENT_NAME=['info_0.m','info_1.m','info_2.m'];
     public function index(Request $request,ProductQuery $productQuery){
         $products = $productQuery->paginate();
         return ProductResource::collection($products);
@@ -21,13 +23,25 @@ class ProductController extends Controller
     public function store(ProductRequest $request,Product $product){
         $product->fill($request->all());
         $product->save();
+        $imageHandleService = app (ImageHandleService::class);//移动图片
         if($images = $request->images){
-            $uploadImageService = app (ImageHandleService::class);//移动图片
             foreach($images as $key=>$image){
-                $path = $uploadImageService->moveFile($image,self::FOLDER,$product->id);
+                $path = $imageHandleService->moveFile($image,self::FOLDER,$product->id);
                 $proImage = new ProductImage(['path'=>$path,'order'=>$key]);
                 $proImage->product()->associate($product);
                 $proImage->save();
+            }
+        }
+        //添加内容
+        foreach(self::CONTENT_NAME as $tab){
+            if($content = $request->$tab){
+                $matches = $imageHandleService->matchImages($content);
+                if (isset($matches[1]) && $matches[1]) {
+                    $content = $imageHandleService->textAreaHandle($content, $matches, self::FOLDER, $product->id);
+                }
+                $info = new ProductInfo(['name'=>$tab,'content'=>$content]);
+                $info->product()->associate($product);
+                $info->save();
             }
         }
         return response(null,201);
@@ -41,11 +55,11 @@ class ProductController extends Controller
         $oldImageCol = $oldImages->pluck('path');
         $imageCol = collect($request->images);
 
-
+//图片处理
         $imageCol->intersect ($oldImageCol)->each(function($img,$key) use($oldImages,$product){//交集，更新
             $oldImages->firstWhere('path',$img)->update(['order'=>$key]);
         });
-        $oldImageCol->diff ($imageCol)->each(function($img,$key)use($oldImages){//旧集和新集的差集
+        $oldImageCol->diff ($imageCol)->each(function($img)use($oldImages){//旧集和新集的差集
             $oldImages->firstWhere('path',$img)->delete();
         });
         $imageCol->diff ($oldImageCol)->each(function($img,$key)use($oldImages,$product){//新集和旧集差集
@@ -53,6 +67,15 @@ class ProductController extends Controller
             $proImage->product()->associate($product);
             $proImage->save();
         });
+
+//富文本处理
+        $proInfo = $product->infos;
+        foreach($proInfo as $info){
+            $title = $info->title;
+            if($content = $request->$title){
+                $info->update(['content'=>$content]);
+            }
+        }
 
         $product->update($request->all());
 

@@ -17,9 +17,6 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title',100)->comment('标题');
             $table->integer('category_id')->comment('产品分类');
-            $table->text('desc_0')->nullable()->comment('详情1');
-            $table->text('desc_1')->nullable()->comment('详情2');
-            $table->text('desc_2')->nullable()->comment('详情3');
             $table->string('seo_title', 150)->nullable()->comment('SEO-标题');
             $table->string('seo_keywords', 150)->nullable()->comment('SEO-关键字');
             $table->string('seo_desc', 200)->nullable()->comment('SEO-描述');
