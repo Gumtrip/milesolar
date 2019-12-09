@@ -10,12 +10,12 @@ class Product extends Model
     protected $fillable = ['title', 'category_id', 'seo_title', 'seo_keywords', 'seo_desc', 'order'];
 
     //图片集合
-    function getImageCollectionAttribute()
+    function getImageGroupAttribute()
     {
-        return $this->images->pluck('name');
+        return $this->images->pluck('path');
     }
 
-    function getInfoCollectionAttribute()
+    function getInfoGroupAttribute()
     {
         return $this->infos->flatMap(function($info){
             return [$info->title=>$info->content];
