@@ -12,7 +12,7 @@ class ProductQuery extends QueryBuilder
     {
         parent::__construct(Product::query());
 
-        $this->allowedIncludes(['category','images'] )
+        $this->allowedIncludes(['category','images','infos'] )
             ->allowedFilters([
                 'title',
                 AllowedFilter::exact('category_id'),
