@@ -7,22 +7,34 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable=['title','category_id','seo_title','seo_keywords','seo_desc','order'];
-    protected $appends = ['image_col'];
+    protected $fillable = ['title', 'category_id', 'seo_title', 'seo_keywords', 'seo_desc', 'order'];
 
     //图片集合
-    function getImageColAttribute(){
+    function getImageCollectionAttribute()
+    {
         return $this->images->pluck('name');
     }
 
+    function getInfoCollectionAttribute()
+    {
+        return $this->infos->flatMap(function($info){
+            return [$info->title=>$info->content];
+        });
+    }
 
-    function category(){
+
+    function category()
+    {
         return $this->belongsTo(ProductCategory::class);
     }
-    function images(){
+
+    function images()
+    {
         return $this->hasMany(ProductImage::Class);
     }
-    function infos(){
+
+    function infos()
+    {
         return $this->hasMany(ProductInfo::Class);
     }
 }
