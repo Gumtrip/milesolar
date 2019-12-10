@@ -11,7 +11,7 @@ use App\Models\Product\ProductInfo;
 use App\Http\Resources\Product\ProductResource;
 use App\Http\Queries\Product\ProductQuery;
 use App\Services\ImageHandleService;
-
+use File;
 class ProductController extends Controller
 {
     CONST FOLDER = 'product';
@@ -30,10 +30,12 @@ class ProductController extends Controller
         $imageHandleService = app(ImageHandleService::class);//移动图片
         if ($images = $request->images) {
             foreach ($images as $key => $image) {
-                $path = $imageHandleService->moveFile($image, self::FOLDER, $product->id);
-                $proImage = new ProductImage(['path' => $path, 'order' => $key]);
-                $proImage->product()->associate($product);
-                $proImage->save();
+                if(File::exists(public_path($image))){
+                    $path = $imageHandleService->moveFile($image, self::FOLDER, $product->id);
+                    $proImage = new ProductImage(['path' => $path, 'order' => $key]);
+                    $proImage->product()->associate($product);
+                    $proImage->save();
+                }
             }
         }
         //添加内容

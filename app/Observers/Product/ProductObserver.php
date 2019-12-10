@@ -17,7 +17,6 @@ class ProductObserver
      */
     public function created(Product $product)
     {
-        MoveImageFrTx::dispatch($product);//将富文本的图片移动到正确的位置
     }
 
     /**

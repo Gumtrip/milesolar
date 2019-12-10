@@ -12,9 +12,6 @@ class ProductImage extends Model
         return $this->belongsTo(Product::Class);
     }
 
-
-
-
     public function getImageAttribute(){
         return asset($this->path);
     }
