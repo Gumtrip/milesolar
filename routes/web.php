@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-//Route::view('/','index');
-//Route::view('/{page}','index')->where('page','^[^admin].*');
-//Route::view('/admin','backend.index');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+Route::view('/','index');
+Route::view('/{page}','index')->where('page','^[^admin].*');
+Route::view('/admin','backend.index');
