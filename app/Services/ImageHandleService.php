@@ -47,21 +47,20 @@ class ImageHandleService
     }
 
     /** 移动本地图片
-     * @param $images
+     * @param $image
      * @param $folder
      * @param $id
      * @return string
      */
 
-    public function moveFile($images, $folder, $id)
+    public function moveFile($image, $folder, $id)
     {
         $filesRoot = config('filesystems.disks.public.root');
         $dir = $folder . '/' . $id;
         if (!File::isDirectory($filesRoot . '/' . $dir)) {
             File::makeDirectory($filesRoot . '/' . $dir, 0755);
         }
-
-        $file = public_path($images);//旧图全路径
+        $file = public_path($image);//旧图全路径
         $fileBaseName = pathinfo($file, PATHINFO_BASENAME);
         $path = $dir . '/' . $fileBaseName;//新图全路径
         $fullPath = $filesRoot . '/' . $path;//新图全路径
@@ -71,7 +70,7 @@ class ImageHandleService
             File::chmod($fullPath, 0755);
             return Storage::url($path);
         } else {
-            return '';
+            return null;
         }
     }
 
