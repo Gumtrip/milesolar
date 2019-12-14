@@ -14,6 +14,10 @@ class Product extends Model
     {
         return $this->images->pluck('image');
     }
+    function getPathGroupAttribute()
+    {
+        return $this->images->pluck('path');
+    }
     //图片集合
     function getMidImageGroupAttribute()
     {
