@@ -12,7 +12,7 @@ class Product extends Model
     //图片集合
     function getImageGroupAttribute()
     {
-        return $this->images->pluck('path');
+        return $this->images->pluck('image');
     }
 
     function getInfoGroupAttribute()
