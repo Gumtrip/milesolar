@@ -7,13 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['title', 'category_id', 'seo_title', 'seo_keywords', 'seo_desc', 'order'];
+    protected $fillable = ['title', 'category_id','brief', 'seo_title', 'seo_keywords', 'seo_desc', 'order'];
 
     //图片集合
     function getImageGroupAttribute()
     {
         return $this->images->pluck('image');
     }
+    //图片集合
+    function getMidImageGroupAttribute()
+    {
+        return collect($this->image_group)->map(function($img){
+            return getThumbName($img,'mid');
+        });
+    }
+
 
     function getInfoGroupAttribute()
     {
