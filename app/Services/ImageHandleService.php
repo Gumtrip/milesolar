@@ -115,7 +115,7 @@ class ImageHandleService
             //图片多后者富文本内容多，会有效率问题
             //TODO 找更好的方法一次替换，而不是通过遍历替换
             if ($path) {//如果图片存在，则移动，因为有可以能图片是第三方的！
-                $content = str_replace($image, asset($path), $content);
+                $content = str_replace($image, ($path), $content);
             }
         }
         return $content;
