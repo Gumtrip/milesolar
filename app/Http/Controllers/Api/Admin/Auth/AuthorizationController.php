@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Admin\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Auth\LoginRequest;
 use Auth;
+use Illuminate\Auth\AuthenticationException;
 
 class AuthorizationController extends Controller
 {
@@ -17,8 +18,9 @@ class AuthorizationController extends Controller
      */
     public function store(LoginRequest $request)
     {
+
         if (!$token = auth(self::GUARD)->attempt($request->all())) {
-            return response()->json->errorUnauthorized('用户名或密码错误');
+            throw new AuthenticationException('用户名或密码错误');
         }
         return $this->respondWithToken($token);
     }
