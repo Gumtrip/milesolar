@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Http\Resources\Json\Resource;
+use App\Models\Product\ProductCategory;
+use App\Observers\Product\ProductCategoryObserver;
 use App\Observers\Article\ArticleObserver;
 use App\Models\Article\Article;
 use App\Observers\Product\ProductObserver;
@@ -32,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
         Article::observe(ArticleObserver::class);
         ProductImage::observe(ProductImageObserver::class);
         Product::observe(ProductObserver::class);
+        ProductCategory::observe(ProductCategoryObserver::class);
         Resource::withoutWrapping();
     }
 }
