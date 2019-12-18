@@ -24,7 +24,7 @@ class ProductCategoryObserver
         $path = $uploadImageService->moveFile($productCategory->image,self::FOLDER,$productCategory->id);
         $productCategory->image = $path;
         CompressImg::dispatch($productCategory);//压缩图片
-        DB::table('articles')->where('id',$productCategory->id)->update(['image'=>$path]);
+        DB::table('product_categories')->where('id',$productCategory->id)->update(['image'=>$path]);
     }
 
     /**
