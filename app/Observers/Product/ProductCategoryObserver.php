@@ -6,6 +6,7 @@ use App\Jobs\ProductCategory\CompressImg;
 use App\Jobs\ProductCategory\DeleteImages;
 use App\Models\Product\ProductCategory;
 use App\Services\ImageHandleService;
+use DB;
 
 class ProductCategoryObserver
 {
@@ -23,7 +24,7 @@ class ProductCategoryObserver
         $path = $uploadImageService->moveFile($productCategory->image,self::FOLDER,$productCategory->id);
         $productCategory->image = $path;
         CompressImg::dispatch($productCategory);//压缩图片
-
+        DB::table('articles')->where('id',$productCategory->id)->update(['image'=>$path]);
     }
 
     /**
