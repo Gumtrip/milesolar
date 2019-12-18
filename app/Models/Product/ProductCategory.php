@@ -8,5 +8,5 @@ use Kalnoy\Nestedset\NodeTrait;
 class ProductCategory extends Model
 {
     use NodeTrait;
-    protected $fillable=['title','seo_title','seo_keywords','seo_desc','order'];
+    protected $fillable=['title','image','seo_title','seo_keywords','seo_desc','order'];
 }
