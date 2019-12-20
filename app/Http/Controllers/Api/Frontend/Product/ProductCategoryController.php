@@ -11,11 +11,7 @@ class ProductCategoryController extends Controller
 {
     public function index(Request $request, ProductCategory $productCategory)
     {
-        $depth = $request->depth;
-        $categories = $productCategory->withDepth()->when($depth, function ($query) use ($depth) {
-            $depth = $depth <= 2 ? $depth : 2;
-            $query->having('depth', '<=', $depth);
-        })->get()->toTree();
+        $categories = $productCategory->get();
         return new ProductCategoryResource($categories);
     }
 

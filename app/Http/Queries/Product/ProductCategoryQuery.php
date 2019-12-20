@@ -11,7 +11,6 @@ class ProductCategoryQuery extends QueryBuilder
     public function __construct()
     {
         parent::__construct(ProductCategory::query());
-
         $this->allowedFilters([
                 'title',
             ])
