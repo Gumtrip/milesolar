@@ -1,0 +1,25 @@
+<h3>你有新的询盘，请注意查询！</h3>
+<table border="1">
+    <tbody>
+        <tr>
+            <td>姓名:</td>
+            <td>{{$data->name}}</td>
+        </tr>
+        <tr>
+            <td>邮件:</td>
+            <td>{{$data->email}}</td>
+        </tr>
+        <tr>
+            <td>电话:</td>
+            <td>{{$data->phone}}</td>
+        </tr>
+        <tr>
+            <td>SKYPE:</td>
+            <td>{{$data->skype}}</td>
+        </tr>
+        <tr>
+            <td>详情:</td>
+            <td>{{$data->msg}}</td>
+        </tr>
+    </tbody>
+</table>

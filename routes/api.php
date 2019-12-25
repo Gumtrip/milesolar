@@ -54,7 +54,6 @@ Route::group([
         Route::group(['namespace' => 'Product'], function () {
             Route::resource('products', 'ProductController')->only(['index', 'show']);
             Route::resource('product_categories', 'ProductCategoryController')->only(['index', 'show']);
-
         });
         Route::group(['namespace' => 'Article'], function () {
             Route::resource('articles', 'ArticleController')->only(['index', 'show']);
@@ -64,5 +63,4 @@ Route::group([
             Route::resource('messages', 'MessageController')->only(['store']);
         });
     });
-
 });
