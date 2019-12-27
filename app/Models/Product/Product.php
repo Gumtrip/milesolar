@@ -9,16 +9,28 @@ class Product extends Model
 {
     protected $fillable = ['title', 'category_id','brief', 'seo_title', 'seo_keywords', 'seo_desc', 'order'];
 
-    //图片集合
-    function getImageGroupAttribute()
-    {
-        return $this->images->pluck('image');
-    }
+
+    protected $appends = ['main_img'];
+
     function getPathGroupAttribute()
     {
         return $this->images->pluck('path');
     }
-    //图片集合
+
+    function getMainImgAttribute()
+    {
+        $image = $this->images->sortBy('order')->first();
+        if($image){
+            return asset(getThumbName($image->path,'mid'));
+        }else{
+            return null;
+        }
+    }
+
+    /** 中图图片集合
+     * @return \Illuminate\Support\Collection
+     */
+
     function getMidImageGroupAttribute()
     {
         return collect($this->image_group)->map(function($img){
@@ -26,6 +38,10 @@ class Product extends Model
         });
     }
 
+
+    /** 详情集合
+     * @return mixed
+     */
 
     function getInfoGroupAttribute()
     {
