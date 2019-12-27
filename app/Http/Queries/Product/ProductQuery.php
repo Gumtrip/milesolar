@@ -17,7 +17,7 @@ class ProductQuery extends QueryBuilder
                 'title',
                 AllowedFilter::exact('category_id'),
             ])
-            ->allowedAppends(['info_group','path_group'])
+            ->allowedAppends(['info_group','path_group','mid_image_group'])
         ->defaultSort('-id');
     }
 

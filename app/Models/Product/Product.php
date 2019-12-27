@@ -10,14 +10,14 @@ class Product extends Model
     protected $fillable = ['title', 'category_id','brief', 'seo_title', 'seo_keywords', 'seo_desc', 'order'];
 
 
-    protected $appends = ['main_img'];
+    protected $appends = ['main_image'];
 
     function getPathGroupAttribute()
     {
         return $this->images->pluck('path');
     }
 
-    function getMainImgAttribute()
+    function getMainImageAttribute()
     {
         $image = $this->images->sortBy('order')->first();
         if($image){
@@ -33,8 +33,8 @@ class Product extends Model
 
     function getMidImageGroupAttribute()
     {
-        return collect($this->image_group)->map(function($img){
-            return getThumbName($img,'mid');
+        return collect($this->images)->map(function($img){
+            return asset(getThumbName($img->path,'mid'));
         });
     }
 

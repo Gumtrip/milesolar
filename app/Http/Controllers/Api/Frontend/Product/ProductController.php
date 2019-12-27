@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function index(Request $request, ProductQuery $productQuery){
-        $products = $productQuery->with('images')->paginate();
+        $products = $productQuery->with('images')->paginate(2);
         return ProductResource::collection($products);
     }
     public function show($productId,ProductQuery $productQuery){
