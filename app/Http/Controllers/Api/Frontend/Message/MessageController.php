@@ -11,7 +11,10 @@ use App\Events\ReceiveMsg;
 class MessageController extends Controller
 {
     public function store(MessageRequest $request,Message $message){
-        $message->fill($request->all());
+        $ip = $request->getClientIp();
+        $message->fill(array_merge([
+            'ip'=>$ip
+        ],$request->all()));
         $message->save();
         event(new ReceiveMsg($message));
         return new MessageResource($message);
