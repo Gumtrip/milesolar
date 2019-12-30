@@ -9,7 +9,7 @@ use App\Http\Resources\Message\MessageResource;
 class MessageController extends Controller
 {
     public function index(Request $request,Message $message){
-        $messages = $message->paginate();
+        $messages = $message->orderBy('id','desc')->paginate(config('app.page_size'));
         return MessageResource::collection($messages);
     }
 

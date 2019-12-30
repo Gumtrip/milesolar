@@ -11,7 +11,7 @@ use App\Http\Requests\Admin\Article\ArticleCategoryRequest;
 class ArticleCategoryController extends Controller
 {
     public function index(Request $request,ArticleCategory $articleCategory){
-        $categories = $articleCategory->paginate();
+        $categories = $articleCategory->paginate(config('app.page_size'));
         return ArticleCategoryResource::collection($categories);
     }
     public function store(ArticleCategoryRequest $request,ArticleCategory $articleCategory){

@@ -12,7 +12,7 @@ class ProductCategoryController extends Controller
 {
     public function index(Request $request, ProductCategory $productCategory)
     {
-        $categories = $productCategory->withDepth()->paginate();
+        $categories = $productCategory->withDepth()->paginate(config('app.page_size'));
         return  ProductCategoryResource::collection($categories);
     }
 

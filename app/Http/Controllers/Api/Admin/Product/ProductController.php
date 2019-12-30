@@ -19,7 +19,7 @@ class ProductController extends Controller
 
     public function index(Request $request, ProductQuery $productQuery)
     {
-        $products = $productQuery->paginate();
+        $products = $productQuery->paginate(config('app.page_size'));
         return ProductResource::collection($products);
     }
 

@@ -14,7 +14,7 @@ class ArticleController extends Controller
 
     public function index(Request $request, ArticleQuery $articleQuery)
     {
-        $articles = $articleQuery->paginate();
+        $articles = $articleQuery->paginate(config('app.page_size'));
         return ArticleResource::collection($articles);
     }
 
