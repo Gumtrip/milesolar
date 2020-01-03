@@ -41,7 +41,6 @@ Route::group([
         });
         Route::group(['namespace' => 'Image'], function () {
             Route::post('image', 'ImageController@store');
-            Route::post('images', 'ImageController@mulStore');
         });
 
         Route::group(['namespace' => 'Auth', 'prefix' => 'auth'],function () {
