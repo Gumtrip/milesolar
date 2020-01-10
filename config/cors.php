@@ -13,9 +13,8 @@ return [
     */
 
     'supportsCredentials' => false,
-    'allowedOrigins' => ['*'],
+    'allowedOrigins' => [env('ALLOWED_ORIGINS',env('APP_URL'))],
     'allowedOriginsPatterns' => [],
-    'allowedHeaders' => ['*'],
     'allowedMethods' => ['*'],
     'exposedHeaders' => [],
     'maxAge' => 0,
