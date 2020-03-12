@@ -16,12 +16,12 @@ return [
     'name' => env('APP_NAME', 'Laravel'),
     'thumb_img'=>[
         'sm'=>[
-            'name'=>'sm',
-            'size'=>'320'
+            'name'=>'sm',//1920/4=480,宽度取1920px
+            'size'=>'480'
         ],
         'mid'=>[
-            'name'=>'mid',//1920/4=480,宽度取1920px
-            'size'=>'480'
+            'name'=>'mid',//1920/2=960,960px
+            'size'=>'960'
         ],
         'big'=>[
             'name'=>'big',
