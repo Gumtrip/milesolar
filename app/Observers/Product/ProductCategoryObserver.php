@@ -21,10 +21,13 @@ class ProductCategoryObserver
     public function created(ProductCategory $productCategory)
     {
         $uploadImageService = app (ImageHandleService::class);
-        $path = $uploadImageService->moveFile($productCategory->image,self::FOLDER,$productCategory->id);
-        $productCategory->image = $path;
-        CompressImg::dispatch($productCategory);//压缩图片
-        DB::table('product_categories')->where('id',$productCategory->id)->update(['image'=>$path]);
+        if($image = $productCategory->image){
+            $path = $uploadImageService->moveFile($image,self::FOLDER,$productCategory->id);
+            $productCategory->image = $path;
+            CompressImg::dispatch($productCategory);//压缩图片
+            DB::table('product_categories')->where('id',$productCategory->id)->update(['image'=>$path]);
+
+        }
     }
 
     /**

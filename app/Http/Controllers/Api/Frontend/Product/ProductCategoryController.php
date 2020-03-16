@@ -15,6 +15,15 @@ class ProductCategoryController extends Controller
         return new ProductCategoryResource($categories);
     }
 
+    public function showTree(Request  $request, ProductCategory $productCategory){
+        $depth = $request->depth;
+        $categories = $productCategory->withDepth()->when($depth, function ($query) use ($depth) {
+            $depth = $depth <= 2 ? $depth : 2;
+            return $query->having('depth', '<=', $depth);
+        })->get()->toTree();
+        return new ProductCategoryResource($categories);
+    }
+
 
     public function show(Request $request, ProductCategory $productCategory)
     {

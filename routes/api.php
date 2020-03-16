@@ -53,6 +53,8 @@ Route::group([
         Route::group(['namespace' => 'Product'], function () {
             Route::resource('products', 'ProductController')->only(['index', 'show']);
             Route::resource('product_categories', 'ProductCategoryController')->only(['index', 'show']);
+            Route::get('product_category_trees', 'ProductCategoryController@showTree');
+
         });
         Route::group(['namespace' => 'Article'], function () {
             Route::resource('articles', 'ArticleController')->only(['index', 'show']);
