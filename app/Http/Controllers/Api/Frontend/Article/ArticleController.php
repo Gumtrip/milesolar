@@ -14,7 +14,6 @@ class ArticleController extends Controller
         if($take = $request->take){
             $articles = $article->take($take)->get();
             return new ArticleResource($articles);
-
         }else{
             $articles = $article->paginate();
         }
