@@ -18,7 +18,7 @@ class CreateSamplesTable extends Migration
             $table->string('title',100)->comment('标题');
             $table->integer('category_id')->comment('分类ID');
             $table->string('image',150)->comment('主图');
-            $table->string('intro',150)->comment('简介');
+            $table->text('intro')->comment('简介');
             $table->text('desc')->comment('详情');
             $table->string('seo_title', 150)->nullable()->comment('SEO-标题');
             $table->string('seo_keywords', 150)->nullable()->comment('SEO-关键字');

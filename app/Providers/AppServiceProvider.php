@@ -12,6 +12,8 @@ use App\Observers\Product\ProductObserver;
 use App\Models\Product\Product;
 use App\Observers\Product\ProductImageObserver;
 use App\Models\Product\ProductImage;
+use App\Observers\Sample\SampleObserver;
+use App\Models\Sample\Sample;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -35,6 +37,8 @@ class AppServiceProvider extends ServiceProvider
         ProductImage::observe(ProductImageObserver::class);
         Product::observe(ProductObserver::class);
         ProductCategory::observe(ProductCategoryObserver::class);
+        Sample::observe(SampleObserver::class);
+
         Resource::withoutWrapping();
     }
 }

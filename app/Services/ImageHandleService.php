@@ -95,7 +95,7 @@ class ImageHandleService
 
     public function imageRealPath($image)
     {
-        return trim(str_replace(config('app.url'), '', $image));//获取图片真实路径;
+        return str_replace(config('app.url'), '', $image);//获取图片真实路径;
     }
 
     /** 富文本图片路径处理，返回图片处理后的内容
@@ -109,8 +109,8 @@ class ImageHandleService
     public function textAreaHandle($content, $matches, $folder, $id)
     {
         foreach ($matches[1] as $image) {
-            $realPath = $this->imageRealPath($image);
-            $path = $this->moveFile($realPath, $folder, $id);
+//            $realPath = $this->imageRealPath($image);
+            $path = $this->moveFile(trim($image), $folder, $id);
             //这里很笨，直接遍历整个content 然后替换掉image
             //图片多后者富文本内容多，会有效率问题
             //TODO 找更好的方法一次替换，而不是通过遍历替换

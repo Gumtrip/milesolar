@@ -18,27 +18,37 @@ Route::group([
     'namespace' => 'Api',
     'middleware' => 'throttle:' . config('api.rate_limits.access')
 ], function () {
+    // 后端
     Route::group([
         'prefix' => 'admin',
         'namespace' => 'Admin'
     ], function () {
+        //产品
         Route::group(['namespace' => 'Product'], function () {
             Route::resource('products', 'ProductController')->only(['index', 'store', 'show', 'update', 'destroy']);
             Route::resource('product_categories', 'ProductCategoryController')->only(['index', 'store', 'show', 'update', 'destroy']);
             Route::get('product_category_trees', 'ProductCategoryController@showTree');
         });
+        //文章
         Route::group(['namespace' => 'Article'], function () {
             Route::resource('articles', 'ArticleController')->only(['index', 'store', 'show', 'update', 'destroy']);
             Route::resource('article_categories', 'ArticleCategoryController')->only(['index', 'store', 'show', 'update', 'destroy']);
         });
+        //案例
+        Route::group(['namespace' => 'Sample'], function () {
+            Route::resource('samples', 'SampleController')->only(['index', 'store', 'show', 'update', 'destroy']);
+            Route::resource('sample_categories', 'SampleCategoryController')->only(['index', 'store', 'show', 'update', 'destroy']);
+        });
+        //询盘
         Route::group(['namespace' => 'Message'], function () {
             Route::resource('messages', 'MessageController')->only(['index', 'show', 'destroy']);
         });
-
+//后台管理员
         Route::group(['namespace' => 'Admin'], function () {
             Route::resource('admins', 'AdminController')->only(['show']);
             Route::post('admin/me', 'AdminController@me');
         });
+        //上传图片接口
         Route::group(['namespace' => 'Image'], function () {
             Route::post('image', 'ImageController@store');
         });
@@ -49,17 +59,23 @@ Route::group([
                 Route::delete('authorization', 'AuthorizationController@destroy');
             });
     });
+    //前端
     Route::group(['namespace'=>'Frontend'],function(){
+        //产品
         Route::group(['namespace' => 'Product'], function () {
             Route::resource('products', 'ProductController')->only(['index', 'show']);
             Route::resource('product_categories', 'ProductCategoryController')->only(['index', 'show']);
             Route::get('product_category_trees', 'ProductCategoryController@showTree');
-
         });
+        //文章
         Route::group(['namespace' => 'Article'], function () {
             Route::resource('articles', 'ArticleController')->only(['index', 'show']);
-
         });
+        //案例
+        Route::group(['namespace' => 'Sample'], function () {
+            Route::resource('samples', 'SampleController')->only(['index', 'show']);
+        });
+        //询盘
         Route::group(['namespace' => 'Message'], function () {
             Route::resource('messages', 'MessageController')->only(['store']);
         });
