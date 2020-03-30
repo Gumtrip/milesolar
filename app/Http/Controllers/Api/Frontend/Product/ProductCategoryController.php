@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Product\ProductCategory;
 use App\Http\Resources\Product\ProductCategoryResource;
+use App\Http\Queries\Product\ProductCategoryQuery;
 
 class ProductCategoryController extends Controller
 {
-    public function index(Request $request, ProductCategory $productCategory)
+    public function index(Request $request, ProductCategoryQuery $productCategory)
     {
         $categories = $productCategory->get();
         return new ProductCategoryResource($categories);
