@@ -9,6 +9,6 @@ class DefaultSort implements Sort
     public function __invoke(Builder $query, bool $descending, string $property)
     {
         $direction = $descending ? 'ASC' : 'DESC';
-        $query->orderByRaw("IF(ISNULL(`order`),1,0),(`{$property}`) {$direction}");
+        $query->orderByRaw("IF(ISNULL(`order`),1,0),`order` ASC,(`{$property}`) {$direction}");
     }
 }
