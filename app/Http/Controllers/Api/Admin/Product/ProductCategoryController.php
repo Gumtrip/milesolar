@@ -51,11 +51,15 @@ class ProductCategoryController extends Controller
     public function update(ProductCategoryRequest $request, ProductCategory $productCategory)
     {
         $parentId = $request->parent_id;
+        $data = $request->all();
+        if(!$request->order){
+            $data['order'] = null;
+        }
         if ($parentId && $parentCategory = ProductCategory::find($parentId)) {
-            $productCategory->fill($request->all());
+            $productCategory->fill($data);
             $productCategory->appendToNode($parentCategory)->save();
         } else {
-            $productCategory->makeRoot()->update($request->all());
+            $productCategory->makeRoot()->update($data);
         }
         $productCategory::fixTree();
         return new ProductCategoryResource($productCategory);
