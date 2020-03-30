@@ -15,7 +15,7 @@ class ArticleQuery extends QueryBuilder
         $this
             ->allowedIncludes(['category'])
             ->allowedFilters([
-                'title',
+                'title','is_index'
             ])
         ->defaultSort('-id');
     }
