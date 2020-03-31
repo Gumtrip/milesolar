@@ -12,7 +12,12 @@ class ProductCategoryController extends Controller
 {
     public function index(Request $request, ProductCategoryQuery $productCategory)
     {
-        $categories = $productCategory->get();
+
+        if($take=$request->take){
+            $categories = $productCategory->take($take)->get();
+        }else{
+            $categories = $productCategory->get();
+        }
         return new ProductCategoryResource($categories);
     }
 

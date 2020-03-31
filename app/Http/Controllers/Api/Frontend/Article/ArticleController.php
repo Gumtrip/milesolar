@@ -15,7 +15,7 @@ class ArticleController extends Controller
             $articles = $article->take($take)->get();
             return new ArticleResource($articles);
         }else{
-            $articles = $article->paginate();
+            $articles = $article->paginate(config('app.page_size'));
         }
         return ArticleResource::collection($articles);
     }
