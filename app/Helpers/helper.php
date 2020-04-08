@@ -89,3 +89,16 @@ if(!function_exists('isMobile')){
 
     }
 }
+if(!function_exists('mobileView')){
+
+    function mobileView(){
+        $httpHost = \Request::server('HTTP_HOST');
+        $urlArray = explode('.',$httpHost);
+        if(app()->environment('production')&&isset($urlArray[0])&&$urlArray[0]!='m'){//是手机版且 不是二级域名
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+}

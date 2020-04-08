@@ -14,12 +14,15 @@
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-if(isMobile()){
-    Route::view('/','mobile.index');
-    Route::view('/{page}','mobile.index')->where('page','^[^admin].*');
-}else{
-    Route::view('/','index');
-    Route::view('/{page}','index')->where('page','^[^admin].*');
-}
+Route::group(['middleware'=>['device.handle']],function(){
+    if(mobileView()){
+        Route::view('/','mobile.index');
+        Route::view('/{page}','mobile.index')->where('page','^[^admin].*');
+    }else{
+        Route::view('/','index');
+        Route::view('/{page}','index')->where('page','^[^admin].*');
+    }
+});
+
 
 Route::view('/admin','backend.index');
