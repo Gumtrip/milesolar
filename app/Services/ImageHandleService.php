@@ -109,8 +109,8 @@ class ImageHandleService
     public function textAreaHandle($content, $matches, $folder, $id)
     {
         foreach ($matches[1] as $image) {
-//            $realPath = $this->imageRealPath($image);
-            $path = $this->moveFile(trim($image), $folder, $id);
+            $realPath = $this->imageRealPath($image);
+            $path = config('app.url') .($this->moveFile(trim($realPath), $folder, $id));
             //这里很笨，直接遍历整个content 然后替换掉image
             //图片多后者富文本内容多，会有效率问题
             //TODO 找更好的方法一次替换，而不是通过遍历替换
