@@ -14,7 +14,7 @@
 //    return view('welcome');
 //});
 Route::group(['middleware'=>['device.handle']],function(){
-    if(isMobile()){
+    if(mobileDomain()){
         Route::view('/','mobile.index');
         Route::view('/{page}','mobile.index')->where('page','^[^admin].*');
     }else{
