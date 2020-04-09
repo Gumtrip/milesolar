@@ -97,7 +97,7 @@ if(!function_exists('mobileDomain')){
     function mobileDomain(){
         $httpHost = \Request::server('HTTP_HOST');
         $urlArray = explode('.',$httpHost);
-        if(app()->environment('production')&&$urlArray[0]=='m'){
+        if(isset($urlArray[0])&&$urlArray[0]=='m'){
             return true;
         }else{
             return false;
