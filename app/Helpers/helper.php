@@ -89,12 +89,15 @@ if(!function_exists('isMobile')){
 
     }
 }
-if(!function_exists('mobileView')){
+if(!function_exists('mobileDomain')){
 
-    function mobileView(){
+    /** 检测是否二级域名
+     * @return bool
+     */
+    function mobileDomain(){
         $httpHost = \Request::server('HTTP_HOST');
         $urlArray = explode('.',$httpHost);
-        if(app()->environment('production')&&isset($urlArray[0])&&$urlArray[0]!='m'){//是手机版且 不是二级域名
+        if(app()->environment('production')&&$urlArray[0]=='m'){
             return true;
         }else{
             return false;
