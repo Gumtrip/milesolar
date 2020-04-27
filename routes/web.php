@@ -13,7 +13,7 @@
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-Route::group(['middleware'=>['device.handle']],function(){
+//Route::group(['middleware'=>['device.handle']],function(){
     if(mobileDomain()){
         Route::view('/','mobile.index');
         Route::view('/{page}','mobile.index')->where('page','^[^admin].*');
@@ -21,7 +21,7 @@ Route::group(['middleware'=>['device.handle']],function(){
         Route::view('/','index');
         Route::view('/{page}','index')->where('page','^[^admin].*');
     }
-});
+//});
 
 
 Route::view('/admin','backend.index');
