@@ -65,4 +65,15 @@ class Product extends Model
     {
         return $this->hasMany(ProductInfo::Class);
     }
+
+    /** 通过category_id 搜索products
+     * @param $query
+     * @param $categoryId
+     * @return mixed
+     */
+    function scopeCategoryId($query,$categoryId){
+        $descendantsAndSelf = ProductCategory::descendantsAndSelf($categoryId);
+        return $query->whereIn('category_id',$descendantsAndSelf->pluck('id'));
+
+    }
 }

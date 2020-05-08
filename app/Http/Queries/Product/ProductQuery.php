@@ -15,7 +15,7 @@ class ProductQuery extends QueryBuilder
         $this->allowedIncludes(['category','images','infos'] )
             ->allowedFilters([
                 'title',
-                AllowedFilter::exact('category_id'),
+                AllowedFilter::scope('category_id'),
             ])
             ->allowedAppends(['info_group','path_group','mid_image_group'])
         ->defaultSort('-id');
