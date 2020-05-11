@@ -12,6 +12,6 @@
 */
 //Route::get('/', function () {
 //    return view('welcome');
-//});
-
+//})->name('/');
+Route::get('sitemap', 'SitemapController@index')->name('sitemap.index');
 Route::view('/admin','backend.index');
