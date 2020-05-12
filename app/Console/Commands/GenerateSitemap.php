@@ -39,7 +39,7 @@ class GenerateSitemap extends Command
     public function handle(SitemapService $sitemap)
     {
         $this->info('正在生成sitemap');
-        $sitemap->generate()->store('xml','sitemap');
+        $sitemap->generate()->store('xml','storage/sitemap');
         $this->info('sitemap完成');
 
     }
