@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 Route::group([
     'prefix' => 'v1',
     'namespace' => 'Api',
-    'middleware' => 'throttle:' . config('api.rate_limits.access')
+//    'middleware' => 'throttle:' . config('api.rate_limits.access')
 ], function () {
     // 后端
     Route::group([
