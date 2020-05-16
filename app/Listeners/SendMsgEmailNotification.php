@@ -29,7 +29,7 @@ class SendMsgEmailNotification
     public function handle($event)
     {
         if(app()->environment('production')){
-            Mail::to('info@milesolar.com')->queue(new MsgNotification($event->message));
+            Mail::to('milly@milesolar.com')->queue(new MsgNotification($event->message));
         }
     }
 }
