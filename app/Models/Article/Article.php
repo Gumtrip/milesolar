@@ -8,8 +8,12 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\Models\Media;
 use Storage;
 use Carbon\Carbon;
+use Cviebrock\EloquentSluggable\Sluggable;
+
 class Article extends Model
 {
+    use Sluggable;
+
     use ImageCollection;
     protected $fillable=['title','category_id','image','intro','desc','is_index','seo_title','seo_keywords','seo_desc','order'];
 
@@ -21,5 +25,18 @@ class Article extends Model
 
     public function getCreateDateAttribute(){
         return $this->created_at->toDateString();
+    }
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 }

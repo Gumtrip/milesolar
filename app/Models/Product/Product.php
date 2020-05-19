@@ -4,9 +4,10 @@ namespace App\Models\Product;
 
 
 use Illuminate\Database\Eloquent\Model;
-
+use Cviebrock\EloquentSluggable\Sluggable;
 class Product extends Model
 {
+    use Sluggable;
     protected $fillable = ['title', 'category_id','brief', 'seo_title', 'seo_keywords', 'seo_desc', 'order'];
 
 
@@ -75,5 +76,19 @@ class Product extends Model
         $descendantsAndSelf = ProductCategory::descendantsAndSelf($categoryId);
         return $query->whereIn('category_id',$descendantsAndSelf->pluck('id'));
 
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 }
