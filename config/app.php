@@ -66,7 +66,8 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://mile.com'),
+    'url' => env('APP_URL', 'https://milesolar.com'),
+    'm_url' => env('APP_MOBILE_URL', 'https://m.milesolar.com'),
 
     'asset_url' => env('ASSET_URL', null),
 
