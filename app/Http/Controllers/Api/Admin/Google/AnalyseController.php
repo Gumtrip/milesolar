@@ -19,7 +19,7 @@ class AnalyseController extends Controller
         $end = Carbon::parse($request->end);
         $period = Period::create($start, $end);
         $analyticsData = Analytics::fetchVisitorsAndPageViews($period);
-        return $analyticsData;
+        return response()->json($analyticsData);
 
     }
 
@@ -31,7 +31,7 @@ class AnalyseController extends Controller
         $end = Carbon::parse($request->end);
         $period = Period::create($start, $end);
         $analyticsData = Analytics::fetchTotalVisitorsAndPageViews($period);
-        return $analyticsData;
+        return response()->json($analyticsData);
     }
 
     /** 该函数返回一个Collection，其中每个项目都是一个包含键url，pageTitle和pageViews的数组。
@@ -43,7 +43,7 @@ class AnalyseController extends Controller
         $end = Carbon::parse($request->end);
         $period = Period::create($start, $end);
         $analyticsData = Analytics::fetchMostVisitedPages($period,$maxResults);
-        return $analyticsData;
+        return response()->json($analyticsData);
     }
 
     /** 该函数返回一个Collection，其中每个项目都是一个包含键url和pageViews的数组。
@@ -55,7 +55,7 @@ class AnalyseController extends Controller
         $end = Carbon::parse($request->end);
         $period = Period::create($start, $end);
         $analyticsData = Analytics::fetchTopReferrers($period,$maxResults);
-        return $analyticsData;
+        return response()->json($analyticsData);
 
     }
     /** 该函数返回一个Collection，其中每个项目都是一个包含键类型和会话的数组。
@@ -66,8 +66,7 @@ class AnalyseController extends Controller
         $end = Carbon::parse($request->end);
         $period = Period::create($start, $end);
         $analyticsData = Analytics::fetchUserTypes($period);
-        return $analyticsData;
-
+        return response()->json($analyticsData);
     }
 
     /**
@@ -79,6 +78,6 @@ class AnalyseController extends Controller
         $end = Carbon::parse($request->end);
         $period = Period::create($start, $end);
         $analyticsData = Analytics::fetchTopBrowsers($period,$maxResults);
-        return $analyticsData;
+        return response()->json($analyticsData);
     }
 }
