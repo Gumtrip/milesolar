@@ -21,6 +21,7 @@
         "laravelium/sitemap": "6.0.*",
         "overtrue/easy-sms": "^1.1",
         "predis/predis": "^1.1",
+        "spatie/laravel-analytics": "^3.9",
         "spatie/laravel-query-builder": "^2.3",
         "tymon/jwt-auth": "1.0.0-rc.5"
     },

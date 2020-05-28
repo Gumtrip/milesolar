@@ -58,6 +58,14 @@ Route::group([
                 Route::put('authorization', 'AuthorizationController@update');
                 Route::delete('authorization', 'AuthorizationController@destroy');
             });
+        Route::group(['namespace' => 'Google', 'prefix' => 'google'],function () {
+                Route::get('visitors-and-page-views', 'AnalyseController@visitorsAndPageViews');
+                Route::get('total-visitors-and-page-views', 'AnalyseController@totalVisitorsAndPageViews');
+                Route::get('most-visited-pages', 'AnalyseController@mostVisitedPages');
+                Route::get('top-referrers', 'AnalyseController@topReferrers');
+                Route::get('user-types', 'AnalyseController@userTypes');
+                Route::get('top-browsers', 'AnalyseController@topBrowsers');
+            });
     });
     //前端
     Route::group(['namespace'=>'Frontend'],function(){
