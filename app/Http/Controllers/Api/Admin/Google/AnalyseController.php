@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 use Analytics;
 use Spatie\Analytics\Period;
 use Carbon\Carbon;
+use App\Http\Resources\Google\MostVisitedPagesCollection;
+use App\Http\Resources\Google\TopBrowsersCollection;
+use App\Http\Resources\Google\TopReferrersCollection;
+use App\Http\Resources\Google\TotalVisitorsAndPageViewsCollection;
+use App\Http\Resources\Google\UserTypesCollection;
+use App\Http\Resources\Google\VisitorsAndPageViewsCollection;
 class AnalyseController extends Controller
 {
 
@@ -19,7 +25,7 @@ class AnalyseController extends Controller
         $end = Carbon::parse($request->end);
         $period = Period::create($start, $end);
         $analyticsData = Analytics::fetchVisitorsAndPageViews($period);
-        return response()->json($analyticsData);
+        return VisitorsAndPageViewsCollection::collection($analyticsData);
 
     }
 
@@ -31,7 +37,7 @@ class AnalyseController extends Controller
         $end = Carbon::parse($request->end);
         $period = Period::create($start, $end);
         $analyticsData = Analytics::fetchTotalVisitorsAndPageViews($period);
-        return response()->json($analyticsData);
+        return TotalVisitorsAndPageViewsCollection::collection($analyticsData);
     }
 
     /** 该函数返回一个Collection，其中每个项目都是一个包含键url，pageTitle和pageViews的数组。
@@ -43,7 +49,7 @@ class AnalyseController extends Controller
         $end = Carbon::parse($request->end);
         $period = Period::create($start, $end);
         $analyticsData = Analytics::fetchMostVisitedPages($period,$maxResults);
-        return response()->json($analyticsData);
+        return MostVisitedPagesCollection::collection($analyticsData);
     }
 
     /** 该函数返回一个Collection，其中每个项目都是一个包含键url和pageViews的数组。
@@ -55,7 +61,7 @@ class AnalyseController extends Controller
         $end = Carbon::parse($request->end);
         $period = Period::create($start, $end);
         $analyticsData = Analytics::fetchTopReferrers($period,$maxResults);
-        return response()->json($analyticsData);
+        return TopReferrersCollection::collection($analyticsData);
 
     }
     /** 该函数返回一个Collection，其中每个项目都是一个包含键类型和会话的数组。
@@ -66,7 +72,7 @@ class AnalyseController extends Controller
         $end = Carbon::parse($request->end);
         $period = Period::create($start, $end);
         $analyticsData = Analytics::fetchUserTypes($period);
-        return response()->json($analyticsData);
+        return UserTypesCollection::collection($analyticsData);
     }
 
     /**
@@ -78,6 +84,6 @@ class AnalyseController extends Controller
         $end = Carbon::parse($request->end);
         $period = Period::create($start, $end);
         $analyticsData = Analytics::fetchTopBrowsers($period,$maxResults);
-        return response()->json($analyticsData);
+        return TopBrowsersCollection::collection($analyticsData);
     }
 }
