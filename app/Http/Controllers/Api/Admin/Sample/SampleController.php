@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\Admin\Sample;
 
-use App\Http\Queries\Sample\SampleQuery;
+use App\Http\Queries\Sample\SettingQuery;
 use App\Http\Requests\Admin\Sample\SampleRequest;
 use App\Http\Resources\Sample\SampleResource;
 use App\Models\Sample\Sample;
@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 
 class SampleController extends Controller
 {
-    public function index(Request $request, SampleQuery $sampleQuery)
+    public function index(Request $request, SettingQuery $sampleQuery)
     {
         $samples = $sampleQuery->paginate(config('app.page_size'));
         return SampleResource::collection($samples);
@@ -24,7 +24,7 @@ class SampleController extends Controller
         return response(null,201);
     }
 
-    public function show($id, SampleQuery $sampleQuery)
+    public function show($id, SettingQuery $sampleQuery)
     {
         $article = $sampleQuery->findOrFail($id);
         return new SampleResource($article);
