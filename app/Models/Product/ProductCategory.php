@@ -8,7 +8,7 @@ use App\Models\Traits\ImageCollection;
 class ProductCategory extends Model
 {
     use NodeTrait,ImageCollection;
-    protected $fillable=['title','image','seo_title','seo_keywords','seo_desc','order'];
+    protected $fillable=['title','brief','image','seo_title','seo_keywords','seo_desc','order'];
     protected $appends=['mid_img','sm_img'];
 
 

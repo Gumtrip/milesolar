@@ -75,6 +75,9 @@ class Product extends Model
     function scopeCategoryId($query,$categoryId){
         $descendantsAndSelf = ProductCategory::descendantsAndSelf($categoryId);
         return $query->whereIn('category_id',$descendantsAndSelf->pluck('id'));
+    }
+
+    function scopeIsIndex(){
 
     }
 
