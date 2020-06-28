@@ -77,9 +77,6 @@ class Product extends Model
         return $query->whereIn('category_id',$descendantsAndSelf->pluck('id'));
     }
 
-    function scopeIsIndex(){
-
-    }
 
     /**
      * Return the sluggable configuration array for this model.

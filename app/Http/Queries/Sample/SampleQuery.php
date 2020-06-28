@@ -16,6 +16,7 @@ class SampleQuery extends QueryBuilder
             ->allowedIncludes(['category'])
             ->allowedFilters([
                 'title',
+                AllowedFilter::exact('is_index'),
             ])
         ->defaultSort('-id');
     }

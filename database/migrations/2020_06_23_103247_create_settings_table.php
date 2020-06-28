@@ -17,7 +17,7 @@ class CreateSettingsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title',50)->comment('名称');
             $table->string('key',50)->comment('key值');
-            $table->string('value',250)->comment('value值');
+            $table->text('value')->comment('value值');
             $table->timestamps();
         });
     }

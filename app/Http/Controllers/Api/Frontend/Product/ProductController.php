@@ -11,7 +11,11 @@ class ProductController extends Controller
 {
     public function index(Request $request, ProductQuery $productQuery){
 
-        $products = $productQuery->with('images')->paginate(config('app.page_size'));
+        if($take = $request->take){
+            $products = $productQuery->with('images')->take($take)->get();
+        }else{
+            $products = $productQuery->with('images')->paginate(config('app.page_size'));
+        }
         return ProductResource::collection($products);
     }
     public function show($productId,ProductQuery $productQuery){

@@ -71,8 +71,8 @@ Route::group([
     Route::group(['namespace'=>'Frontend'],function(){
         //产品
         Route::group(['namespace' => 'Product'], function () {
-            Route::post('products', 'ProductController@index');
-            Route::post('products/{product}', 'ProductController@show');
+            Route::get('products', 'ProductController@index');
+            Route::get('products/{product}', 'ProductController@show');
 
             Route::resource('product_categories', 'ProductCategoryController')->only(['index', 'show']);
             Route::get('product_category_trees', 'ProductCategoryController@showTree');
