@@ -43,21 +43,28 @@ Route::group([
         Route::group(['namespace' => 'Message'], function () {
             Route::resource('messages', 'MessageController')->only(['index', 'show', 'destroy']);
         });
+        //配置
+        Route::group(['namespace' => 'Setting'], function () {
+            Route::resource('settings', 'SettingController')->only(['index', 'store', 'show', 'update', 'destroy']);
+            Route::resource('setting-categories', 'SettingCategoryController')->only(['index', 'store', 'show', 'update', 'destroy']);
+        });
+
 //后台管理员
         Route::group(['namespace' => 'Admin'], function () {
             Route::resource('admins', 'AdminController')->only(['show']);
             Route::post('admin/me', 'AdminController@me');
         });
-        //上传图片接口
+//上传图片接口
         Route::group(['namespace' => 'Image'], function () {
             Route::post('image', 'ImageController@store');
         });
-
+// 认证
         Route::group(['namespace' => 'Auth', 'prefix' => 'auth'],function () {
                 Route::post('authorization', 'AuthorizationController@store');
                 Route::put('authorization', 'AuthorizationController@update');
                 Route::delete('authorization', 'AuthorizationController@destroy');
             });
+// 谷歌分析数据接口
         Route::group(['namespace' => 'Google', 'prefix' => 'google'],function () {
                 Route::get('visitors-and-page-views', 'AnalyseController@visitorsAndPageViews');
                 Route::get('total-visitors-and-page-views', 'AnalyseController@totalVisitorsAndPageViews');

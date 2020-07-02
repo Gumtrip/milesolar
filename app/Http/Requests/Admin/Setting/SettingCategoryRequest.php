@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin\Setting;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SettingRequest extends FormRequest
+class SettingCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,19 +24,13 @@ class SettingRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'=>'required',
-            'key'=>'required',
-            'category_id'=>'required',
-            'value'=>'required',
+            'title'=>'required'
         ];
     }
     public function attributes()
     {
         return [
-            'title'=>'标题',
-            'key'=>'键',
-            'category_id'=>'分类',
-            'value'=>'值',
+            'title'=>'标题'
         ];
     }
 }
