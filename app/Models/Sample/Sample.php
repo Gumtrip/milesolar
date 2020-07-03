@@ -11,7 +11,7 @@ class Sample extends Model
     use Sluggable;
 
     use ImageCollection;
-    protected $fillable=['title','category_id','image','intro','desc','seo_title','seo_keywords','seo_desc','order'];
+    protected $fillable=['title','category_id','is_index','image','intro','desc','seo_title','seo_keywords','seo_desc','order'];
     protected $appends=['mid_img','sm_img','create_date'];
 
     public function category(){

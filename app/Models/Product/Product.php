@@ -8,7 +8,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 class Product extends Model
 {
     use Sluggable;
-    protected $fillable = ['title', 'category_id','brief', 'seo_title', 'seo_keywords', 'seo_desc', 'order'];
+    protected $fillable = ['title', 'category_id','brief', 'is_index','seo_title', 'seo_keywords', 'seo_desc', 'order'];
 
 
     protected $appends = ['main_image'];
