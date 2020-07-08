@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Setting extends Model
 {
-    protected $fillable = ['title','category_id','key','type','value','order'];
+    protected $fillable = ['title','category_id','type','value','order'];
 
     //配置类型
 

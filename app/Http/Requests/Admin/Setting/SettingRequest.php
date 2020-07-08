@@ -25,7 +25,6 @@ class SettingRequest extends FormRequest
     {
         return [
             'title'=>'required',
-            'key'=>'required',
             'category_id'=>'required',
             'value'=>'required',
         ];
@@ -34,7 +33,6 @@ class SettingRequest extends FormRequest
     {
         return [
             'title'=>'标题',
-            'key'=>'键',
             'category_id'=>'分类',
             'value'=>'值',
         ];
