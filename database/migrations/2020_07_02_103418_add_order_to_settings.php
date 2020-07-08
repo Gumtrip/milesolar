@@ -15,7 +15,7 @@ class AddOrderToSettings extends Migration
     {
         Schema::table('settings', function (Blueprint $table) {
             $table->integer('category_id')->after('value')->nullable()->comment('分类');
-            $table->tinyInteger('type')->after('category_id')->default(1)->comment('类型，1：文本，2：图片');
+            $table->tinyInteger('type')->after('category_id')->default(1)->comment('类型，1:文本，2:图片,3:富文本');
             $table->tinyInteger('order')->after('type')->nullable()->comment('排序');
         });
     }
