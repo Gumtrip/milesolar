@@ -16,7 +16,8 @@ class SettingQuery extends QueryBuilder
             ->allowedIncludes(['category'])
             ->allowedFilters([
                 'title',
-                AllowedFilter::scope('keys'),
+                AllowedFilter::exact('category_id'),
+                AllowedFilter::scope('titles'),
             ])
         ->defaultSort('-id');
     }

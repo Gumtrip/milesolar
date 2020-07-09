@@ -22,12 +22,12 @@ class Setting extends Model
 
     /** 根据keys 查询多个配置
      * @param $query
-     * @param $keys
+     * @param $titles
      * @return mixed
      */
-    public function scopeKeys($query,$keys){
-        if(!is_array($keys))$keys = explode(',',$keys);
-        return $query->whereIn('keys',$keys);
+    public function scopeTitles($query,$titles){
+        if(!is_array($titles))$titles = explode(',',$titles);
+        return $query->whereIn('titles',$titles);
     }
 
     public function category(){
