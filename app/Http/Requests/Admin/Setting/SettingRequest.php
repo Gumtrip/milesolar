@@ -26,7 +26,7 @@ class SettingRequest extends FormRequest
         return [
             'title'=>'required',
             'category_id'=>'required',
-            'value'=>'required',
+            'type'=>'required',
         ];
     }
     public function attributes()
@@ -34,7 +34,7 @@ class SettingRequest extends FormRequest
         return [
             'title'=>'标题',
             'category_id'=>'分类',
-            'value'=>'值',
+            'type'=>'类型',
         ];
     }
 }
