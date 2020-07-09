@@ -96,5 +96,10 @@ Route::group([
         Route::group(['namespace' => 'Message'], function () {
             Route::resource('messages', 'MessageController')->only(['store']);
         });
+        //配置
+        Route::group(['namespace' => 'Setting'], function () {
+            Route::resource('settings', 'SettingController')->only(['index', 'show']);
+        });
+
     });
 });

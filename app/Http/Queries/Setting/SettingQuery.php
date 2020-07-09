@@ -17,7 +17,6 @@ class SettingQuery extends QueryBuilder
             ->allowedFilters([
                 'title',
                 AllowedFilter::exact('category_id'),
-                AllowedFilter::scope('titles'),
             ])
         ->defaultSort('-id');
     }

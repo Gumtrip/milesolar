@@ -20,15 +20,6 @@ class Setting extends Model
         self::SETTING_TYPE_FULLTEXT => '富文本',
     ];
 
-    /** 根据keys 查询多个配置
-     * @param $query
-     * @param $titles
-     * @return mixed
-     */
-    public function scopeTitles($query,$titles){
-        if(!is_array($titles))$titles = explode(',',$titles);
-        return $query->whereIn('titles',$titles);
-    }
 
     public function category(){
         return $this->belongsTo(SettingCategory::class);
