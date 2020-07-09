@@ -13,6 +13,7 @@ class SettingQuery extends QueryBuilder
         parent::__construct(Setting::query());
 
         $this
+            ->allowedIncludes(['category'])
             ->allowedFilters([
                 'title',
                 AllowedFilter::scope('keys'),

@@ -29,4 +29,8 @@ class Setting extends Model
         if(!is_array($keys))$keys = explode(',',$keys);
         return $query->whereIn('keys',$keys);
     }
+
+    public function category(){
+        return $this->belongsTo(SettingCategory::class);
+    }
 }
