@@ -49,6 +49,12 @@ Route::group([
             Route::resource('setting-categories', 'SettingCategoryController')->only(['index', 'store', 'show', 'update', 'destroy']);
         });
 
+        //订单
+        Route::group(['namespace' => 'Order'], function () {
+            Route::resource('orders', 'OrderController')->only(['index', 'store', 'show', 'update', 'destroy']);
+        });
+
+
 //后台管理员
         Route::group(['namespace' => 'Admin'], function () {
             Route::resource('admins', 'AdminController')->only(['show']);

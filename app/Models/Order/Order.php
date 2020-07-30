@@ -3,13 +3,19 @@
 namespace App\Models\Order;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Client\Client;
 class Order extends Model
 {
 
     protected $fillable = ['no','total_amount','currency','exchange_rate','rmb_total_amount'];
 
+    public function client(){
+        return $this->belongsTo(Client::class);
+    }
 
+    public function items(){
+        return $this->hasMany(OrderItem::class);
+    }
 
     protected static function boot()
     {

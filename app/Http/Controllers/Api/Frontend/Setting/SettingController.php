@@ -16,8 +16,8 @@ class SettingController extends Controller
     }
     public function show($id, SettingQuery $settingQuery)
     {
-        $article = $settingQuery->findOrFail($id);
-        return new SettingResource($article);
+        $setting = $settingQuery->findOrFail($id);
+        return new SettingResource($setting);
     }
 
 }

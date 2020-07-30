@@ -16,8 +16,9 @@ class CreateOrderExpensesTable extends Migration
         Schema::create('order_expenses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('order_id')->comment('订单外键');
-            $table->string('expense')->comment('支出名称');
-            $table->decimal('expense_amount',2)->comment('支出费用，人民币');
+            $table->string('expense',100)->comment('支出名称');
+            $table->string('remark',200)->comment('备注');
+            $table->decimal('expense_amount',10,2)->comment('支出费用，人民币');
             $table->timestamps();
         });
     }
