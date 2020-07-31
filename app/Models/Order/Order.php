@@ -4,10 +4,12 @@ namespace App\Models\Order;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Client\Client;
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Order extends Model
 {
 
-    protected $fillable = ['no','total_amount','currency','exchange_rate','rmb_total_amount'];
+    use SoftDeletes;
+    protected $fillable = ['no','total_amount','currency','exchange_rate','rmb_total_amount','remark'];
 
     public function client(){
         return $this->belongsTo(Client::class);
@@ -15,6 +17,9 @@ class Order extends Model
 
     public function items(){
         return $this->hasMany(OrderItem::class);
+    }
+    public function expenses(){
+        return $this->hasMany(OrderExpense::class);
     }
 
     protected static function boot()

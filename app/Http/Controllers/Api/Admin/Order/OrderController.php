@@ -9,6 +9,7 @@ use App\Models\Order\Order;
 use App\Models\Product\Product;
 use App\Http\Requests\Admin\Order\OrderRequest;
 use App\Http\Queries\Order\OrderQuery;
+use DB;
 class OrderController extends Controller
 {
     public function index(Request $request, OrderQuery $settingQuery)
@@ -19,24 +20,48 @@ class OrderController extends Controller
 
     public function store(OrderRequest $request, Order $order)
     {
-        $order->fill($request->all());
-        $order->client()->associate($request->client_id);
-        $order->save();
+        DB::transaction(function()use($order,$request){
+            $order->fill($request->all());
+            $order->client()->associate($request->client_id);
+            $order->save();
 
-        // 遍历用户提交的 SKU
-        $items       = $request->input('items');
-        foreach ($items as $data) {
-            $sku  = Product::find($data['product_id']);
+            // 遍历用户提交的 SKU
+            $items       = $request->input('items');
+            $totalAmount = $expenseAmount = 0;
+            foreach ($items as $data) {
+                $sku  = Product::find($data['product_id']);
+                // 创建一个 OrderItem 并直接与当前订单关联
+                $item = $order->items()->make([
+                    'name' => $sku?$sku->title:$data['name'],
+                    'amount' => $data['amount'],
+                    'price'  => $data['price'],
+                ]);
+                $totalAmount+=$data['price'] *$data['amount'];//总计
+                $item->product()->associate($data['product_id']);
+                $item->save();
+            }
 
-            // 创建一个 OrderItem 并直接与当前订单关联
-            $item = $order->items()->make([
-                'product_id' => $data['product_id'],
-                'name' => $sku?$sku->name:$data['name'],
-                'amount' => $data['amount'],
-                'price'  => $sku?$sku->price:$data['price'],
+            //支出
+            $expenses = $request->expenses;
+            if($expenses){
+                foreach($expenses as $data){
+                    $expense = $order->expenses()->make([
+                        'expense_name' => $data['name'],
+                        'fee' => $data['fee'],
+                        'remark' => $data['remark'],
+                    ]);
+                    $expense->save();
+                    $expenseAmount += $data['fee'];
+                }
+            }
+            $order->update([
+                'total_amount'=>$totalAmount,
+                'rmb_total_amount'=>$totalAmount * $request->exchange_rate,
             ]);
-            $item->save();
-        }
+
+        });
+
+
 
         return response(null,201);
     }

@@ -17,10 +17,21 @@ class OrderRequest extends FormRequest
     {
         return [
             'client_id'=>'required',
-            'total_amount'=>'required',
             'currency'=>'required',
             'exchange_rate'=>'required',
-            'rmb_total_amount'=>'required',
+            'expenses'=>'required',
+            'items'=>'required',
+        ];
+    }
+    public function attributes()
+    {
+        return [
+            'client_id'=>'客户',
+            'currency'=>'币种',
+            'exchange_rate'=>'汇率',
+            'expenses'=>'支出',
+            'items'=>'售卖商品',
+
         ];
     }
 }
