@@ -24,10 +24,10 @@ class OrderController extends Controller
             $order->fill($request->all());
             $order->client()->associate($request->client_id);
             $order->save();
-
+            $totalAmount = $request->total_amount;
             // 遍历用户提交的 SKU
             $items       = $request->input('items');
-            $totalAmount = $expenseAmount = 0;
+            $itemsTotalAmount = $expenseAmount = 0;
             foreach ($items as $data) {
                 $sku  = Product::find($data['product_id']);
                 // 创建一个 OrderItem 并直接与当前订单关联
@@ -36,12 +36,12 @@ class OrderController extends Controller
                     'amount' => $data['amount'],
                     'price'  => $data['price'],
                 ]);
-                $totalAmount+=$data['price'] *$data['amount'];//总计
+                $itemsTotalAmount+=$data['price'] *$data['amount'];//总计
                 $item->product()->associate($data['product_id']);
                 $item->save();
             }
 
-            //支出
+            //其他支出
             $expenses = $request->expenses;
             if($expenses){
                 foreach($expenses as $data){
@@ -57,6 +57,7 @@ class OrderController extends Controller
             $order->update([
                 'total_amount'=>$totalAmount,
                 'rmb_total_amount'=>$totalAmount * $request->exchange_rate,
+                'cost'=>$expenseAmount + $itemsTotalAmount
             ]);
 
         });
