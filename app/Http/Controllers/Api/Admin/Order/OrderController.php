@@ -8,11 +8,11 @@ use App\Http\Resources\Order\OrderResource;
 use App\Models\Order\Order;
 use App\Models\Product\Product;
 use App\Http\Requests\Admin\Order\OrderRequest;
-use App\Http\Queries\Order\OrderQuery;
+use App\Http\Queries\Order\ClientQuery;
 use DB;
 class OrderController extends Controller
 {
-    public function index(Request $request, OrderQuery $settingQuery)
+    public function index(Request $request, ClientQuery $settingQuery)
     {
         $orders = $settingQuery->paginate(config('app.page_size'));
         return OrderResource::collection($orders);
@@ -62,12 +62,10 @@ class OrderController extends Controller
 
         });
 
-
-
         return response(null,201);
     }
 
-    public function show($id, OrderQuery $settingQuery)
+    public function show($id, ClientQuery $settingQuery)
     {
         $order = $settingQuery->findOrFail($id);
         return new OrderResource($order);

@@ -53,6 +53,10 @@ Route::group([
         Route::group(['namespace' => 'Order'], function () {
             Route::resource('orders', 'OrderController')->only(['index', 'store', 'show', 'update', 'destroy']);
         });
+        //客户
+        Route::group(['namespace' => 'Client'], function () {
+            Route::resource('clients', 'ClientController')->only(['index', 'store', 'show', 'update', 'destroy']);
+        });
 
 
 //后台管理员
