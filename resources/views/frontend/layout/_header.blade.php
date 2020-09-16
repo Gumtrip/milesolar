@@ -1,14 +1,14 @@
 <header id="header">
-  <div class="wrapper">
-    <el-row id="headerRow">
-      <el-col :span="4">
+  <div class="container">
+    <div class="row" id="headerRow">
+      <div class="col-2">
         <div id="logo" class="flexPic">
           <a href="/">
             <img src="{{asset('/static/logo.png')}}" alt="">
           </a>
         </div>
-      </el-col>
-      <el-col :span="8">
+      </div>
+      <div class="col-4">
         <el-form id="searchForm" name="title" action="{{route('products')}}" :inline="true">
           <el-form-item>
             <input class="el-input" type="text" name="title" placeholder="SEARCH WHAT YOU WANT!"/>
@@ -17,24 +17,23 @@
             <button class="el-button--primary el-button" type="submit">SEARCH</button>
           </el-form-item>
         </el-form>
-      </el-col>
-      <el-col class="contactItem" :span="6">
+      </div>
+      <el-col class="col-3 contactItem">
         <a href="mailto:milly@milesolar.com"><i class="fa fa-envelope-o"></i><span>milly@milesolar.com</span></a>
       </el-col>
-      <el-col class="contactItem" :span="6">
+      <el-col class=" col-3 contactItem">
         <a href="tel:008613889943867"><i class="fa fa-phone"></i><span>0086 13889943867</span></a>
       </el-col>
-    </el-row>
+    </div>
   </div>
-  <div class="wrapper">
-    <nav id="nav">
-      <el-row>
+
+    <nav class="container" id="nav">
+      <div class="row">
         @foreach($navList as $nav)
-        <el-col :span="4" class="list">
+        <div class="col-2 list">
           <a href="{{$nav['url']}}">{{$nav['title']}}</a>
-        </el-col>
+        </div>
         @endforeach
-      </el-row>
+      </div>
     </nav>
-  </div>
 </header>
