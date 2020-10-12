@@ -22,8 +22,7 @@ class DeleteImages
      */
     public function __construct(Article $article)
     {
-        $image = $article->getOriginal('image');
-        $this->image = public_path($image);
+        $this->image = $article->getOriginal('image');
     }
 
     /**
@@ -34,7 +33,7 @@ class DeleteImages
     public function handle()
     {
         $imageSizes = config('app.thumb_img');
-        $this->deleteHandle($this->image);
+        $this->deleteHandle($this->image);//原图
         foreach($imageSizes as $size=>$thumb) {
             $this->deleteHandle(getThumbName($this->image,$thumb['name']));
         }

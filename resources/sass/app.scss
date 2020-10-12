@@ -1,8 +1,7 @@
 @import "variables";
 @import "fonts";
 @import "../fonts/font-awesome-4.7.0/scss/font-awesome";
-body{margin: 0;width: 100%;overflow-x: hidden;background: #fff;font-family: "Open Sans";
-}
+body{margin: 0;width: 100%;overflow-x: hidden;background: #fff;font-family: "Open Sans";}
 
 h1,h2,h3,h4,h5,h6,p{margin: 0}
 .picBox{text-align: center;font-size: 0;overflow: hidden;
@@ -13,6 +12,7 @@ h1,h2,h3,h4,h5,h6,p{margin: 0}
 .flexPic{display: flex;align-items: center;justify-content: center;
   img{max-height: 100%;max-width: 100%}
 }
+.mainColor{color: $blue}
 .nowrap {white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .text_center {text-align: center}
 .text_right {text-align: right}
@@ -24,12 +24,10 @@ h1,h2,h3,h4,h5,h6,p{margin: 0}
 .mainBox{padding:0 15px;box-sizing: border-box;margin: 0 auto}
 a, a:hover,a:active{color: #000;text-decoration: none}
 input[type=pic_boxhidden] {display: none;height: 0;width: 0}
-ul {margin: 0;padding: 0;
-  li{list-style: none}
-}
+
 .require-icon{color: $red}
 .trans{transition: all 0.5s }
-button.mint-button--primary{background: $main_green}
+button.mint-button--primary{background: $blue}
 .mt30{margin-bottom: 30px}
 
 .description img{max-width: 100%;max-height: 100%}
@@ -70,7 +68,7 @@ button.mint-button--primary{background: $main_green}
 
 #nav{margin-bottom: 10px;height: 86px;
   a{display: block;color: #333;font-size: 26px;font-family: "Open Sans Bold";font-weight: bold}
-  a:hover{color: $main_green}
+  a:hover{color: $blue}
 }
 
 #searchForm {
@@ -78,7 +76,7 @@ button.mint-button--primary{background: $main_green}
 }
 #searchForm {
   .el-form-item{margin-bottom: 0}
-  .el-button--primary{background-color: $main_green }
+  .el-button--primary{background-color: $blue }
   .el-input{width: 250px}
 }
 #logo{max-width: 150px}
@@ -103,37 +101,39 @@ button.mint-button--primary{background: $main_green}
 
 //首页
 #banner {max-height: 600px;overflow: hidden;max-width: 1920px;
+  .item{position: relative}
+  .desc{position: absolute;z-index: 1;left: 0;bottom: 50px;width: 60%;height: 50%;background: $blue}
+  .desc .title,.desc .info{color: #fff;width: 100%;padding-left: 8%}
+  .desc .title{height: 60%;display: flex;align-items: center;font-size: 50px}
+  .desc .info{height: 40%;font-size: 28px}
   a{display: block;text-align: center;}
   .bannerImg{width: 100%}
   .bannerImg img{max-width: 100%}
 }
-#indexCategories{max-width: 1920px;margin:20px auto 16px auto;
-  .cateBox{;box-sizing: border-box;height: 330px;}
-  .cate_title{ box-sizing: border-box;white-space: nowrap;text-overflow:ellipsis;overflow:hidden;
-    h3{font-size: 30px;color: #9d9d9d;margin-bottom: 20%;height: 100px;overflow: hidden}
-  }
-  .cate_pic{height: 260px;margin-bottom: 10px}
-  .cateBrief{font-size: 16px;height: 74px;overflow: hidden}
-}
-#featureProductsContainer{margin-bottom: 20px}
-#aboutUs{box-sizing: border-box;display: flex;justify-content: space-between;margin-bottom: 20px;
+//关于我们
+#aboutUs{box-sizing: border-box;display: flex;justify-content: space-between;margin-bottom: 40px;
   .rightBox{flex: 0 0 42%}
   .leftBox{flex: 0 0 54%}
-  .txtBox{margin-bottom: 10px}
-  #imgBox{padding: 0 10px;}
-
-  #mainTitle{font-size: 36px;margin-bottom: 30px;color: #151515;}
-  #subTitle{margin: 15px 0;
-    font-size: 16px;
-    color: #727272;
-  }
-  #detailInfo{margin: 25px 0 0;}
-  .mint-navbar .mint-tab-item.is-selected{border-bottom-color: $main_green}
-  .a_Title { .mint-tab-item-label{font-size: 16px;color: #9b9b9b;}}
-  .txtBox{line-height: 170%;
+  .txtBox{margin-bottom: 10px;line-height: 170%;
     font-size: 16px;
     color: #9b9b9b;}
+  #imgBox{padding: 0 10px;}
+  #mainTitle{font-size: 36px;margin-bottom: 30px;}
+  .fa-arrow-circle-right{margin-right: 10px;font-size: 40px}
+  .more{font-size: 30px}
 }
+
+//首页分类
+#indexCategories{max-width: 1920px;margin:20px auto 16px auto;
+  .mainTitle{font-size: 30px;margin-bottom: 10px;}
+  .subTitle{font-size: 20px;margin-bottom: 20px}
+  .cateBox{display: block;height: 300px;}
+  .cate_pic{height: 260px;margin-bottom: 10px}
+  .cate_title{font-size: 22px;margin-bottom: 10px;}
+  ul{padding-left: 10px}
+  ul li{font-size: 16px;list-style: disc}
+}
+#featureProductsContainer{margin-bottom: 20px}
 #indexCasesContainer{margin-bottom: 30px}
 #contactUsInfo {
   .fa{display: inline-block;width: 40px;text-align: center;font-size: 26px}
@@ -177,9 +177,9 @@ button.mint-button--primary{background: $main_green}
   .product{flex: 0 0 30%}
 
   h3{position: relative;padding-bottom: 10px;color: #fff;font-size: 18px;text-transform: uppercase;margin-bottom: 15px;}
-  h3:after{border-bottom: 1px solid $main_green;width: 60px;
+  h3:after{border-bottom: 1px solid $blue;width: 60px;
     height: 3px;
-    background: $main_green;
+    background: $blue;
     position: absolute;
     left: 0;
     top: 100%;
@@ -225,7 +225,7 @@ button.mint-button--primary{background: $main_green}
   color: #000;}
 
 #proCate {
-  .boxTitle{background: $main_green;color: #fff;height: 50px;line-height: 50px;font-size: 20px;text-indent: 10px}
+  .boxTitle{background: $blue;color: #fff;height: 50px;line-height: 50px;font-size: 20px;text-indent: 10px}
   #allProducts{padding: 10px 0}
   .firstCate{
     border-bottom: 1px solid #ebeef5;
@@ -239,7 +239,7 @@ button.mint-button--primary{background: $main_green}
   };
   .firstCate>a{display: block}
   .firstCate:hover,.firstCate.cur {height: auto;}
-  .firstCate:hover>a,.firstCate.cur>a{color: $main_green}
+  .firstCate:hover>a,.firstCate.cur>a{color: $blue}
   .firstCate:hover .secCate,.firstCate.cur .secCate{display: block}
   .secCate{display: none;
     a{
@@ -250,7 +250,7 @@ button.mint-button--primary{background: $main_green}
       border-top: 1px solid #ddd;
       text-indent: 20px;
       color: #464545;
-      &.is-active{color: $main_green}
+      &.is-active{color: $blue}
     }
   }
   .secCate a:hover,.secCate a.cur{color: $blue}
@@ -276,8 +276,8 @@ button.mint-button--primary{background: $main_green}
   .el-tabs__item{
     font-size: 20px;
   }
-  .el-tabs__item.is-active,.el-tabs__item:hover{color: $main_green}
-  .el-tabs__active-bar{background-color:$main_green }
+  .el-tabs__item.is-active,.el-tabs__item:hover{color: $blue}
+  .el-tabs__active-bar{background-color:$blue }
   img{max-width: 100%;max-height: 100%}
 }
 //询盘页面

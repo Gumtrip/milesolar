@@ -1,16 +1,20 @@
 <?php
-if(!function_exists('getThumbName')){
-    function getThumbName($file,$thumbName=null){
-        if(!$thumbName)$thumbName = config('app.thumb_img.mid.name');
-        $fileName = pathinfo($file,PATHINFO_FILENAME);
-        $ext = pathinfo($file,PATHINFO_EXTENSION);
-        $newFileName = $fileName.'-'.$thumbName.'.'.$ext;
-        $dir = pathinfo($file,PATHINFO_DIRNAME);
-        $fullName = $dir.'/'.$newFileName;
-        return $fullName;
+if (!function_exists('getThumbName')) {
+    function getThumbName($file, $thumbName = null)
+    {
+        if (!$thumbName) $thumbName = config('app.thumb_img.mid.name');
+        $fileName = pathinfo($file, PATHINFO_FILENAME);
+        $ext = pathinfo($file, PATHINFO_EXTENSION);
+        $newFileName = $fileName . '-' . $thumbName . '.' . $ext;
+        $dir = pathinfo($file, PATHINFO_DIRNAME);
+        return  ($dir . '/' . $newFileName);
     }
 }
-if(!function_exists('isMobile')){
+if (!function_exists('isMobile')) {
+    /** 判断是否移动设备
+     * @return bool
+     */
+
     function isMobile()
 
     {
@@ -24,7 +28,6 @@ if(!function_exists('isMobile')){
         }
 
 
-
         //此条摘自TPM智能切换模板引擎，适合TPM开发
 
         if (isset($_SERVER['HTTP_CLIENT']) && 'PhoneClient' == $_SERVER['HTTP_CLIENT']) {
@@ -34,19 +37,15 @@ if(!function_exists('isMobile')){
         }
 
 
-
         //如果via信息含有wap则一定是移动设备,部分服务商会屏蔽该信息
 
-        if (isset($_SERVER['HTTP_VIA']))
-
-            //找不到为flase,否则为true
+        if (isset($_SERVER['HTTP_VIA'])) //找不到为flase,否则为true
 
         {
 
             return stristr($_SERVER['HTTP_VIA'], 'wap') ? true : false;
 
         }
-
 
 
         //判断手机发送的客户端标志,兼容性有待提高
@@ -89,17 +88,18 @@ if(!function_exists('isMobile')){
 
     }
 }
-if(!function_exists('mobileDomain')){
+if (!function_exists('mobileDomain')) {
 
     /** 检测是否二级域名
      * @return bool
      */
-    function mobileDomain(){
+    function mobileDomain()
+    {
         $httpHost = \Request::server('HTTP_HOST');
-        $urlArray = explode('.',$httpHost);
-        if(isset($urlArray[0])&&$urlArray[0]=='m'){
+        $urlArray = explode('.', $httpHost);
+        if (isset($urlArray[0]) && $urlArray[0] == 'm') {
             return true;
-        }else{
+        } else {
             return false;
         }
 

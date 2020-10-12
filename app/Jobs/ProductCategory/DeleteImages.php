@@ -22,8 +22,7 @@ class DeleteImages
      */
     public function __construct(ProductCategory $productCategory)
     {
-        $image = $productCategory->getOriginal('image');
-        $this->image = public_path($image);
+        $this->image = $productCategory->getOriginal('image');
     }
 
     /**

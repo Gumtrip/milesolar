@@ -9,6 +9,10 @@ use Log;
 
 trait DelAndCleanDir
 {
+    /** 清空整个文件夹
+     * 删除文件夹
+     * @param $dir
+     */
     public function DelDirHandle($dir)
     {
         if(File::isDirectory($dir)){//使用队列的时候，它的根目录变成了项目的根目录了

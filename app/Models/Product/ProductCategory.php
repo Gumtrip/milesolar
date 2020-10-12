@@ -11,7 +11,10 @@ class ProductCategory extends Model
     protected $fillable=['title','brief','image','seo_title','seo_keywords','seo_desc','order'];
     protected $appends=['mid_img','sm_img'];
 
-
-
-
+    /**
+     * @return string
+     */
+    public function getBriefListAttribute(){
+        return explode("\n",trim($this->brief));
+    }
 }

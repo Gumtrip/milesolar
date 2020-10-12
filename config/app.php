@@ -14,6 +14,8 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    //压缩图片规格，默认压缩3种
+
     'thumb_img'=>[
         'sm'=>[
             'name'=>'sm',//1920/4=480,宽度取1920px
