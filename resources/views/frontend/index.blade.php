@@ -61,6 +61,9 @@
                     @endforeach
                   </ul>
                   @endif
+                  <div class="more mainColor">
+                    <i class="fa fa-arrow-circle-right"></i>Learn more about us
+                  </div>
                 </div>
               </div>
             </a>
@@ -69,62 +72,42 @@
       </div>
     </section>
 
-    <section id="featureProductsContainer">
-      <div id="featureProducts">
-        <h3 class="text_center title">FEATURED PRODUCTS</h3>
-        <el-row id="featureContainer" :gutter="20">
-          @foreach($indexProducts as $product)
-            <el-col :span="6">
-              <div class="border-round itemBox">
-                <a href="{{route('products.show',[$product,$product->slug])}}">
-                  <div class="flexPic">
-                    <img src="{{$product->main_image}}" alt="">
-                  </div>
-                  <h3>{{Str::limit($product->title,50)}}</h3>
-                </a>
-              </div>
-            </el-col>
-          @endforeach
-        </el-row>
-      </div>
-    </section>
-
     <!--      首页案例-->
     <section id="indexCasesContainer">
       <div id="indexCase">
-        <h3 class="text_center title">Customer Cases</h3>
-        <el-row :gutter="20">
+        <h3 class="text_center mainTitle mainColor mb-1">PROJECT CASES</h3>
+        <h4 class="text-center subTitle mb-1">Quality hybrid solar inverter, MPPT solar controller, solar flood light, solar street light</h4>
+        <div class="row">
           @foreach($indexSamples as $sample)
-            <el-col :span="8">
-              <el-card class="item">
-                <a href="">
+            <div class="col-3 item">
+                <a href="{{route('samples.show',[$sample,$sample->slug])}}">
                   <div class="flexPic">
-                    <img src="{{$sample->mid_img}}" alt="">
+                    <img src="{{$sample->mid_img}}" alt="{{$sample->title}}">
                   </div>
+                  <h5 class="desc">{{$sample->title}}</h5>
                 </a>
-              </el-card>
-            </el-col>
+            </div>
           @endforeach
-        </el-row>
+        </div>
       </div>
     </section>
-
+    {{--联系我们--}}
     <section id="contactUsInfo" class="mt30">
       @include('frontend.common.message')
-      <el-card>
-        <div slot="header" class="clearfix">
-          <span class="font_bold">Contact Us</span>
+      @include('frontend.common.error')
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title mainColor text-center">Contact Us</h3>
+          <div class="row">
+            <div class="col-6">
+              <h3>SOLAR KNOWELEDGE</h3>
+              <p>MILESOLAR, located in Fosha, China, mainly manufacture and provide solar inverter, solar controller, solar generator and solar lights. With 10 years of solar industry experience, MILE SOLAR is a trustworthy solar company which helps get your right solar products and boost solartogether</p>
+            </div>
+            <div class="col-6">@include('frontend.contact._form',['action'=>route('contact.store').'?#contactUsInfo'])</div>
+          </div>
         </div>
-        <el-row :gutter="20">
-          <el-col :span="12">@include('frontend.contact._form')</el-col>
-          <el-col :span="12">
-            @include('frontend.contact._info')
-          </el-col>
-        </el-row>
-      </el-card>
-      <!--      首页案例-->
+      </div>
     </section>
-
   </div>
 @endsection
 @push('after_styles')@endpush

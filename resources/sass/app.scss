@@ -132,32 +132,22 @@ button.mint-button--primary{background: $blue}
   .cate_title{font-size: 22px;margin-bottom: 10px;}
   ul{padding-left: 10px}
   ul li{font-size: 16px;list-style: disc}
+  .more{display: flex;align-items: center}
+  .more i{font-size: 28px;margin-right: 10px}
 }
-#featureProductsContainer{margin-bottom: 20px}
-#indexCasesContainer{margin-bottom: 30px}
-#contactUsInfo {
-  .fa{display: inline-block;width: 40px;text-align: center;font-size: 26px}
-  p,a{padding-left: 40px}
-
-  .list{;margin-bottom: 20px;
-    .label{font-size: 28px}
-    .info{font-size: 28px}
-  }
-}
-
-#featureProducts{
-  .title{font-size: 32px;margin-bottom: 20px}
-  .itemBox{padding: 1rem;;height: 338px;overflow: hidden;margin-bottom: 20px}
-  .flexPic{height: 300px}
-}
+//首页案例
+#indexCasesContainer{margin-bottom: 30px;}
 
 #indexCase{
-  .title{font-size: 32px;margin-bottom: 20px}
-  .item{}
-  .flexPic{height: 300px;overflow: hidden}
+  .mainTitle{font-size: 32px}
+  .subTitle{font-size: 28px}
+  .flexPic{height: 300px;overflow: hidden;margin: 8px}
+  .desc{font-size: 16px}
 }
-
-
+//首页联系我们
+#contactUsInfo {
+  .card-title{font-size: 32px}
+}
 
 
 //联系信息

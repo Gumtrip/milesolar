@@ -1,6 +1,5 @@
-todo
 @if (count($errors) > 0)
-      @foreach ($errors->all() as $error)
-        <div class="mt10" type="error" title="{{ $error }}"></div>
-      @endforeach
+  <div class="mt10 alert alert-danger">
+    @foreach ($errors->all() as $error){{$error.'|'}}@endforeach
+  </div>
 @endif
