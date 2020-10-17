@@ -17,6 +17,7 @@ class ContactController extends Controller
     }
 
     public function store(Request $request,Message $message){
+        //todo 首页和联系我们页面的提交处理接口不要公用，应该封装成一个service
         $validator = Validator::make($request->all(), [
             'email'=>'required|email',
             'name'=>'required',
