@@ -5,13 +5,15 @@
 @section('main_content')
   <div id="MsgBox" class="wrapper">
     @include('frontend.common.bread',$breads)
-    <div id="contactInfo">
-      <el-card class="box-card">
-        <div slot="header" class="clearfix">
+    <div id="contactInfo" class="card">
+      <div class="card-body" >
+        <div class="card-header">
           <span class="contactInfoTitle">Contact Info</span>
         </div>
-        @include('frontend.contact._info')
-      </el-card>
+        <div class="card-body">
+          @include('frontend.contact._info')
+        </div>
+      </div>
     </div>
     <el-card id="inquiryBox">
       <div slot="header">
@@ -34,9 +36,7 @@
           </div>
         </section>
         @endif
-
         @include('frontend.contact._form',['more'=>1,'product_id'=>$product->id,'redirect'=>route('contact',[$product,$product->slug])])
-
       </div>
     </el-card>
 

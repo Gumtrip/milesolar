@@ -11,10 +11,10 @@
         <h3 class="boxTitle">Categories</h3>
         <div id="allProducts">
           <a href="{{route('products')}}">
-            <el-button type="primary">All PRODUCTS</el-button>
+            <div class="btn btn-primary">All PRODUCTS</div>
           </a>
         </div>
-        <ul>
+        <ul class="list-unstyled">
           @foreach($categories as $cate)
           <li  class="firstCate {{isset($productCategory)&&($productCategory->id==$cate->id||$productCategory->parent_id==$cate->id)?'cur':''}}">
             <a href="{{route('productCategories',[$cate,$cate->slug])}}">{{Str::limit($cate->title,30)}}</a>
@@ -32,9 +32,9 @@
     </section>
     <section class="right">
       <h3 id="rightBoxTitle">Products</h3>
-      <ul id="contentBox">
+      <ul id="contentBox" class="row list-unstyled">
         @foreach($products as $product)
-        <li class="item">
+        <li class="item col-4">
           <a href="{{route('products.show',[$product,$product->slug])}}">
             <div class="flexPic pic">
               <img src="{{$product->main_image}}" alt="{{$product->title}}">

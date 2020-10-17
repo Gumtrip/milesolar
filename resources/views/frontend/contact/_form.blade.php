@@ -19,21 +19,24 @@
       <input type="text" placeholder="Please Input Your Phone" name="phone" value="{{old('phone')}}" class="form-control"/>
     </div>
   </div>
+
+  @if(isset($more)&&$more)
+    <div class="form-row">
+      <div class="form-group col-6">
+        <label>Skype</label>
+        <input type="text" placeholder="Please Input Your Skype" name="skype" value="{{old('skype')}}" class="form-control"/>
+      </div>
+    </div>
+
+  @endif
+
   <div class="form-row">
     <div class="form-group">
       <label>Message</label>
       <textarea class="required form-control" placeholder="Please Input Your Message" name="msg" rows="3" cols="80">{{old('msg')}}</textarea>
     </div>
   </div>
-    <button class="btn btn-primary" type="submit">Submit</button>
-@if(isset($more)&&$more)
-    <el-form-item label="Mobile:" placeholder="Please Input Your Mobile">
-      <input type="text" name="phone" value="{{old('phone')}}" class="el-input required"/>
-    </el-form-item>
-  <el-form-item  label="Skype:" placeholder="Please Input Your Skype">
-    <input type="text" name="skype" value="{{old('skype')}}" class="el-input required"/>
-  </el-form-item>
-@endif
+    <button class="btn btn-primary" type="submit">Get a Quote</button>
 
   @if(isset($product_id)&&$product_id)
     <input type="hidden" name="product_id" value="{{$product_id}}"/>

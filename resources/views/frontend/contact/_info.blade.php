@@ -1,5 +1,5 @@
 <div>
-  <ul id="listBox">
+  <ul id="listBox" class="list-unstyled">
     @foreach($contactInfo as $info)
     <li class="list">
       @if(isset($info['url'])&&$info['url'])

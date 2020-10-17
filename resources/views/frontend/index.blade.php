@@ -29,7 +29,6 @@
         </div>
       </div>
     </div>
-
     <div class="leftBox">
       <h3 id="mainTitle" class="text-center mainColor font-weight-bold">About MILESOLAR</h3>
       <div class="txtBox">{!! $indexArticle['desc'] !!}</div>
@@ -38,7 +37,6 @@
   </section>
 
   <div class="wrapper">
-
     <section id="indexCategories">
       <h2 class="text-center mainTitle mainColor font-weight-bold">PRODUCT OFFERED</h2>
       <h3 class="text-center subTitle">Quality hybrid solar inverter, MPPT solar controller, solar flood light, solar
@@ -100,7 +98,7 @@
           <h3 class="card-title mainColor text-center">Contact Us</h3>
           <div class="row">
             <div class="col-6">
-              <h3>SOLAR KNOWELEDGE</h3>
+              <h3 class="text-center mainColor mt10">SOLAR KNOWELEDGE</h3>
               <p>MILESOLAR, located in Fosha, China, mainly manufacture and provide solar inverter, solar controller, solar generator and solar lights. With 10 years of solar industry experience, MILE SOLAR is a trustworthy solar company which helps get your right solar products and boost solartogether</p>
             </div>
             <div class="col-6">@include('frontend.contact._form',['action'=>route('contact.store').'?#contactUsInfo'])</div>

@@ -16,7 +16,7 @@
       <div class="col-2">
         <div id="logo" class="flexPic">
           <a href="/">
-            <img src="{{asset('/static/logo.png')}}" alt="">
+            <img src="{{asset('/static/logo.jpg')}}" alt="">
           </a>
         </div>
       </div>

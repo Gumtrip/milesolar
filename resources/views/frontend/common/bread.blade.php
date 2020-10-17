@@ -1,5 +1,5 @@
 <div>
-    <ul id="breadCrumb">
+    <ol id="breadCrumb" class="breadcrumb">
         <li><a href="{{route('index')}}">Home <span>&nbsp; &gt;&nbsp;</span></a></li>
       @foreach($breads as $key=>$bread)
         <li>
@@ -9,5 +9,5 @@
           @endif
         </li>
       @endforeach
-    </ul>
+    </ol>
 </div>

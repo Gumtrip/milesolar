@@ -28,6 +28,8 @@ input[type=pic_boxhidden] {display: none;height: 0;width: 0}
 .require-icon{color: $red}
 .trans{transition: all 0.5s }
 button.mint-button--primary{background: $blue}
+.mt10{margin-bottom: 10px}
+.mt20{margin-bottom: 20px}
 .mt30{margin-bottom: 30px}
 
 .description img{max-width: 100%;max-height: 100%}
@@ -53,10 +55,6 @@ button.mint-button--primary{background: $blue}
     display: inline-block;
   }
   li.active{color: $blue;font-weight: bold}
-}
-//面包屑
-#breadCrumb{display: flex;height: 25px;line-height: 25px;margin: 10px 0;flex-wrap: wrap;
-  a{font-size: 16px;color: #888;}
 }
 //顶部条
 #headerTop{ background: #f5f5f5;
@@ -149,7 +147,6 @@ button.mint-button--primary{background: $blue}
   .card-title{font-size: 32px}
 }
 
-
 //联系信息
 #listBox{
   p,a{position: relative;display: block;padding-left: 40px}
@@ -160,13 +157,12 @@ button.mint-button--primary{background: $blue}
 }
 
 //脚部
-#footer{background: #343434;padding-top: 10px;overflow: hidden;
-  .wrapper{display: flex;padding-top: 20px}
+#footer{padding-top: 20px;overflow: hidden;
   .logo img{max-width: 150px}
   .navList{flex:0 0  15%;;padding-bottom:10px;margin-bottom: 10px;box-sizing: border-box;}
   .product{flex: 0 0 30%}
 
-  h3{position: relative;padding-bottom: 10px;color: #fff;font-size: 18px;text-transform: uppercase;margin-bottom: 15px;}
+  h3{position: relative;padding-bottom: 10px;font-size: 18px;text-transform: uppercase;margin-bottom: 15px;}
   h3:after{border-bottom: 1px solid $blue;width: 60px;
     height: 3px;
     background: $blue;
@@ -180,12 +176,11 @@ button.mint-button--primary{background: $blue}
       line-height: 30px;
       height: 30px;
       overflow: hidden;
-      color: #a9a9a9;
     }
   }
 }
 #contactUs {
-  span{color: #fff;font-size: 16px;}
+  span{font-size: 16px;}
   a,p{margin-bottom: 10px}
   #listBox a,#listBox p{padding-left: 30px;}
   i{font-size: 18px}
@@ -200,12 +195,11 @@ button.mint-button--primary{background: $blue}
 
 #contentBox{
   margin-top:34px ;
-  box-sizing: border-box;;display: flex;flex-wrap: wrap;
-  .item{flex: 0 0 33.333%;box-sizing: border-box;margin-bottom: 30px;padding-right:10px;overflow: hidden;
+  .item{margin-bottom: 30px;overflow: hidden;
     a{display: block;border: 1px solid #eee;padding-bottom: 10px}
   }
   .pic{margin-bottom: 10px;height: 168px;}
-  .title{font-size: 16px;color: #000;width: 90%;margin: 0 auto;font-family: "Open Sans Bold";height: 46px;overflow: hidden}
+  .title{font-size: 16px;color: #000;width: 90%;margin: 0 auto;font-family: "Open Sans Bold";height: 40px;overflow: hidden}
 }
 
 #rightBoxTitle{
@@ -249,12 +243,12 @@ button.mint-button--primary{background: $blue}
 #productDetail{display: flex;margin-bottom: 40px;justify-content: space-between;
   #picGallery{overflow: hidden;flex:0 0 40%;;
     .picBox{height: 300px}
-    img{max-width: 100%;max-height: 100%}
+    img{max-width: 100%;max-height: 100%;margin: 0 auto}
   .gallery-top{margin-bottom: 10px}
   .gallery-thumbs{}
-  .thumbImgContainer{width: 100px;height: 80px;border: 1px solid #ebebeb;border-radius: 5px;opacity: 0.5}
-    .swiper-slide-thumb-active.thumbImgContainer{opacity:1}
-  .thumbImg{height: 100%;text-align: center}
+  .thumbImg{;height: 80px;
+    .slick-slide.slick-active{border: 1px solid }
+  }
   .thumbImg img{max-width: 100%;max-height: 100%}
   }
   .proTitle{color: #5d5d5d;font-size: 24px}
@@ -262,12 +256,10 @@ button.mint-button--primary{background: $blue}
   }
   #proInfo{flex: 0 0 55%;}
 }
+#productInfo{
+  .titles{margin-bottom: 10px}
+}
 .contentContainer {
-  .el-tabs__item{
-    font-size: 20px;
-  }
-  .el-tabs__item.is-active,.el-tabs__item:hover{color: $blue}
-  .el-tabs__active-bar{background-color:$blue }
   img{max-width: 100%;max-height: 100%}
 }
 //询盘页面
