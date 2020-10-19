@@ -14,7 +14,7 @@ class IndexController extends Controller
     public function index(Request $request){
         //banners
         $banners = Setting::where('category_id',1)->get();
-        $indexCategories = ProductCategory::orderBy('order')->take(4)->get();
+        $indexCategories = ProductCategory::cusOrder('order')->take(8)->get();
         $indexProducts = Product::where('is_index',1)->orderBy('order')->take(8)->get();
         $indexSamples = Sample::where('is_index',1)->orderBy('order')->take(3)->get();
         //首页公司介绍

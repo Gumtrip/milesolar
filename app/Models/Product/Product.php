@@ -5,9 +5,11 @@ namespace App\Models\Product;
 
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use App\Models\Traits\OrderTrait;
+
 class Product extends Model
 {
-    use Sluggable;
+    use Sluggable,OrderTrait;
     protected $fillable = ['title', 'category_id','brief', 'is_index','seo_title', 'seo_keywords', 'seo_desc', 'order'];
 
 
