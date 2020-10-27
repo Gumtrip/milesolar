@@ -1,5 +1,5 @@
 @extends('frontend.layout.app')
-@section('title', $article->seo_title)
+@section('seo_title', $article->seo_title)
 @section('seo_desc', $article->seo_desc)
 @section('seo_keywords', $article->seo_keywords)
 @section('main_content')

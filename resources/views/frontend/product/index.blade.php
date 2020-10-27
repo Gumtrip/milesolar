@@ -1,5 +1,5 @@
 @extends('frontend.layout.app')
-@section('title', isset($product)?$product->seo_title:null)
+@section('seo_title', isset($product)?$product->seo_title:null)
 @section('seo_desc', isset($product)?$product->seo_desc:null)
 @section('seo_keywords', isset($product)?$product->seo_keywords:null)
 @section('main_content')

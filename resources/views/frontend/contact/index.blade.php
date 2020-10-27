@@ -1,5 +1,5 @@
 @extends('frontend.layout.app')
-@section('title', 'Page Title')
+@section('seo_title', 'Page Title')
 @section('seo_desc', 'Page Title')
 @section('seo_keywords', 'Page Title')
 @section('main_content')

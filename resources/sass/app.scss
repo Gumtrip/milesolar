@@ -36,26 +36,7 @@ button.mint-button--primary{background: $blue}
 .inner{padding: 15px 0 30px 0}
 .clearfix{clear: both}
 .border-round{ border: 1px solid rgba(0,0,0,.125);border-radius: 0.25rem;}
-//自定义element 样式
-.el-alert.mt10{margin-bottom: 10px}
-//分页样式
-.pagination{display: flex;
-  li{margin: 0 5px;
-    background-color: #f4f4f5;
-    color: #606266;;
-    min-width: 30px;
-    border-radius: 2px;
-    text-align: center;
-    font-size: 12px;
-    height: 28px;
-    line-height: 28px;
-    box-sizing: border-box;
-    padding: 0 4px;
-    vertical-align: top;
-    display: inline-block;
-  }
-  li.active{color: $blue;font-weight: bold}
-}
+
 //顶部条
 #headerTop{ background: #f5f5f5;
   .listBox{height: 46px}
@@ -78,24 +59,6 @@ button.mint-button--primary{background: $blue}
   .el-input{width: 250px}
 }
 #logo{max-width: 150px}
-.el-input{    -webkit-appearance: none;
-  background-color: #FFF;
-  background-image: none;
-  border-radius: 4px;
-  border: 1px solid #DCDFE6;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  color: #606266;
-  display: inline-block;
-  font-size: inherit;
-  height: 40px;
-  line-height: 40px;
-  outline: 0;
-  padding: 0 15px;
-  -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
-  transition: border-color .2s cubic-bezier(.645,.045,.355,1);
-  width: 100%;}
-
 
 //首页
 #banner {max-height: 600px;overflow: hidden;max-width: 1920px;
