@@ -3,7 +3,7 @@
 <div class="wrapper">
   @include('frontend.common.bread',$breads)
     <section id="sampleBox">
-      <ul>
+      <ul class="list-unstyled">
         @foreach($samples as $sample)
         <li class="sample">
           <a href="{{route('samples.show',[$sample,$sample->slug])}}">

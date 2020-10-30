@@ -8,7 +8,6 @@
   <div id="productsBox">
     <section id="filter" class="left">
       <div id="proCate" class="popModal trans">
-        <h3 class="boxTitle">Categories</h3>
         <div id="allProducts">
           <a href="{{route('products')}}">
             <div class="btn btn-primary">All PRODUCTS</div>

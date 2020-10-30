@@ -1,9 +1,13 @@
 @extends('frontend.layout.app')
+@section('seo_title', $article->seo_title)
+@section('seo_desc', $article->seo_desc)
+@section('seo_keywords', $article->seo_keywords)
+
 @section('main_content')
 <div class="wrapper">
   @include('frontend.common.bread',$breads)
     <section id="articleBox">
-      <ul>
+      <ul class="list-unstyled">
         @foreach($articles as $article)
         <li class="article">
           <a href="{{route('articles.show',[$article,$article->slug])}}">

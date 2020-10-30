@@ -7,6 +7,7 @@
       <div class="col-3 contactItem">
         <a href="tel:008613889943867"><i class="fa fa-phone"></i><span>0086 13889943867</span></a>
       </div>
+      <div class="col-6"></div>
     </div>
   </div>
 </div>
