@@ -23,9 +23,14 @@ class IndexController extends Controller
             'img'=>$article[0]->value,
             'desc'=>$article[1]->value
         ];
-
+        $indexSeo = Setting::where('category_id',5)->get();
+        $seoData = [
+            'seo_title'=>$indexSeo->where('title','seo标题')->first()->value,
+            'seo_keywords'=>$indexSeo->where('title','主页keywords')->first()->value,
+            'seo_desc'=>$indexSeo->where('title','主页description')->first()->value,
+        ];
         $socialContacts  = Setting::where('category_id',4)->get();
 
-        return view('frontend.index',compact('banners','indexCategories','indexProducts','indexSamples','indexArticle','socialContacts'));
+        return view('frontend.index',compact('banners','indexCategories','indexProducts','indexSamples','indexArticle','socialContacts','seoData'));
     }
 }

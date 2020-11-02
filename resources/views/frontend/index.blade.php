@@ -1,4 +1,7 @@
 @extends('frontend.layout.app')
+@section('seo_title', isset($seoData['seo_title'])?$seoData['seo_title']:null)
+@section('seo_keywords', isset($seoData['seo_keywords'])?$seoData['seo_keywords']:null)
+@section('seo_desc', isset($seoData['seo_desc'])?$seoData['seo_desc']:null)
 
 @section('content')
   <section id="banner">
