@@ -17,7 +17,7 @@ class ProductController extends Controller
         })->paginate(config('app.page_size'));
         $categories = ProductCategory::get()->toTree();
         $breads = [['title'=>'products','url'=>route('products')]];
-        return view('frontend.product.index')->with(compact('products','categories','breads'));
+        return view('frontend.product.index')->with(compact('products','categories','breads','title'));
     }
     public function show(Request $request,Product $product){
         $breads = [

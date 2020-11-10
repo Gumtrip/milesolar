@@ -7,7 +7,12 @@
       <div class="col-3 contactItem">
         <a href="tel:008613889943867"><i class="fa fa-phone"></i><span>0086 13889943867</span></a>
       </div>
-      <div class="col-6"></div>
+      <div class="col-6">
+        <form method="get" action="{{route('products')}}" class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" value="{{$title??''}}" name="title" aria-label="Search">
+          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>

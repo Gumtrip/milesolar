@@ -7,6 +7,8 @@ use App\Http\Requests\Admin\Product\ProductCategoryRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Product\ProductCategory;
 use App\Http\Resources\Product\ProductCategoryResource;
+use Cviebrock\EloquentSluggable\Services\SlugService;
+use Cocur\Slugify\Slugify;
 
 class ProductCategoryController extends Controller
 {
@@ -33,10 +35,14 @@ class ProductCategoryController extends Controller
     public function store(ProductCategoryRequest $request, ProductCategory $productCategory)
     {
         $parentId = $request->parent_id;
+        $slugService = app(Slugify::class);
+        $data = array_merge($request->all(),[
+            'slug'=>$slugService->slugify($productCategory->title)
+        ]);
         if ($parentId && $parentCategory = ProductCategory::find($parentId)) {
-            $productCategory = $parentCategory->children()->create($request->all());
+            $productCategory = $parentCategory->children()->create($data);
         } else {
-            $productCategory->fill($request->all());
+            $productCategory->fill($data);
             $productCategory->makeRoot()->save();
         }
         return new ProductCategoryResource($productCategory);
@@ -51,7 +57,10 @@ class ProductCategoryController extends Controller
     public function update(ProductCategoryRequest $request, ProductCategory $productCategory)
     {
         $parentId = $request->parent_id;
-        $data = $request->all();
+        $slugService = app(Slugify::class);
+        $data = array_merge($request->all(),[
+            'slug'=>$slugService->slugify($productCategory->title)
+        ]);
         if(!$request->order){
             $data['order'] = null;
         }
