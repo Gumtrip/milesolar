@@ -52,7 +52,10 @@
   <script>
     $(document).ready(function(){
       $('.firstCate').hover(function(){
-        $(this).children('.secCate').slideDown()
+        const target = $(this).children('.secCate')
+        if(target.css('display')==='none'){
+          target.slideDown()
+        }
       },function(){
         if(!$(this).hasClass('cur')){
           $(this).children('.secCate').slideUp()
