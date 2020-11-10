@@ -177,7 +177,6 @@ button.mint-button--primary{background: $blue}
   .firstCate{
     border-bottom: 1px solid #ebeef5;
     box-sizing: border-box;align-items: center;
-    height: 30px;
     line-height: 30px;
     font-size: 16px;
     overflow: hidden;
@@ -185,9 +184,8 @@ button.mint-button--primary{background: $blue}
     color: #333333;
   };
   .firstCate>a{display: block}
-  .firstCate:hover,.firstCate.cur {height: auto;}
+  .firstCate.cur .secCate{display: block}
   .firstCate:hover>a,.firstCate.cur>a{color: $blue}
-  .firstCate:hover .secCate,.firstCate.cur .secCate{display: block}
   .secCate{display: none;
     a{
       display: block;

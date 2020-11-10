@@ -52,7 +52,11 @@
   <script>
     $(document).ready(function(){
       $('.firstCate').hover(function(){
-        $(this).slideDown()
+        $(this).children('.secCate').slideDown()
+      },function(){
+        if(!$(this).hasClass('cur')){
+          $(this).children('.secCate').slideUp()
+        }
       })
     })
 
