@@ -50,6 +50,11 @@
 @endsection
 @push('after_scripts')
   <script>
+    $(document).ready(function(){
+      $('.firstCate').hover(function(){
+        $(this).slideDown()
+      })
+    })
 
   </script>
 @endpush

@@ -30,7 +30,8 @@
   </div>
 </body>
 @stack('before_scripts')
-<script src="{{asset('js/vendor/jquery-3.5.1.slim.min.js')}}"></script>
+<script src="{{asset('js/vendor/jquery-3.5.1.min.js')}}"></script>
+{{--<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>--}}
 {{--  slick 插件--}}
 <script type="text/javascript" src="{{asset('vendor/slick/slick.min.js')}}"></script>
 {{--  slick 插件--}}
