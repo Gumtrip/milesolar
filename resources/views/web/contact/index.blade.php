@@ -36,7 +36,7 @@
           </div>
         </section>
         @endif
-        @include(cusView('contact._form'),['more'=>1,'product_id'=>$product->id,'redirect'=>route('contact',[$product,$product->slug])])
+        @include(cusView('contact._form'),['more'=>1,'product_id'=>$product->id,'redirect'=>$redirect])
       </div>
     </div>
 

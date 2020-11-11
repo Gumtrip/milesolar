@@ -104,7 +104,7 @@
               <h3 class="text-center mainColor mt10">SOLAR KNOWELEDGE</h3>
               <p>MILESOLAR, located in Fosha, China, mainly manufacture and provide solar inverter, solar controller, solar generator and solar lights. With 10 years of solar industry experience, MILE SOLAR is a trustworthy solar company which helps get your right solar products and boost solartogether</p>
             </div>
-            <div class="col-6">@include(cusView('contact._form'),['action'=>route('index.msgHandle').'?#contactUsInfo'])</div>
+            <div class="col-6">@include(cusView('contact._form'),['redirect'=>route('index').'#contactUsInfo','action'=>route('index.msgHandle')])</div>
           </div>
         </div>
       </div>

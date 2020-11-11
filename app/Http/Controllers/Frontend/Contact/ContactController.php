@@ -14,7 +14,9 @@ class ContactController extends Controller
 {
     public function index(Request $request,Product $product){
         $breads = [['title'=>'contact','url'=>route('contact')]];
-        return view(cusView('contact.index'))->with(compact('product','breads'));
+        $redirect = $product?route('contact',[$product,$product->slug]):route('contact');
+        $redirect.='#inquiryBox';
+        return view(cusView('contact.index'))->with(compact('product','breads','redirect'));
     }
 
     /** 询盘存储
@@ -30,7 +32,9 @@ class ContactController extends Controller
             'product_info'=>$product
         ],$request->all()));
         $message->save();
+        $redirect = $product?route('contact',[$product,$product->slug]):route('contact');
+        $redirect.='#inquiryBox';
         event(new ReceiveMsg($message));
-        return redirect(route('contact',$product).'#inquiryBox')->with('success','Thanks For Your Message!');
+        return redirect($redirect)->with('success','Thanks For Your Message!');
     }
 }

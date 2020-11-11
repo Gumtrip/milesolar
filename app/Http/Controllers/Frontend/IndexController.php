@@ -34,8 +34,8 @@ class IndexController extends Controller
             'seo_desc'=>$indexSeo->where('title','主页description')->first()->value,
         ];
         $socialContacts  = Setting::where('category_id',4)->get();
-
-        return view(cusView('index'),compact('banners','indexCategories','indexProducts','indexSamples','indexArticle','socialContacts','seoData'));
+        $redirect = route('index').'#contactUsInfo';
+        return view(cusView('index'),compact('banners','indexCategories','indexProducts','indexSamples','indexArticle','socialContacts','seoData','redirect'));
     }
 
     /** 询盘处理
@@ -46,7 +46,8 @@ class IndexController extends Controller
     public function msgHandle(MessageRequest $request,Message $message){
         $ip = $request->getClientIp();
         $message->fill(array_merge(['ip'=>$ip,],$request->all()))->save();
+        $redirect = route('index').'#contactUsInfo';
         event(new ReceiveMsg($message));
-        return redirect(route('index').'#contactUsInfo')->with('success','Thanks For Your Message!');
+        return redirect($redirect)->with('success','Thanks For Your Message!');
     }
 }

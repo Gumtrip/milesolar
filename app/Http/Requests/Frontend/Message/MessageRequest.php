@@ -3,9 +3,11 @@
 namespace App\Http\Requests\Frontend\Message;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Routing\Redirector;
 
 class MessageRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -28,5 +30,16 @@ class MessageRequest extends FormRequest
             'name'=>'required',
             'msg'=>'required'
         ];
+    }
+
+    protected function getRedirectUrl()
+    {
+        $url = $this->redirector->getUrlGenerator();
+        $this->redirect = request()->redirect;
+        if ($this->redirect) {
+            return $url->to($this->redirect);
+        }
+
+        return $url->previous();
     }
 }
