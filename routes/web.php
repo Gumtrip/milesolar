@@ -12,6 +12,7 @@
 */
 Route::group(['namespace'=>'Frontend'],function(){
     Route::get('/', 'IndexController@index')->name('index');
+    Route::post('msgHandle', 'IndexController@msgHandle')->name('index.msgHandle');
     //产品
     Route::group(['namespace'=>'Product','prefix'=>'products'],function(){
         Route::get('/', 'ProductController@index')->name('products');

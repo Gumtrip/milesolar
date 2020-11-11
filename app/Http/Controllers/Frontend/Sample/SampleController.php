@@ -11,7 +11,7 @@ class SampleController extends Controller
     public function index(Request $request){
         $samples = Sample::paginate(config('app.page_size'));
         $breads = [['title' => 'samples', 'url' => route('samples')]];
-        return view('frontend.sample.index')->with(compact('samples', 'breads'));
+        return view(cusView('sample.index'))->with(compact('samples', 'breads'));
 
     }
 
@@ -20,7 +20,7 @@ class SampleController extends Controller
             ['title' => 'samples', 'url' => route('samples')],
             ['title' => $sample->title, 'url' => route('samples.show', [$sample, $sample->slug])]
         ];
-        return view('frontend.sample.show')->with(compact('sample', 'breads'));
+        return view(cusView('sample.show'))->with(compact('sample', 'breads'));
 
     }
 }

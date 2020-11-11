@@ -1,4 +1,4 @@
-@extends('frontend.layout.app')
+@extends(cusView('layout.app'))
 @section('seo_title', isset($seoData['seo_title'])?$seoData['seo_title']:null)
 @section('seo_keywords', isset($seoData['seo_keywords'])?$seoData['seo_keywords']:null)
 @section('seo_desc', isset($seoData['seo_desc'])?$seoData['seo_desc']:null)
@@ -94,8 +94,8 @@
     </section>
     {{--联系我们--}}
     <section id="contactUsInfo" class="mt30">
-      @include('frontend.common.message')
-      @include('frontend.common.error')
+      @include(cusView('common.message'))
+      @include(cusView('common.error'))
       <div class="card">
         <div class="card-body">
           <h3 class="card-title mainColor text-center">Contact Us</h3>
@@ -104,7 +104,7 @@
               <h3 class="text-center mainColor mt10">SOLAR KNOWELEDGE</h3>
               <p>MILESOLAR, located in Fosha, China, mainly manufacture and provide solar inverter, solar controller, solar generator and solar lights. With 10 years of solar industry experience, MILE SOLAR is a trustworthy solar company which helps get your right solar products and boost solartogether</p>
             </div>
-            <div class="col-6">@include('frontend.contact._form',['action'=>route('contact.store').'?#contactUsInfo'])</div>
+            <div class="col-6">@include(cusView('contact._form'),['action'=>route('index.msgHandle').'?#contactUsInfo'])</div>
           </div>
         </div>
       </div>

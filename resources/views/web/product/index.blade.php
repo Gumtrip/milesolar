@@ -1,10 +1,10 @@
-@extends('frontend.layout.app')
+@extends(cusView('layout.app'))
 @section('seo_title', isset($product)?$product->seo_title:null)
 @section('seo_desc', isset($product)?$product->seo_desc:null)
 @section('seo_keywords', isset($product)?$product->seo_keywords:null)
 @section('main_content')
 <div class="wrapper inner">
-  @include('frontend.common.bread',$breads)
+  @include(cusView('common.bread'),$breads)
   <div id="productsBox">
     <section id="filter" class="left">
       <div id="proCate" class="popModal trans">

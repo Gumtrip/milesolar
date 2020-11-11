@@ -1,7 +1,7 @@
-@extends('frontend.layout.app')
+@extends(cusView('layout.app'))
 @section('main_content')
 <div class="wrapper">
-  @include('frontend.common.bread',$breads)
+  @include(cusView('common.bread'),$breads)
     <section id="sampleBox">
       <ul class="list-unstyled">
         @foreach($samples as $sample)

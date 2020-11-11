@@ -19,14 +19,14 @@
 </head>
 <body>
   <div id="app">
-    @include('frontend.layout._header')
+    @include(cusView('layout._header'))
     <div class="wrapper">
       @yield('content')
     </div>
     <div class="container">
       @yield('main_content')
     </div>
-    @include('frontend.layout._footer')
+    @include(cusView('layout._footer'))
   </div>
 </body>
 @stack('before_scripts')

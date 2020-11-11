@@ -17,14 +17,14 @@ class ProductController extends Controller
         })->paginate(config('app.page_size'));
         $categories = ProductCategory::get()->toTree();
         $breads = [['title'=>'products','url'=>route('products')]];
-        return view('frontend.product.index')->with(compact('products','categories','breads','title'));
+        return view(cusView('product.index'))->with(compact('products','categories','breads','title'));
     }
     public function show(Request $request,Product $product){
         $breads = [
             ['title'=>'products','url'=>route('products')],
             ['title'=>$product->title,'url'=>route('products.show',[$product,$product->slug])],
         ];
-        return view('frontend.product.show')->with(compact('product','breads'));
+        return view(cusView('product.show'))->with(compact('product','breads'));
 
     }
 }

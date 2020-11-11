@@ -105,3 +105,17 @@ if (!function_exists('mobileDomain')) {
 
     }
 }
+if (!function_exists('cusView')) {
+
+    /** 手机版模板切换
+     * @param  $path
+     * @return bool
+     */
+    function cusView($path)
+    {
+        if(isMobile()){
+            return 'mobile.'.$path;
+        }
+        return 'web.'.$path;
+    }
+}

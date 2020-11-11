@@ -34,7 +34,7 @@
         </ul>
       </li>
       <li id="contactUs" class="col-3">
-        @include('frontend.contact._info')
+        @include(cusView('contact._info'))
       </li>
     </ul>
   </div>

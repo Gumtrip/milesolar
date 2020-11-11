@@ -1,0 +1,323 @@
+//手机版样式
+@import "variables";
+@import "fonts";
+@import "../fonts/font-awesome-4.7.0/scss/font-awesome";
+body{margin: 0;width: 100%;overflow-x: hidden;background: #fff;font-family: "Open Sans";}
+
+h1,h2,h3,h4,h5,h6,p{margin: 0}
+.picBox{text-align: center;font-size: 0;overflow: hidden;
+  span{content: ''; display: inline-block; width: 0;height: 100%; vertical-align: middle;}
+  div.pic{display: inline-block;vertical-align: middle;}
+  img{max-height: 100%;max-width: 100%}
+}
+.flexPic{display: flex;align-items: center;justify-content: center;
+  img{max-height: 100%;max-width: 100%}
+}
+.mainColor{color: $blue}
+.nowrap {white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.text_center {text-align: center}
+.text_right {text-align: right}
+.font_bold {font-weight: bold}
+.popupContainer {width: 100vw;height: 100vh;overflow-y: scroll}
+.wrapper{max-width: 1920px;margin: 0 auto;}
+.error_tips{line-height: 14px;color: $red !important;padding-top: 4px;}
+.is_danger{border-color: $red}
+.mainBox{padding:0 15px;box-sizing: border-box;margin: 0 auto}
+a, a:hover,a:active{color: #000;text-decoration: none}
+input[type=pic_boxhidden] {display: none;height: 0;width: 0}
+
+.require-icon{color: $red}
+.trans{transition: all 0.5s }
+button.mint-button--primary{background: $blue}
+.mt10{margin-bottom: 10px}
+.mt20{margin-bottom: 20px}
+.mt30{margin-bottom: 30px}
+
+.description img{max-width: 100%;max-height: 100%}
+.inner{padding: 15px 0 30px 0}
+.clearfix{clear: both}
+.border-round{ border: 1px solid rgba(0,0,0,.125);border-radius: 0.25rem;}
+
+//顶部条
+#headerTop{ background: #f5f5f5;
+  .listBox{height: 46px}
+  .contactItem .fa{margin-right: 8px}
+}
+//头部
+#header{padding: 5px 0;}
+
+#nav{margin-bottom: 10px;height: 86px;
+  a{display: block;color: #333;font-size: 26px;font-family: "Open Sans Bold";font-weight: bold}
+  a:hover{color: $blue}
+}
+
+#searchForm {
+  display: flex;align-items: center;
+}
+#searchForm {
+  .el-form-item{margin-bottom: 0}
+  .el-button--primary{background-color: $blue }
+  .el-input{width: 250px}
+}
+#logo{max-width: 150px}
+
+//首页
+#banner {max-height: 600px;overflow: hidden;max-width: 1920px;
+  .item{position: relative}
+  .desc{position: absolute;z-index: 1;left: 0;bottom: 50px;width: 60%;height: 50%;background: $blue}
+  .desc .title,.desc .info{color: #fff;width: 100%;padding-left: 8%}
+  .desc .title{height: 60%;display: flex;align-items: center;font-size: 50px}
+  .desc .info{height: 40%;font-size: 28px}
+  a{display: block;text-align: center;}
+  .bannerImg{width: 100%}
+  .bannerImg img{max-width: 100%}
+}
+//关于我们
+#aboutUs{box-sizing: border-box;display: flex;justify-content: space-between;margin-bottom: 40px;
+  .rightBox{flex: 0 0 42%}
+  .leftBox{flex: 0 0 54%}
+  .txtBox{margin-bottom: 10px;line-height: 170%;
+    font-size: 16px;
+    color: #9b9b9b;}
+  #imgBox{padding: 0 10px;}
+  #mainTitle{font-size: 36px;margin-bottom: 30px;}
+  .fa-arrow-circle-right{margin-right: 10px;font-size: 40px}
+  .more{font-size: 30px}
+}
+
+//首页分类
+#indexCategories{max-width: 1920px;margin:20px auto 16px auto;
+  .mainTitle{font-size: 30px;margin-bottom: 10px;}
+  .subTitle{font-size: 20px;margin-bottom: 20px}
+  .cateBox{display: block;height: 300px;}
+  .cate_pic{height: 260px;margin-bottom: 10px}
+  .cate_title{font-size: 22px;margin-bottom: 10px;}
+  ul{padding-left: 10px}
+  ul li{font-size: 16px;list-style: disc}
+  .more{display: flex;align-items: center}
+  .more i{font-size: 28px;margin-right: 10px}
+}
+//首页案例
+#indexCasesContainer{margin-bottom: 30px;}
+
+#indexCase{
+  .mainTitle{font-size: 32px}
+  .subTitle{font-size: 28px}
+  .flexPic{height: 300px;overflow: hidden;margin: 8px}
+  .desc{font-size: 16px}
+}
+//首页联系我们
+#contactUsInfo {
+  .card-title{font-size: 32px}
+}
+
+//联系信息
+#listBox{
+  p,a{position: relative;display: block;padding-left: 40px}
+  .icon{position: absolute;left: 0;top: 4px}
+}
+#contact_form {
+  .required .el-form-item__label:after{content: '*';color: $red}
+}
+
+//脚部
+#footer{padding-top: 20px;overflow: hidden;
+  .logo img{max-width: 150px}
+  .navList{flex:0 0  15%;;padding-bottom:10px;margin-bottom: 10px;box-sizing: border-box;}
+  .product{flex: 0 0 30%}
+
+  h3{position: relative;padding-bottom: 10px;font-size: 18px;text-transform: uppercase;margin-bottom: 15px;}
+  h3:after{border-bottom: 1px solid $blue;width: 60px;
+    height: 3px;
+    background: $blue;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    content: '';}
+  h4{
+    a{display: block;
+      font-size: 16px;
+      line-height: 30px;
+      height: 30px;
+      overflow: hidden;
+    }
+  }
+}
+#contactUs {
+  span{font-size: 16px;}
+  a,p{margin-bottom: 10px}
+  #listBox a,#listBox p{padding-left: 30px;}
+  i{font-size: 18px}
+  .fa.fa-mobile{font-size: 22px}
+  #listBox .icon{top: 0}
+}
+//产品列表页
+#productsBox{display: flex;justify-content: space-between;
+  .left{flex: 0 0 25%}
+  .right{flex: 0 0 68%;}
+}
+
+#contentBox{
+  margin-top:34px ;
+  .item{margin-bottom: 30px;overflow: hidden;
+    a{display: block;border: 1px solid #eee;padding-bottom: 10px}
+  }
+  .pic{margin-bottom: 10px;height: 168px;}
+  .title{font-size: 16px;color: #000;width: 90%;margin: 0 auto;font-family: "Open Sans Bold";height: 40px;overflow: hidden}
+}
+
+#rightBoxTitle{
+  height: 37px;
+  line-height: 37px;
+  font-size: 24px;
+  color: #000;}
+
+#proCate {
+  .boxTitle{background: $blue;color: #fff;height: 50px;line-height: 50px;font-size: 20px;text-indent: 10px}
+  #allProducts{padding: 10px 0}
+  .firstCate{
+    border-bottom: 1px solid #ebeef5;
+    box-sizing: border-box;align-items: center;
+    line-height: 30px;
+    font-size: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #333333;
+  };
+  .firstCate>a{display: block}
+  .firstCate.cur .secCate{display: block}
+  .firstCate:hover>a,.firstCate.cur>a{color: $blue}
+  .secCate{display: none;
+    a{
+      display: block;
+      height: 30px;
+      line-height: 30px;
+      font-size: 14px;
+      border-top: 1px solid #ddd;
+      text-indent: 20px;
+      color: #464545;
+      &.is-active{color: $blue}
+    }
+  }
+  .secCate a:hover,.secCate a.cur{color: $blue}
+}
+//产品详情页
+#productDetail{display: flex;margin-bottom: 40px;justify-content: space-between;
+  #picGallery{overflow: hidden;flex:0 0 40%;;
+    .picBox{height: 300px}
+    img{max-width: 100%;max-height: 100%;margin: 0 auto}
+  .gallery-top{margin-bottom: 10px}
+  .gallery-thumbs{}
+  .thumbImg{;height: 80px;
+    .slick-slide.slick-active{border: 1px solid }
+  }
+  .thumbImg img{max-width: 100%;max-height: 100%}
+  }
+  .proTitle{color: #5d5d5d;font-size: 24px}
+  .desc{color: #888;margin: 20px 0;font-size: 16px;line-height: 150%;
+  }
+  #proInfo{flex: 0 0 55%;}
+}
+#productInfo{
+  .titles{margin-bottom: 10px}
+}
+.contentContainer {
+  img{max-width: 100%;max-height: 100%}
+}
+//询盘页面
+#MsgBox{padding-bottom: 30px}
+#inquiryBox{padding-bottom: 30px;
+  .boxTitle{margin-bottom: 10px;font-size: 28px}
+  .boxSubTitle{margin-bottom: 40px;font-size: 24px;color: #666;}
+}
+#productBox{display: flex;justify-content: space-between;
+  #contact_form {flex:0 0 90%;margin: 0 auto;
+    .required .el-form-item__label:after{content: '*';color: $red}
+  }
+  &.half{
+    #productInfo{flex: 0 0 40%}
+    #contact_form{flex: 0 0 50%}
+  }
+
+  .title{margin-bottom: 20px;font-size: 20px}
+  .desc{margin-bottom: 20px;font-size: 16px;color: #666;}
+  .flexPic{;border: 1px solid $light_grey;border-radius: 5px;box-sizing: border-box;overflow: hidden}
+}
+#contactInfo {margin-bottom: 50px;
+  .contactInfoTitle{font-size: 28px}
+  .fa{display: inline-block;width: 50px;text-align: center;font-size: 30px}
+  p,a{padding-left: 50px}
+  #listBox{display: flex;flex-wrap: wrap;
+    .list{flex: 0 0 50%;margin-bottom: 20px;
+      .label{font-size: 28px}
+      .info{font-size: 28px}
+    }
+
+  }
+}
+
+//文章列表页
+#articleBox{padding-bottom: 30px}
+.article{
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  a{display: flex;}
+  .img{flex: 0 0 22%}
+  .info{flex: 0 0 78%;padding-left:25px;box-sizing: border-box}
+  .title{font-size: 24px;color: #555;margin-bottom: 10px}
+  .time{font-size: 14px;color: #999;line-height: 20px;margin-bottom: 10px}
+  .desc{font-size: 14px;
+    color: #999;
+    line-height: 150%;
+    max-height: 63px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    display: block;
+  }
+}
+
+//文章详情页
+#articleTitle{font-size: 20px;
+  text-align: center;
+  padding-bottom: 20px;
+  color: #222;}
+#ex_msg{margin: 0 0 10px;text-align: center;font-size: 14px}
+#desc{min-height: 200px;padding: 20px 0;color: #555;
+  line-height: 180%;
+  font-size: 16px;
+}
+
+//案例列表页
+#sampleBox{padding-bottom: 30px}
+.sample{
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  a{display: flex;}
+  .img{flex: 0 0 22%}
+  .info{flex: 0 0 78%;padding-left:25px;box-sizing: border-box}
+  .title{font-size: 24px;color: #555;margin-bottom: 10px}
+  .time{font-size: 14px;color: #999;line-height: 20px;margin-bottom: 10px}
+  .desc{font-size: 14px;
+    color: #999;
+    line-height: 150%;
+    max-height: 63px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    display: block;
+  }
+
+}
+//案例详情页
+#sampleTitle{font-size: 20px;
+  text-align: center;
+  padding-bottom: 10px;
+  color: #222;}
+#ex_msg{margin: 0 0 10px;text-align: center}
+#desc{min-height: 200px;padding: 20px 0;color: #555;
+  line-height: 180%;
+  font-size: 16px;
+}

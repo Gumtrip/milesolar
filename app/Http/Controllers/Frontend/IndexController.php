@@ -2,12 +2,16 @@
 
 
 namespace App\Http\Controllers\Frontend;
+use App\Events\ReceiveMsg;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Frontend\Message\MessageRequest;
+use App\Models\Message\Message;
 use App\Models\Setting\Setting;
 use App\Models\Product\ProductCategory;
 use App\Models\Product\Product;
 use App\Models\Sample\Sample;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class IndexController extends Controller
 {
@@ -31,6 +35,18 @@ class IndexController extends Controller
         ];
         $socialContacts  = Setting::where('category_id',4)->get();
 
-        return view('frontend.index',compact('banners','indexCategories','indexProducts','indexSamples','indexArticle','socialContacts','seoData'));
+        return view(cusView('index'),compact('banners','indexCategories','indexProducts','indexSamples','indexArticle','socialContacts','seoData'));
+    }
+
+    /** 询盘处理
+     * @param MessageRequest $request
+     * @param Message $message
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function msgHandle(MessageRequest $request,Message $message){
+        $ip = $request->getClientIp();
+        $message->fill(array_merge(['ip'=>$ip,],$request->all()))->save();
+        event(new ReceiveMsg($message));
+        return redirect(route('index').'#contactUsInfo')->with('success','Thanks For Your Message!');
     }
 }
