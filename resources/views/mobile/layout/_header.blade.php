@@ -23,7 +23,7 @@
 <header id="header" class="pt-0">
   <nav class="navbar  navbar-light bg-light">
     <a id="logo" class="navbar-brand" href="#">
-      <img src="{{asset('/static/logo.jpg')}}" alt="">
+      <img src="{{asset('/static/logo.png')}}" alt="">
     </a>
     <div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
