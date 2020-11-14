@@ -6,7 +6,7 @@
   <div class="wrapper inner">
     @include(cusView('common.bread'),$breads)
     <div id="productDetail">
-      <section id="picGallery">
+      <section id="picGallery" class="mb-4">
         <div class="slick-for gallery-top">
           @foreach($product->mid_image_group as $img)
             <div class="picBox text-center">

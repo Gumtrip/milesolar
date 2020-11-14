@@ -22,7 +22,7 @@
 </div>
 <header id="header" class="pt-0">
   <nav class="navbar  navbar-light bg-light">
-    <a id="logo" class="navbar-brand" href="#">
+    <a id="logo" class="navbar-brand" href="{{route('index')}}">
       <img src="{{asset('/static/logo.png')}}" alt="">
     </a>
     <div>

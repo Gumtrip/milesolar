@@ -1,7 +1,7 @@
 @extends(cusView('layout.app'))
-@section('seo_title', $article->seo_title)
-@section('seo_desc', $article->seo_desc)
-@section('seo_keywords', $article->seo_keywords)
+{{--@section('seo_title', $article->seo_title)--}}
+{{--@section('seo_desc', $article->seo_desc)--}}
+{{--@section('seo_keywords', $article->seo_keywords)--}}
 
 @section('main_content')
 <div class="wrapper">

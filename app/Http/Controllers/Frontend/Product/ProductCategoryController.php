@@ -20,7 +20,7 @@ class ProductCategoryController extends Controller
             ['title'=>$productCategory->title,'url'=>route('productCategories',$productCategory)]
         ];
 
-        return view('frontend.product.index')->with(compact('products','categories','productCategory','breads'));
+        return view(cusView('product.index'))->with(compact('products','categories','productCategory','breads'));
 
     }
 }

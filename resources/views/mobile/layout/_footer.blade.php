@@ -1,7 +1,7 @@
 <footer id="footer" class="border-top">
   <div class="container">
-    <ul class="row list-unstyled">
-      <li class="navList col-3 product">
+    <ul class="list-unstyled">
+      <li class="navList product">
         <h3>PRODUCTS</h3>
         <ul class="list-unstyled">
           <li>
@@ -14,7 +14,7 @@
           @endforeach
         </ul>
       </li>
-      <li class="navList col-3">
+      <li class="navList">
         <h3>ABOUT US</h3>
         <ul class="list-unstyled">
           @foreach($footerArticles as $article)
@@ -25,7 +25,7 @@
 
         </ul>
       </li>
-      <li class="navList col-3">
+      <li class="navList">
         <h3>CONTACT US</h3>
         <ul class="list-unstyled">
           <li>
@@ -33,7 +33,7 @@
           </li>
         </ul>
       </li>
-      <li id="contactUs" class="col-3">
+      <li id="contactUs">
         @include(cusView('contact._info'))
       </li>
     </ul>

@@ -121,7 +121,7 @@
   <script>
     $('#banner').slick({
       dots: true,
-      // autoplay:true,
+      autoplay:true,
       speed: 500
     });
   </script>

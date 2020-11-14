@@ -21,7 +21,7 @@
     <nav id="nav" class="row align-items-center">
       <div class="col-2">
         <div id="logo" class="flexPic">
-          <a href="/">
+          <a href="{{route('index')}}">
             <img src="{{asset('/static/logo.jpg')}}" alt="">
           </a>
         </div>

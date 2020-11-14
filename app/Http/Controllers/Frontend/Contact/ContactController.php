@@ -16,7 +16,7 @@ class ContactController extends Controller
         $breads = [['title'=>'contact','url'=>route('contact')]];
         $redirect = $product?route('contact',[$product,$product->slug]):route('contact');
         $redirect.='#inquiryBox';
-        return view(cusView('contact.index'))->with(compact('product','breads','redirect'));
+        return view(cusView('contact.index'),compact('product','breads','redirect'));
     }
 
     /** 询盘存储

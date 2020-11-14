@@ -13,7 +13,7 @@ class ArticleController extends Controller
     {
         $articles = Article::paginate(config('app.page_size'));
         $breads = [['title' => 'articles', 'url' => route('articles')]];
-        return view(cusView('article.index'))->with(compact('articles', 'breads'));
+        return view(cusView('article.index'),compact('articles', 'breads'));
     }
 
     public function show(Request $request, Article $article)
@@ -22,7 +22,7 @@ class ArticleController extends Controller
             ['title' => 'articles', 'url' => route('articles')],
             ['title' => $article->title, 'url' => route('articles.show', [$article, $article->slug])]
         ];
-        return view(cusView('article.show'))->with(compact('article', 'breads'));
+        return view(cusView('article.show'),compact('article', 'breads'));
 
     }
 }
