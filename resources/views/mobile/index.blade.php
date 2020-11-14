@@ -36,7 +36,7 @@
       <div class="leftBox">
         <h3 id="mainTitle" class="text-center mainColor font-weight-bold">About MILESOLAR</h3>
         <div class="txtBox">{!! $indexArticle['desc'] !!}</div>
-        <h3 class="mainColor more text-center"><i class="fa fa-arrow-circle-right"></i>Learn more about us</h3>
+        <h3 class="mainColor more text-center"><i class="fa fa-arrow-circle-right"></i>Learn more</h3>
       </div>
     </div>
   </section>
