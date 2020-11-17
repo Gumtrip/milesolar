@@ -113,7 +113,7 @@ if (!function_exists('cusView')) {
      */
     function cusView($path)
     {
-        if(isMobile()){
+        if(mobileDomain()){
             return 'mobile.'.$path;
         }
         return 'web.'.$path;
