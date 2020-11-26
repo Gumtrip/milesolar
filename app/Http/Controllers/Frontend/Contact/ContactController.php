@@ -35,6 +35,6 @@ class ContactController extends Controller
         $redirect = $product?route('contact',[$product,$product->slug]):route('contact');
         $redirect.='#inquiryBox';
         event(new ReceiveMsg($message));
-        return redirect($redirect)->with('success','Thanks For Your Message!');
+        return redirect($redirect)->with('success','Thanks for your inquiry, we will reply you within 24 hours.');
     }
 }

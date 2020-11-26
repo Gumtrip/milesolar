@@ -1,7 +1,7 @@
 @extends(cusView('layout.app'))
-@section('seo_title', isset($product)?$product->seo_title:null)
-@section('seo_desc', isset($product)?$product->seo_desc:null)
-@section('seo_keywords', isset($product)?$product->seo_keywords:null)
+@section('seo_title', isset($productCategory)?$productCategory->seo_title:null)
+@section('seo_desc', isset($productCategory)?$productCategory->seo_desc:null)
+@section('seo_keywords', isset($productCategory)?$productCategory->seo_keywords:null)
 @section('main_content')
 <div class="wrapper inner">
   @include(cusView('common.bread'),$breads)

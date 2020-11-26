@@ -16,6 +16,7 @@ class FrontendComposer
             ['title'=>'Home','url'=>route('index')],
             ['title'=>'Product','url'=>route('products')],
             ['title'=>'About Us','url'=>route('articles.show',1)],
+            ['title'=>'Blog','url'=>route('articles')],
             ['title'=>'Cases','url'=>route('samples')],
             ['title'=>'Contact','url'=>route('contact')],
         ]);//导航

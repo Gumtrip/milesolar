@@ -48,6 +48,6 @@ class IndexController extends Controller
         $message->fill(array_merge(['ip'=>$ip,],$request->all()))->save();
         $redirect = route('index').'#contactUsInfo';
         event(new ReceiveMsg($message));
-        return redirect($redirect)->with('success','Thanks For Your Message!');
+        return redirect($redirect)->with('success','Thanks for your inquiry, we will reply you within 24 hours.');
     }
 }

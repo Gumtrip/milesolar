@@ -58,15 +58,11 @@ button.mint-button--primary{background: $blue}
   .el-button--primary{background-color: $blue }
   .el-input{width: 250px}
 }
-#logo{max-width: 150px}
+#logo{max-width: 170px}
 
 //首页
 #banner {max-height: 600px;overflow: hidden;max-width: 1920px;
   .item{position: relative}
-  .desc{position: absolute;z-index: 1;left: 0;bottom: 50px;width: 60%;height: 50%;background: $blue}
-  .desc .title,.desc .info{color: #fff;width: 100%;padding-left: 8%}
-  .desc .title{height: 60%;display: flex;align-items: center;font-size: 50px}
-  .desc .info{height: 40%;font-size: 28px}
   a{display: block;text-align: center;}
   .bannerImg{width: 100%}
   .bannerImg img{max-width: 100%}
@@ -101,13 +97,14 @@ button.mint-button--primary{background: $blue}
 
 #indexCase{
   .mainTitle{font-size: 32px}
-  .subTitle{font-size: 28px}
+  .subTitle{font-size: 26px}
   .flexPic{height: 300px;overflow: hidden;margin: 8px}
   .desc{font-size: 16px}
 }
 //首页联系我们
 #contactUsInfo {
   .card-title{font-size: 32px}
+  .cont{height: 300px;overflow-y: scroll}
 }
 
 //联系信息

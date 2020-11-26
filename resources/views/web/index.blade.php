@@ -7,16 +7,10 @@
   <section id="banner">
     @foreach($banners as $banner)
       <div class="item">
-        <div class="desc">
-          <h3 class="title">GO SOLAR,GO GREEN</h3>
-          <p class="info">Clean Energy for a Pure World</p>
-        </div>
-        <div>
           <a href="/" class="bannerImg">
             <img src="{{asset($banner['value'])}}"
                  alt="Power inverter, MPPT controller, off-grid solar system, MILESOLAR">
           </a>
-        </div>
       </div>
     @endforeach
   </section>
@@ -42,8 +36,7 @@
   <div class="wrapper">
     <section id="indexCategories">
       <h2 class="text-center mainTitle mainColor font-weight-bold">PRODUCT OFFERED</h2>
-      <h3 class="text-center subTitle">Quality hybrid solar inverter, MPPT solar controller, solar flood light, solar
-        street light</h3>
+      <h1 class="text-center subTitle">Quality power inverter, solar inverter, MPPT solar controller, solar generator, solar light</h1>
 
       <div class="row">
         @foreach($indexCategories as $category)
@@ -77,7 +70,7 @@
     <section id="indexCasesContainer">
       <div id="indexCase">
         <h3 class="text_center mainTitle mainColor mb-1">PROJECT CASES</h3>
-        <h4 class="text-center subTitle mb-1">Quality hybrid solar inverter, MPPT solar controller, solar flood light, solar street light</h4>
+        <h1 class="text-center subTitle mb-1">Quality power inverter, solar inverter, MPPT solar controller, solar generator, solar light</h1>
         <div class="row">
           @foreach($indexSamples as $sample)
             <div class="col-3 item">
@@ -102,7 +95,7 @@
           <div class="row">
             <div class="col-6">
               <h3 class="text-center mainColor mt10">SOLAR KNOWELEDGE</h3>
-              <p>MILESOLAR, located in Fosha, China, mainly manufacture and provide solar inverter, solar controller, solar generator and solar lights. With 10 years of solar industry experience, MILE SOLAR is a trustworthy solar company which helps get your right solar products and boost solartogether</p>
+              <p class="cont">MILESOLAR, located in Fosha, China, mainly manufacture and provide solar inverter, solar controller, solar generator and solar lights. With 10 years of solar industry experience, MILE SOLAR is a trustworthy solar company which helps get your right solar products and boost solartogether</p>
             </div>
             <div class="col-6">@include(cusView('contact._form'),['redirect'=>route('index').'#contactUsInfo','action'=>route('index.msgHandle')])</div>
           </div>
