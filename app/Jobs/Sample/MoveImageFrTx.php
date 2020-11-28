@@ -40,7 +40,7 @@ class MoveImageFrTx
         if (isset($matches[1]) && $matches[1]) {
             $content = $imageHandleService->textAreaHandle($content, $matches, self::FOLDER, $this->sample->id);
             if ($content) {
-                DB::table('samples')->where('id', $this->sample->id)->update(['desc' => $content]);
+                DB::table('samples')->where('id', $this->sample->id)->update(['desc' => $content]);//富文本图片路径修改
             }
         }
     }

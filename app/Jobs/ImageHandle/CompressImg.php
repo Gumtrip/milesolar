@@ -17,12 +17,12 @@ class CompressImg
 
     /**
      * Create a new job instance.
-     *
+     * @param $image
      * @return void
      */
     public function __construct($image)
     {
-        $this->path = $image->path;
+        $this->path = $image;
     }
 
     /**
@@ -44,14 +44,11 @@ class CompressImg
             $image = Image::make(public_path($path));//用绝对路径
             // 进行大小调整的操作
             $image->resize($maxWidth, null, function ($constraint) {
-
                 // 设定宽度是 $max_width，高度等比例双方缩放
                 $constraint->aspectRatio();
-
                 // 防止裁图时图片尺寸变大
                 $constraint->upsize();
             });
-
             //这个文件夹是快捷方式的话，无法写入
             //任务无法写入，请使用sudo php artisan horizon
             $image->save(public_path($thumbName));

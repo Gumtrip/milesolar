@@ -39,10 +39,10 @@ class ProductObserver
     public function deleted(Product $product)
     {
         $images = $product->images;
-        foreach($images as $image){
+        foreach ($images as $image) {
             $image->delete();
         }
-        DeleteAndCleanDir::dispatch($product);
+        //DeleteAndCleanDir::dispatch($product);
     }
 
     /**

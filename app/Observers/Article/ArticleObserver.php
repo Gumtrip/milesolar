@@ -2,16 +2,17 @@
 
 namespace App\Observers\Article;
 
-use App\Jobs\Article\CompressImg;
-use App\Jobs\Article\DeleteImages;
-use App\Jobs\Article\DeleteAndCleanDir;
+use App\Jobs\ImageHandle\CompressImg;
+use App\Jobs\ImageHandle\DeleteImages;
+use App\Jobs\ImageHandle\DeleteAndCleanDir;
 use App\Jobs\Article\MoveImageFrTx;
 use App\Models\Article\Article;
 use App\Services\ImageHandleService;
 use DB;
+
 class ArticleObserver
 {
-    CONST FOLDER='article';
+    CONST FOLDER = 'article';
 
     /**
      * Handle the article "created" event.
@@ -22,12 +23,12 @@ class ArticleObserver
     public function created(Article $article)
     {
         $uploadImageService = app (ImageHandleService::class);
-        if($image = $article->image){
-            $path = $uploadImageService->moveFile($image,self::FOLDER,$article->id);
+        if($image = $article->image) {
+            $path = $uploadImageService->moveFile($image, self::FOLDER, $article->id);
             $article->image = $path;
-            CompressImg::dispatch($article);//压缩图片
+            CompressImg::dispatch($article->image);//压缩图片
             MoveImageFrTx::dispatch($article);//将富文本的图片移动到正确的位置
-            DB::table('articles')->where('id',$article->id)->update(['image'=>$path]);
+            DB::table('articles')->where('id', $article->id)->update(['image' => $path]);
         }
 
     }
@@ -42,9 +43,9 @@ class ArticleObserver
     {
         if($article->isDirty('image')){
             //压缩新图
-            CompressImg::dispatch($article);
+            CompressImg::dispatch($article->image);
             //删除旧图
-            DeleteImages::dispatch($article);
+            DeleteImages::dispatch($article->getOriginal('image'));
         }
 
     }
@@ -57,7 +58,7 @@ class ArticleObserver
      */
     public function deleted(Article $article)
     {
-        DeleteAndCleanDir::dispatch($article);
+        //DeleteAndCleanDir::dispatch($article);
     }
 
     /**

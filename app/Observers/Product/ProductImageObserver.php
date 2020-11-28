@@ -2,8 +2,8 @@
 
 namespace App\Observers\Product;
 
-use App\Jobs\Product\DeleteImages;
-use App\Jobs\Product\CompressImg;
+use App\Jobs\ImageHandle\DeleteImages;
+use App\Jobs\ImageHandle\CompressImg;
 use App\Models\Product\ProductImage;
 
 class ProductImageObserver
@@ -12,12 +12,12 @@ class ProductImageObserver
     /**
      * Handle the product image "created" event.
      *
-     * @param  \App\Models\Product\ProductImage  $productImage
+     * @param \App\Models\Product\ProductImage $productImage
      * @return void
      */
     public function created(ProductImage $productImage)
     {
-        CompressImg::dispatch($productImage);//压缩图片
+        CompressImg::dispatch($productImage->path);//压缩图片
     }
 
     /**
@@ -28,8 +28,8 @@ class ProductImageObserver
      */
     public function updated(ProductImage $productImage)
     {
-        if($productImage->isDirty('path')){
-            CompressImg::dispatch($productImage);//压缩图片
+        if($productImage->isDirty('path')) {
+            CompressImg::dispatch($productImage->path);//压缩图片
         }
     }
 
@@ -41,7 +41,7 @@ class ProductImageObserver
      */
     public function deleted(ProductImage $productImage)
     {
-        DeleteImages::dispatch($productImage);
+        DeleteImages::dispatch($productImage->path);
     }
 
     /**

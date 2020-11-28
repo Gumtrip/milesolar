@@ -17,12 +17,12 @@ class DeleteImages
 
     /**
      * Create a new job instance.
-     *
+     * @param ProductImage $image
      * @return void
      */
-    public function __construct(ProductImage $image)
+    public function __construct($image)
     {
-        $this->image = $image->getOriginal('path');
+        $this->image = $image;
     }
 
     /**

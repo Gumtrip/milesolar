@@ -2,15 +2,15 @@
 
 namespace App\Observers\Product;
 
-use App\Jobs\ProductCategory\CompressImg;
-use App\Jobs\ProductCategory\DeleteImages;
+use App\Jobs\ImageHandle\CompressImg;
+use App\Jobs\ImageHandle\DeleteImages;
 use App\Models\Product\ProductCategory;
 use App\Services\ImageHandleService;
 use DB;
 
 class ProductCategoryObserver
 {
-    CONST FOLDER='product_category';
+    CONST FOLDER = 'product_category';
 
     /**
      * Handle the product category "created" event.
@@ -21,11 +21,11 @@ class ProductCategoryObserver
     public function created(ProductCategory $productCategory)
     {
         $uploadImageService = app (ImageHandleService::class);
-        if($image = $productCategory->image){
-            $path = $uploadImageService->moveFile($image,self::FOLDER,$productCategory->id);
+        if($image = $productCategory->image) {
+            $path = $uploadImageService->moveFile($image, self::FOLDER, $productCategory->id);
             $productCategory->image = $path;
-            CompressImg::dispatch($productCategory);//压缩图片
-            DB::table('product_categories')->where('id',$productCategory->id)->update(['image'=>$path]);
+            CompressImg::dispatch($productCategory->image);//压缩图片
+            DB::table('product_categories')->where('id', $productCategory->id)->update(['image' => $path]);
 
         }
     }
@@ -40,9 +40,9 @@ class ProductCategoryObserver
     {
         if($productCategory->isDirty('image')){
             //压缩新图
-            CompressImg::dispatch($productCategory);
+            CompressImg::dispatch($productCategory->image);
             //删除旧图
-            DeleteImages::dispatch($productCategory);
+            DeleteImages::dispatch($productCategory->getOriginal('image'));
         }
     }
 

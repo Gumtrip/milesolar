@@ -95,6 +95,12 @@ return [
             'driver' => 'monolog',
             'handler' => NullHandler::class,
         ],
+        'delete_error' => [//删除文件夹日志
+            'driver' => 'daily',
+            'path' => storage_path('logs/delete_dir/log.log'),
+            'level' => 'debug',
+            'days' => 180,
+        ],
     ],
 
 ];
