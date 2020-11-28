@@ -43,7 +43,7 @@ class SampleObserver
     {
         if($sample->isDirty('image')){
             //压缩新图
-            CompressImg::dispatch($sample);
+            CompressImg::dispatch($sample->image);
             //删除旧图
             DeleteImages::dispatch($sample->getOriginal('image'));
         }

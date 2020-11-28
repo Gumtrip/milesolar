@@ -29,7 +29,7 @@ class ProductImageObserver
     public function updated(ProductImage $productImage)
     {
         if($productImage->isDirty('path')) {
-            CompressImg::dispatch($productImage->path);//压缩图片
+            CompressImg::dispatch($productImage->getOriginal('path'));//压缩图片
         }
     }
 

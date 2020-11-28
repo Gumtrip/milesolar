@@ -68,10 +68,10 @@ class ProductController extends Controller
         $imageCol->intersect($oldImageCol)->each(function ($img, $key) use ($oldImages, $product) {//交集，更新
             $oldImages->firstWhere('path', $img)->update(['order' => $key]);
         });
-        $oldImageCol->diff($imageCol)->each(function ($img) use ($oldImages) {//旧集和新集的差集
+        $oldImageCol->diff($imageCol)->each(function ($img) use ($oldImages) {//旧集和新集的差集，删除
             $oldImages->firstWhere('path', $img)->delete();
         });
-        $imageCol->diff($oldImageCol)->each(function ($img, $key) use ($oldImages, $product) {//新集和旧集差集
+        $imageCol->diff($oldImageCol)->each(function ($img, $key) use ($oldImages, $product) {//新集和旧集差集,插入新值
             $proImage = new ProductImage(['path' => $img, 'order' => $key]);
             $proImage->product()->associate($product);
             $proImage->save();
