@@ -16,19 +16,23 @@
   <link rel="stylesheet" type="text/css" href="{{asset('vendor/slick/slick-theme.css')}}"/>
 {{--  slick 插件--}}
 <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113949577-1"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-167279691-1"></script>
   <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
 
-      gtag('config', 'UA-113949577-1');
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'UA-167279691-1');
   </script>
 
 </head>
 <body>
-  <div id="app">
-    @include(cusView('layout._header'))
+<div id="app">
+  @include(cusView('layout._header'))
     <div class="wrapper">
       @yield('content')
     </div>
