@@ -7,10 +7,6 @@
   <section id="banner">
     @foreach($banners as $banner)
       <div class="item">
-        <div class="desc">
-          <h3 class="title">GO SOLAR,GO GREEN</h3>
-          <p class="info">Clean Energy for a Pure World</p>
-        </div>
         <div>
           <a href="/" class="bannerImg">
             <img src="{{asset($banner['value'])}}"
