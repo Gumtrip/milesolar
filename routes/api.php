@@ -57,7 +57,10 @@ Route::group([
         Route::group(['namespace' => 'Client'], function () {
             Route::resource('clients', 'ClientController')->only(['index', 'store', 'show', 'update', 'destroy']);
         });
-
+        //单页
+        Route::group(['namespace' => 'Page'], function () {
+            Route::resource('pages', 'PageController')->only(['index', 'store', 'show', 'update', 'destroy']);
+        });
 
 //后台管理员
         Route::group(['namespace' => 'Admin'], function () {

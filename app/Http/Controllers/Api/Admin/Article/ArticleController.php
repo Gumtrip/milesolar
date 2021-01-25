@@ -6,13 +6,13 @@ use App\Http\Requests\Admin\BackendRequest as Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Article\ArticleResource;
 use App\Models\Article\Article;
-use App\Http\Queries\Article\ArticleQuery;
+use App\Http\Queries\Article\PageQuery;
 use App\Http\Requests\Admin\Article\ArticleRequest;
 use App\Jobs\Article\MoveImageFrTx;
 class ArticleController extends Controller
 {
 
-    public function index(Request $request, ArticleQuery $articleQuery)
+    public function index(Request $request, PageQuery $articleQuery)
     {
         $articles = $articleQuery->paginate(config('app.page_size'));
         return ArticleResource::collection($articles);
@@ -25,7 +25,7 @@ class ArticleController extends Controller
         return response(null,201);
     }
 
-    public function show($id, ArticleQuery $articleQuery)
+    public function show($id, PageQuery $articleQuery)
     {
         $article = $articleQuery->findOrFail($id);
         return new ArticleResource($article);
