@@ -17,6 +17,7 @@ class PageRequest extends FormRequest
         return [
             'title' => 'required',
             'content' => 'required',
+            'images' => 'required'
         ];
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PageImage extends Model
 {
-    protected $fillable = ['path'];
+    protected $fillable = ['path', 'title'];
 
     public function page()
     {
