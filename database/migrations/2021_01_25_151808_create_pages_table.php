@@ -16,6 +16,9 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title', 200)->comment('题目');
+            $table->string('slug', 200)->comment('slug');
+            $table->string('image', 200)->comment('图片路径');
+            $table->string('brief', 2048)->comment('简介');
             $table->text('content')->comment('详情内容');
             $table->string('seo_title', 150)->nullable()->comment('SEO-标题');
             $table->string('seo_keywords', 150)->nullable()->comment('SEO-关键字');

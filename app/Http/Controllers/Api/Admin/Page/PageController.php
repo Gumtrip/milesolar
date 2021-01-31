@@ -6,7 +6,7 @@ use App\Http\Requests\Admin\BackendRequest as Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Page\PageResource;
 use App\Models\Page\Page;
-use App\Models\Page\PageImage;
+use App\Models\Image\Image;
 use App\Http\Requests\Admin\Page\PageRequest;
 use App\Http\Queries\Page\PageQuery;
 use App\Models\Product\ProductImage;
@@ -36,7 +36,7 @@ class PageController extends Controller
                         $img = $image['path'];
                         if (File::exists(public_path($img))) {
                             $path = $imageHandleService->moveFile($img, self::FOLDER, $page->id);
-                            $image = new PageImage(['path' => $path]);
+                            $image = new Image(['path' => $path, 'type' => Page::IMG_FOLDER]);
                             $image->page()->associate($page);
                             $image->save();
                         }
@@ -64,15 +64,16 @@ class PageController extends Controller
             foreach ($images as $img) {
                 $path = $img['path'];
                 if (!$existImages->contains($path)) {// 没有的插入新值
-                    $pageImg = new PageImage();
+                    $pageImg = new Image();
                     $pageImg->fill([
                         'path' => $path,
+                        'type' => Page::IMG_FOLDER
                     ]);
                     $pageImg->page()->associate($page);
                     $pageImg->save();
                 }
                 $existImages->diff($images->pluck('path'))->each(function ($title) use ($page) {// 删掉差值
-                    $existImg = PageImage::where('page_id', $page->id)->where('path', $title)->first();
+                    $existImg = Image::where('page_id', $page->id)->where('path', $title)->first();
                     if ($existImg) {
                         $existImg->delete();
                     }

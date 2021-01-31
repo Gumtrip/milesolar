@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Page;
+namespace App\Http\Resources\Image;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PageImageResource extends JsonResource
+class ImageResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

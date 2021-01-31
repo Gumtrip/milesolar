@@ -198,27 +198,74 @@ button.mint-button--primary{background: $blue}
   .secCate a:hover,.secCate a.cur{color: $blue}
 }
 //产品详情页
-#productDetail{display: flex;margin-bottom: 40px;justify-content: space-between;
-  #picGallery{overflow: hidden;flex:0 0 40%;;
-    .picBox{height: 300px}
-    img{max-width: 100%;max-height: 100%;margin: 0 auto}
-  .gallery-top{margin-bottom: 10px}
-  .gallery-thumbs{}
-  .thumbImg{;height: 80px;
-    .slick-slide.slick-active{border: 1px solid }
+#picGallery {
+  overflow: hidden;
+  flex: 0 0 40%;;
+
+  .picBox {
+    height: 300px
   }
-  .thumbImg img{max-width: 100%;max-height: 100%}
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0 auto
   }
-  .proTitle{color: #5d5d5d;font-size: 24px}
-  .desc{color: #888;margin: 20px 0;font-size: 16px;line-height: 150%;
+
+  .gallery-top {
+    margin-bottom: 10px
   }
-  #proInfo{flex: 0 0 55%;}
+
+  .gallery-thumbs {
+  }
+
+  .thumbImg {;
+    height: 80px;
+
+    .slick-slide.slick-active {
+      border: 1px solid
+    }
+  }
+
+  .thumbImg img {
+    max-width: 100%;
+    max-height: 100%
+  }
 }
-#productInfo{
-  .titles{margin-bottom: 10px}
+
+#productDetail {
+  display: flex;
+  margin-bottom: 40px;
+  justify-content: space-between;
+
+  .proTitle {
+    color: #5d5d5d;
+    font-size: 24px
+  }
+
+  .desc {
+    color: #888;
+    margin: 20px 0;
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  #proInfo {
+    flex: 0 0 55%;
+  }
 }
+
+#productInfo {
+  .titles {
+    margin-bottom: 10px
+  }
+}
+
 .contentContainer {
-  img{max-width: 100%;max-height: 100%}
+  img {
+    max-width: 100%;
+    max-height: 100%
+  }
 }
 //询盘页面
 #MsgBox{padding-bottom: 30px}

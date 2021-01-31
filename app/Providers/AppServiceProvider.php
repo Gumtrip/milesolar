@@ -16,8 +16,8 @@ use App\Observers\Sample\SampleObserver;
 use App\Models\Sample\Sample;
 use App\Observers\Page\PageObserver;
 use App\Models\Page\Page;
-use App\Observers\Page\PageImageObserver;
-use App\Models\Page\PageImage;
+use App\Observers\Image\ImageObserver;
+use App\Models\Image\Image;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -44,7 +44,7 @@ class AppServiceProvider extends ServiceProvider
         ProductCategory::observe(ProductCategoryObserver::class);
         Sample::observe(SampleObserver::class);
         Page::observe(PageObserver::class);
-        PageImage::observe(PageImageObserver::class);
+        Image::observe(ImageObserver::class);
 
         Resource::withoutWrapping();
     }

@@ -25,14 +25,18 @@ Route::group(['namespace'=>'Frontend'],function(){
         Route::get('/{sample}/{slug?}', 'SampleController@show')->name('samples.show');
     });
     //文章
-    Route::group(['namespace'=>'Article','prefix'=>'articles'],function(){
+    Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function () {
         Route::get('/', 'ArticleController@index')->name('articles');
         Route::get('/{article}/{slug?}', 'ArticleController@show')->name('articles.show');
     });
     //联系我们
-    Route::group(['namespace'=>'Contact','prefix'=>'contact'],function(){
+    Route::group(['namespace' => 'Contact', 'prefix' => 'contact'], function () {
         Route::get('/{product?}/{slug?}', 'ContactController@index')->name('contact');
         Route::post('/', 'ContactController@store')->name('contact.store');
+    });
+    //单页
+    Route::group(['namespace' => 'Page', 'prefix' => 'pages'], function () {
+        Route::get('/{page?}/{slug?}', 'PageController@show')->name('pages.show');
     });
 
 });

@@ -6,7 +6,7 @@ use App\Jobs\Page\MoveImageFrTx;
 use App\Jobs\ImageHandle\CompressImg;
 use App\Models\Page\Page;
 use App\Services\ImageHandleService;
-
+use DB;
 class PageObserver
 {
     CONST FOLDER = 'page';
@@ -21,11 +21,16 @@ class PageObserver
     {
         MoveImageFrTx::dispatch($page);//将富文本的图片移动到正确的位置
         $uploadImageService = app(ImageHandleService::class);
+
+        $path = $uploadImageService->moveFile($page->image, self::FOLDER, $page->id);
+        CompressImg::dispatch($path);//压缩图片
+        DB::table('pages')->where('id', $page->id)->update(['image' => $path]);
+
         if ($images = $page->images) {
-            foreach ($images as $image) {
-                $path = $uploadImageService->moveFile($image, self::FOLDER, $page->id);
-                $image->update(['path' => $path]);
-                CompressImg::dispatch($image->path);//压缩图片
+            foreach ($images as $img) {
+                $path = $uploadImageService->moveFile($img->path, self::FOLDER, $page->id);
+                $img->update(['path' => $path]);
+                CompressImg::dispatch($img->path);//压缩图片
             }
         }
     }

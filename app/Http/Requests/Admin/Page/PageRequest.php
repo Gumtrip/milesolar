@@ -16,8 +16,10 @@ class PageRequest extends FormRequest
     {
         return [
             'title' => 'required',
+            'brief' => 'required',
             'content' => 'required',
-            'images' => 'required'
+            'images' => 'required',
+            'image' => 'required'
         ];
     }
 }

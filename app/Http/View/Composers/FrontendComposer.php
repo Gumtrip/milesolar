@@ -13,12 +13,12 @@ class FrontendComposer
         $contactInfo = Setting::where('category_id',2)->get();
         $view->with('contactInfo',$contactInfo);//联系方式
         $view->with('navList', [
-            ['title'=>'Home','url'=>route('index')],
-            ['title'=>'Product','url'=>route('products')],
-            ['title'=>'About Us','url'=>route('articles.show',1)],
-            ['title'=>'Blog','url'=>route('articles')],
-            ['title'=>'Cases','url'=>route('samples')],
-            ['title'=>'Contact','url'=>route('contact')],
+            ['title' => 'Home', 'url' => route('index')],
+            ['title' => 'Product', 'url' => route('products')],
+            ['title' => 'About Us', 'url' => route('pages.show', ['page' => 1, 'slug' => 'about-us'])],
+            ['title' => 'Blog', 'url' => route('articles')],
+            ['title' => 'Cases', 'url' => route('samples')],
+            ['title' => 'Contact', 'url' => route('contact')],
         ]);//导航
         //脚部
         $footerCategories = ProductCategory::withDepth()->having('depth',1)->orderBy('order')->take(4)->get();
