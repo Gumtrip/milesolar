@@ -30,8 +30,9 @@ class ProductController extends Controller
         $imageHandleService = app(ImageHandleService::class);//移动图片
         if ($images = $request->images) {
             foreach ($images as $key => $image) {
-                if(File::exists(public_path($image))){
-                    $path = $imageHandleService->moveFile($image, self::FOLDER, $product->id);
+                $img = $image['path'];
+                if (File::exists(public_path($img))) {
+                    $path = $imageHandleService->moveFile($img, self::FOLDER, $product->id);
                     $proImage = new ProductImage(['path' => $path, 'order' => $key]);
                     $proImage->product()->associate($product);
                     $proImage->save();

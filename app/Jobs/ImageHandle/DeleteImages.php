@@ -8,7 +8,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Product\ProductImage;
-use File;
+use Illuminate\Support\Facades\File;
 
 class DeleteImages
 {

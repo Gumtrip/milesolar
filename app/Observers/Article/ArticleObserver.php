@@ -30,7 +30,6 @@ class ArticleObserver
             MoveImageFrTx::dispatch($article);//将富文本的图片移动到正确的位置
             DB::table('articles')->where('id', $article->id)->update(['image' => $path]);
         }
-
     }
 
     /**

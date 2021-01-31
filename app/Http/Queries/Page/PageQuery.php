@@ -14,7 +14,7 @@ class PageQuery extends QueryBuilder
         parent::__construct(Page::query());
 
         $this
-            ->allowedIncludes(['page_images'])
+            ->allowedIncludes(['images'])
             ->allowedFilters([
                 'title'
             ])

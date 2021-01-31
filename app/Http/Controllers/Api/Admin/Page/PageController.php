@@ -5,15 +5,19 @@ namespace App\Http\Controllers\Api\Admin\Page;
 use App\Http\Requests\Admin\BackendRequest as Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Page\PageResource;
-use App\Http\Resources\Page\PageImageResource;
 use App\Models\Page\Page;
 use App\Models\Page\PageImage;
 use App\Http\Requests\Admin\Page\PageRequest;
 use App\Http\Queries\Page\PageQuery;
+use App\Models\Product\ProductImage;
+use App\Services\ImageHandleService;
 use Illuminate\Support\Facades\DB;
+use File;
 
 class PageController extends Controller
 {
+    CONST FOLDER = 'page';
+
     public function index(Request $request, PageQuery $articleQuery)
     {
         $articles = $articleQuery->paginate(config('app.page_size'));
@@ -26,13 +30,17 @@ class PageController extends Controller
             $page->fill($request->all());
             $page->save();
             if ($images = $request->images) {
-                foreach ($images as $img) {
-                    $image = new PageImage();
-                    $image->fill([
-                        'path' => $img['path'],
-                    ]);
-                    $image->page()->associate($page);
-                    $image->save();
+                $imageHandleService = app(ImageHandleService::class);//移动图片
+                if ($images = $request->images) {
+                    foreach ($images as $key => $image) {
+                        $img = $image['path'];
+                        if (File::exists(public_path($img))) {
+                            $path = $imageHandleService->moveFile($img, self::FOLDER, $page->id);
+                            $image = new PageImage(['path' => $path]);
+                            $image->page()->associate($page);
+                            $image->save();
+                        }
+                    }
                 }
             }
             return $page;
@@ -51,7 +59,7 @@ class PageController extends Controller
     {
         $page = DB::transaction(function () use ($request, $page) {
             $page->update($request->all());
-            $existImages = $page->page_images->pluck('path');
+            $existImages = $page->images->pluck('path');
             $images = collect($request->images);
             foreach ($images as $img) {
                 $path = $img['path'];
@@ -73,8 +81,6 @@ class PageController extends Controller
             }
             return $page;
         });
-
-
         return new PageResource($page);
     }
 

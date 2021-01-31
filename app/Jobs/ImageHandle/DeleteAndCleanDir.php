@@ -19,7 +19,6 @@ class DeleteAndCleanDir
     use SerializesModels;
 
     protected $path;
-    const FOLDER = 'product';
 
     /**
      *
@@ -43,7 +42,7 @@ class DeleteAndCleanDir
     public function handle()
     {
         // 正确的逻辑应该是检测文件夹里面的文件，遍历删除，（只删除图片~）
-        // 如果是空，则删除整个文件夹 ，不是空就写入日志
+        // 只有文件夹是空的情况下才删除图片
         $dir = $this->path;
         if (File::isDirectory($dir)) {//使用队列的时候，它的根目录变成了项目的根目录了
             File::cleanDirectory($dir);//使用sudo php artisan horizon 的话，就会删除整个项目目录
