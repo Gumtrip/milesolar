@@ -73,7 +73,8 @@ class PageController extends Controller
                     $pageImg->save();
                 }
                 $existImages->diff($images->pluck('path'))->each(function ($title) use ($page) {// 删掉差值
-                    $existImg = Image::where('page_id', $page->id)->where('path', $title)->first();
+                    $existImg = Image::where('foreign_id', $page->id)->where('type', Page::IMG_FOLDER)->where('path',
+                        $title)->first();
                     if ($existImg) {
                         $existImg->delete();
                     }
