@@ -10,7 +10,7 @@
         </div>
         <h1 id="articleTitle" class="mb-2">{{$page->title}}</h1>
         <div class="row mb-2">
-            <div class="col-6">{{nl2br($page->brief)}}</div>
+            <div class="col-6">{!! nl2br($page->brief) !!}</div>
             <div class="col-6">
                 <section id="picGallery">
                     <div class="slick-for gallery-top">
