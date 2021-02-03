@@ -18,20 +18,24 @@
 <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-167279691-1"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
+      window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
+      function gtag() {
+          dataLayer.push(arguments);
+      }
 
-    gtag('js', new Date());
+      gtag('js', new Date());
 
-    gtag('config', 'UA-167279691-1');
+      gtag('config', 'UA-167279691-1');
   </script>
+
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/7628792.js"></script>
+    <!-- End of HubSpot Embed Code -->
 </head>
 <body>
 <div id="app">
-  @include(cusView('layout._header'))
+    @include(cusView('layout._header'))
     <div class="wrapper">
       @yield('content')
     </div>
