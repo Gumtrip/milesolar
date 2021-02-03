@@ -1,7 +1,7 @@
 @extends(cusView('layout.app'))
-@section('seo_title', isset($seoData['seo_title'])?$seoData['seo_title']:null)
-@section('seo_keywords', isset($seoData['seo_keywords'])?$seoData['seo_keywords']:null)
-@section('seo_desc', isset($seoData['seo_desc'])?$seoData['seo_desc']:null)
+@section('seo_title', isset($defaultSeoData['seo_title'])?$defaultSeoData['seo_title']:null)
+@section('seo_keywords', isset($defaultSeoData['seo_keywords'])?$defaultSeoData['seo_keywords']:null)
+@section('seo_desc', isset($defaultSeoData['seo_desc'])?$defaultSeoData['seo_desc']:null)
 
 @section('content')
   <section id="banner">

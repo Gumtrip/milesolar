@@ -1,12 +1,12 @@
 @extends(cusView('layout.app'))
-@section('seo_title', 'Page Title')
-@section('seo_desc', 'Page Title')
-@section('seo_keywords', 'Page Title')
+@section('seo_title', $product?$product->seo_title:$defaultSeoData['seo_title'])
+@section('seo_desc', $product?$product->seo_desc:$defaultSeoData['seo_keywords'])
+@section('seo_keywords', $product?$product->seo_keywords:$defaultSeoData['seo_desc'])
 @section('main_content')
   <div id="MsgBox" class="wrapper">
     @include(cusView('common.bread'),$breads)
     <div id="contactInfo" class="card">
-      <div class="card-body" >
+      <div class="card-body">
         <div class="card-header">
           <span class="contactInfoTitle">Contact Info</span>
         </div>

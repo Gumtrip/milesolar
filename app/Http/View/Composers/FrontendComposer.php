@@ -21,9 +21,18 @@ class FrontendComposer
             ['title' => 'Contact', 'url' => route('contact')],
         ]);//导航
         //脚部
-        $footerCategories = ProductCategory::withDepth()->having('depth',1)->orderBy('order')->take(4)->get();
-        $footerArticles = Article::where('category_id',2)->orderBy('order')->get();
-        $view->with('footerCategories',$footerCategories);//联系方式
-        $view->with('footerArticles',$footerArticles);//About Us
+        $footerCategories = ProductCategory::withDepth()->having('depth', 1)->orderBy('order')->take(4)->get();
+        $footerArticles = Article::where('category_id', 2)->orderBy('order')->get();
+        //默认seo
+        $indexSeo = Setting::where('category_id', 5)->get();
+        $defaultSeoData = [
+            'seo_title' => $indexSeo->where('title', 'seo标题')->first()->value,
+            'seo_keywords' => $indexSeo->where('title', '主页keywords')->first()->value,
+            'seo_desc' => $indexSeo->where('title', '主页description')->first()->value,
+        ];
+
+        $view->with('footerCategories', $footerCategories);//联系方式
+        $view->with('footerArticles', $footerArticles);//About Us
+        $view->with('defaultSeoData', $defaultSeoData);//About Us
     }
 }
