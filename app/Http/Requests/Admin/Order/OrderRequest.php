@@ -19,7 +19,6 @@ class OrderRequest extends FormRequest
             'client_id'=>'required',
             'currency'=>'required',
             'exchange_rate'=>'required',
-            'expenses'=>'required',
             'items'=>'required',
         ];
     }
@@ -29,7 +28,6 @@ class OrderRequest extends FormRequest
             'client_id'=>'客户',
             'currency'=>'币种',
             'exchange_rate'=>'汇率',
-            'expenses'=>'支出',
             'items'=>'售卖商品',
 
         ];
