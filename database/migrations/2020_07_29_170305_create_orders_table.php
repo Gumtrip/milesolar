@@ -22,6 +22,7 @@ class CreateOrdersTable extends Migration
             $table->decimal('exchange_rate', 8, 4)->default(1)->comment('兑换成人民币汇率');
             $table->decimal('rmb_total_amount')->default(0)->comment('人民币营业收入');
             $table->decimal('cost')->default(0)->comment('成本(货款+其他支出),人民币结算');
+            $table->string('status', 60)->default('CREATED')->comment('订单状态');
             $table->string('remark', 200)->nullable()->comment('备注');
             $table->softDeletes();
             $table->timestamps();

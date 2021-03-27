@@ -16,20 +16,19 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'client_id'=>'required',
-            'currency'=>'required',
-            'exchange_rate'=>'required',
-            'items'=>'required',
+            'client_id' => 'required',
+            'currency' => 'required',
+            'exchange_rate' => 'required',
+            'order_items' => 'required',
         ];
     }
     public function attributes()
     {
         return [
-            'client_id'=>'客户',
-            'currency'=>'币种',
-            'exchange_rate'=>'汇率',
-            'items'=>'售卖商品',
-
+            'client_id' => '客户',
+            'currency' => '币种',
+            'exchange_rate' => '汇率',
+            'order_items' => '售卖商品',
         ];
     }
 }

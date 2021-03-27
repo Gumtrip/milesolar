@@ -11,6 +11,7 @@ class Order extends Model
     use SoftDeletes;
     protected $fillable = ['no','total_amount','currency','exchange_rate','rmb_total_amount','remark'];
 
+
     public function client(){
         return $this->belongsTo(Client::class);
     }
