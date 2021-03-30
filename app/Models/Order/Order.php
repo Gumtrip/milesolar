@@ -16,10 +16,13 @@ class Order extends Model
         return $this->belongsTo(Client::class);
     }
 
-    public function items(){
+    public function orderItems()
+    {
         return $this->hasMany(OrderItem::class);
     }
-    public function expenses(){
+
+    public function expenses()
+    {
         return $this->hasMany(OrderExpense::class);
     }
 
