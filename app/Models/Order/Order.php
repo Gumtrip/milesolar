@@ -9,10 +9,23 @@ class Order extends Model
 {
 
     use SoftDeletes;
-    protected $fillable = ['no','total_amount','currency','exchange_rate','rmb_total_amount','remark'];
+    protected $fillable = ['no', 'total_amount', 'currency', 'exchange_rate', 'rmb_total_amount', 'remark', 'status'];
 
+// 订单状态
+    CONST STATUS_CREATED = 'created';
+    CONST STATUS_PROCESS = 'process';
+    CONST STATUS_CLOSE = 'close';
+    CONST STATUS_FINISH = 'finish';
 
-    public function client(){
+    public static $statusMap = [
+        self::STATUS_CREATED => '创建',
+        self::STATUS_PROCESS => '进行中',
+        self::STATUS_CLOSE => '关闭',
+        self::STATUS_FINISH => '完成',
+    ];
+
+    public function client()
+    {
         return $this->belongsTo(Client::class);
     }
 

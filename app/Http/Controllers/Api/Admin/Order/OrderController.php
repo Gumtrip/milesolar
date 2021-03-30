@@ -11,6 +11,7 @@ use App\Models\Product\Product;
 use App\Http\Requests\Admin\Order\OrderRequest;
 use App\Http\Queries\Order\OrderQuery;
 use DB;
+
 class OrderController extends Controller
 {
     public function index(Request $request, OrderQuery $orderQuery)
@@ -87,7 +88,8 @@ class OrderController extends Controller
                         'price' => $item['price'],
                     ]);
                 }
-                $exitsItems->diff($items->pluck('id'))->each(function ($id) use ($order) {// 删掉差值
+                $exitsItems->diff($items->pluck('id'))->each(function ($id) use ($order) {
+// 删掉差值
                     $orderItem = OrderItem::find($id);
                     if ($orderItem) {
                         $orderItem->delete();
