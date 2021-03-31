@@ -66,7 +66,7 @@ class ProductController extends Controller
         $imageCol = collect($request->images);
 
 //图片处理
-        $imageCol->intersect($oldImageCol)->each(function ($img, $key) use ($oldImages, $product) {//交集，更新
+        $imageCol->intersect($oldImageCol)->each(function ($img, $key) use ($oldImages, $product) {//交集，更新 key
             $oldImages->firstWhere('path', $img)->update(['order' => $key]);
         });
         $oldImageCol->diff($imageCol)->each(function ($img) use ($oldImages) {//旧集和新集的差集，删除
