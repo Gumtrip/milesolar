@@ -29,14 +29,28 @@ class Order extends Model
         return $this->belongsTo(Client::class);
     }
 
+    /**订单产品
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
     }
 
+    /**支出
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function expenses()
     {
         return $this->hasMany(OrderExpense::class);
+    }
+
+    /**收款进度
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function proceeds()
+    {
+        return $this->hasMany(OrderProceed::class);
     }
 
     protected static function boot()
