@@ -18,7 +18,6 @@ class CreateOrderItemsTable extends Migration
             $table->integer('order_id')->comment('orders 外键');
             $table->integer('product_id')->comment('产品名称,0是自定义');
             $table->string('title', 150)->comment('产品名称');
-            $table->string('img', 100)->comment('图片');
             $table->decimal('price', 10, 2)->comment('价格,人民币');
             $table->integer('amount')->default(1)->comment('数量');
             $table->timestamps();

@@ -17,9 +17,8 @@ class CreateOrderExpensesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('order_id')->comment('订单外键');
             $table->string('title', 100)->comment('支出名称');
-            $table->string('img', 80)->nullable()->comment('图片');
             $table->string('remark', 200)->nullable()->comment('备注');
-            $table->decimal('total_amount', 10, 2)->comment('支出费用，人民币');
+            $table->decimal('total_amount', 10, 2)->default(0)->comment('支出费用，人民币');
             $table->timestamps();
         });
     }

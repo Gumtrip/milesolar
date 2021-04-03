@@ -18,12 +18,11 @@ class OrderProceedController extends Controller
     {
         $orderProceed = DB::transaction(function () use ($request, $orderProceed) {
             $order = Order::findOrFail($request->order_id);
-
+            $orderProceed->rmb_total_amount = bcmul($request->exchange_rate, $request->total_amount, 2);
             $orderProceed->fill($request->all());
             $orderProceed->order()->associate($order);
             $orderProceed->save();
             return $orderProceed;
-
         });
 
         return new OrderProceedResource($orderProceed);
@@ -32,9 +31,9 @@ class OrderProceedController extends Controller
     public function update(OrderProceedRequest $request, OrderProceed $orderProceed)
     {
         $orderProceed = DB::transaction(function () use ($request, $orderProceed) {
-
-            $orderProceed->update($request->all());
-
+            $orderProceed->update(array_merge($request->all(), [
+                'rmb_total_amount' => bcmul($request->exchange_rate, $request->total_amount, 2)
+            ]));
             return $orderProceed;
         });
         return new OrderProceedResource($orderProceed);
@@ -44,7 +43,6 @@ class OrderProceedController extends Controller
     public function show(Request $request, OrderProceed $orderProceed)
     {
         return new OrderProceedResource($orderProceed);
-
     }
 
     public function destroy(Request $request, OrderProceed $orderProceed)

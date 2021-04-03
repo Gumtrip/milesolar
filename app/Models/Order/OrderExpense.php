@@ -19,7 +19,7 @@ class OrderExpense extends Model
         self::TYPE_PORT_SURCHARGE => '港杂费',
         self::TYPE_FREIGHT => '运费',
     ];
-    protected $fillable = ['title', 'fee', 'remark'];
+    protected $fillable = ['title', 'remark', 'total_amount'];
 
     public function order()
     {
