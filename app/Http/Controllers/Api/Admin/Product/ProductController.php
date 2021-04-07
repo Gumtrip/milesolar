@@ -63,12 +63,13 @@ class ProductController extends Controller
     {
         $oldImages = $product->images;
         $oldImageCol = $oldImages->pluck('path');
-        $imageCol = collect($request->images);
-
+        $imageCol = collect($request->images)->pluck('path');
 //图片处理
         $imageCol->intersect($oldImageCol)->each(function ($img, $key) use ($oldImages, $product) {//交集，更新 key
             $oldImages->firstWhere('path', $img)->update(['order' => $key]);
         });
+
+
         $oldImageCol->diff($imageCol)->each(function ($img) use ($oldImages) {//旧集和新集的差集，删除
             $oldImages->firstWhere('path', $img)->delete();
         });
@@ -86,7 +87,6 @@ class ProductController extends Controller
                 $info->update(['content' => $content]);
             }
         }
-
         $product->update($request->all());
 
 

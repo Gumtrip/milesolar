@@ -37,7 +37,6 @@ class OrderProceedController extends Controller
             return $orderProceed;
         });
         return new OrderProceedResource($orderProceed);
-
     }
 
     public function show(Request $request, OrderProceed $orderProceed)
