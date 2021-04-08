@@ -16,7 +16,7 @@ class OrderExpenseRequest extends FormRequest
     {
         $rule = [
             'title' => 'required',
-            'total_amount' => 'required',
+            'total_amount' => 'required|numeric',
         ];
         switch (strtolower($this->method())) {
             case 'post':

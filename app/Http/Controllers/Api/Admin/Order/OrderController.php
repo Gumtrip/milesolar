@@ -37,7 +37,6 @@ class OrderController extends Controller
                 $orderItem = $order->orderItems()->make([
                     'name' => $sku ? $sku->title : $item['name'],
                     'amount' => $item['amount'],
-                    'img' => $item['img'] ?? '',
                     'price' => $item['price'],
                 ]);
                 $orderItem->product()->associate($id);
@@ -76,7 +75,6 @@ class OrderController extends Controller
                     $orderItem = $order->orderItems()->make([
                         'name' => $sku ? $sku->title : $item['name'],
                         'amount' => $item['amount'],
-                        'img' => $item['img'] ?? '',
                         'price' => $item['price'],
                     ]);
                     $orderItem->product()->associate($id);

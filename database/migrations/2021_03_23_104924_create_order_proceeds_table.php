@@ -15,7 +15,6 @@ class CreateOrderProceedsTable extends Migration
     {
         Schema::create('order_proceeds', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('no')->comment('转账流水号');
             $table->integer('order_id')->comment('外键，关联orders');
             $table->string('currency', 10)->default("CNY")->comment('币种');
             $table->decimal(' exchange_rate', 8, 4)->default(1)->comment('汇率');
