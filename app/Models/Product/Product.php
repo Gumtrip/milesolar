@@ -10,7 +10,17 @@ use App\Models\Traits\OrderTrait;
 class Product extends Model
 {
     use Sluggable,OrderTrait;
-    protected $fillable = ['title', 'category_id','brief', 'is_index','seo_title', 'seo_keywords', 'seo_desc', 'order'];
+    protected $fillable = [
+        'title',
+        'category_id',
+        'brief',
+        'is_index',
+        'status',
+        'seo_title',
+        'seo_keywords',
+        'seo_desc',
+        'order'
+    ];
 
 
     protected $appends = ['main_image'];

@@ -12,9 +12,9 @@ class ProductController extends Controller
 {
     public function index(Request $request){
         $title = $request->title;
-        $products = Product::when($title,function($query) use ($title){
-            return $query->where('title','like','%'.$title.'%');
-        })->paginate(config('app.page_size'));
+        $products = Product::when($title, function ($query) use ($title) {
+            return $query->where('title', 'like', '%' . $title . '%');
+        })->where('status', 1)->paginate(config('app.page_size'));
         $categories = ProductCategory::get()->toTree();
         $breads = [['title'=>'products','url'=>route('products')]];
         return view(cusView('product.index'),compact('products','categories','breads','title'));
