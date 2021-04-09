@@ -13,6 +13,7 @@ class ClientController extends Controller
 {
     public function index(Request $request, ClientQuery $clientQuery)
     {
+
         $clients = $clientQuery->paginate(config('app.page_size'));
         return ClientResource::collection($clients);
     }
@@ -21,7 +22,8 @@ class ClientController extends Controller
     {
         $client->fill($request->all());
         $client->save();
-        return response(null,201);
+        return new ClientResource($client);
+
     }
 
     public function show($id, ClientQuery $clientQuery)

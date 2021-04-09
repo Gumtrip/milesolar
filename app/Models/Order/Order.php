@@ -9,7 +9,16 @@ class Order extends Model
 {
 
     use SoftDeletes;
-    protected $fillable = ['no', 'total_amount', 'currency', 'exchange_rate', 'rmb_total_amount', 'remark', 'status'];
+    protected $fillable = [
+        'no',
+        'client_id',
+        'total_amount',
+        'currency',
+        'exchange_rate',
+        'rmb_total_amount',
+        'remark',
+        'status'
+    ];
 
 // 订单状态
     CONST STATUS_CREATED = 'created';

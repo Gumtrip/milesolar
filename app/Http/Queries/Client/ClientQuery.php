@@ -11,13 +11,12 @@ class ClientQuery extends QueryBuilder
     public function __construct()
     {
         parent::__construct(Client::query());
-
         $this
-            ->allowedIncludes(['orders'])
             ->allowedFilters([
                 'name','email','mobile','skype','whatsapp',
             ])
         ->defaultSort('-id');
+
     }
 
 }
