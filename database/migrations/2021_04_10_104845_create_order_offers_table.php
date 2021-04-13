@@ -18,7 +18,9 @@ class CreateOrderOffersTable extends Migration
             $table->string('no')->comment('报价Number');
             $table->integer('client_id')->comment('客户Id');
             $table->json('client_info')->nullable()->comment('客户信息');
-            $table->decimal('total_amount', 10, 2)->nullable()->comment('总价');
+            $table->string('currency', 30)->default('USD')->comment('币种');
+            $table->decimal('total_amount', 10, 2)->default(0)->comment('总价');
+            $table->decimal('rmb_total_amount', 10, 2)->default(0)->comment('人民币总价');
             $table->dateTime('offer_start')->comment('报价时效开始日期');
             $table->dateTime('offer_end')->comment('报价时效结束日期');
             $table->text('term')->comment('条款');

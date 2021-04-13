@@ -17,6 +17,7 @@ class OrderRequest extends FormRequest
     {
         return [
             'client_id' => 'required',
+            'total_amount' => 'required',
             'currency' => 'required',
             'exchange_rate' => 'required',
             'order_items' => 'required',
@@ -26,6 +27,7 @@ class OrderRequest extends FormRequest
     {
         return [
             'client_id' => '客户',
+            'total_amount' => '订单总价',
             'currency' => '币种',
             'exchange_rate' => '汇率',
             'order_items' => '售卖商品',

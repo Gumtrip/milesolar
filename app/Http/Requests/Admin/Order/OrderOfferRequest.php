@@ -17,9 +17,8 @@ class OrderOfferRequest extends FormRequest
     {
         return [
             'client_id' => 'required',
+            'items' => 'required',
             'offer_range' => 'required',
-            'client_info' => 'required',
-            'term' => 'required',
         ];
     }
 
@@ -27,9 +26,8 @@ class OrderOfferRequest extends FormRequest
     {
         return [
             'client_id' => '客户',
-            'offer_range' => '报价时效区间',
-            'client_info' => '客户信息',
-            'term' => '条款',
+            'items' => '产品',
+            'offer_range' => '报价时效',
         ];
     }
 }

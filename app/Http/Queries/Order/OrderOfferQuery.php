@@ -14,7 +14,7 @@ class OrderOfferQuery extends QueryBuilder
         parent::__construct(OrderOffer::query());
 
         $this
-            ->allowedIncludes(['offer_items'])
+            ->allowedIncludes(['items'])
             ->allowedFilters([
                 'no',
                 AllowedFilter::exact('client_id'),

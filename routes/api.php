@@ -54,6 +54,13 @@ Route::group([
             Route::resource('orders', 'OrderController')->only(['index', 'store', 'show', 'update', 'destroy']);
             Route::resource('order-expenses', 'OrderExpenseController')->only(['store', 'show', 'update', 'destroy']);
             Route::resource('order-proceeds', 'OrderProceedController')->only(['store', 'show', 'update', 'destroy']);
+            Route::resource('order-offers', 'OrderOfferController')->only([
+                'index',
+                'store',
+                'show',
+                'update',
+                'destroy'
+            ]);
         });
         //客户
         Route::group(['namespace' => 'Client'], function () {

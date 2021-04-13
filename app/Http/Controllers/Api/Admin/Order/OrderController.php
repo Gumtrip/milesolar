@@ -26,10 +26,9 @@ class OrderController extends Controller
             $order->fill($request->all());
             $order->client()->associate($request->client_id);
             $order->save();
-            $totalAmount = $request->total_amount;
+            $totalAmount = $request->total_amount;// 因为实际情况，客户可能会少给钱
             // 遍历用户提交的 SKU
             $items = $request->order_items;
-            $itemsTotalAmount = 0;
             foreach ($items as $item) {
                 $id = $item['id'];
                 $sku = Product::findOrFail($id);
@@ -41,8 +40,6 @@ class OrderController extends Controller
                 ]);
                 $orderItem->product()->associate($id);
                 $orderItem->save();
-
-                $itemsTotalAmount += $item['price'] * $item['amount'];//总计
             }
             $order->update([
                 'total_amount'=>$totalAmount,

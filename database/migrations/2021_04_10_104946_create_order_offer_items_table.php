@@ -20,7 +20,7 @@ class CreateOrderOfferItemsTable extends Migration
             $table->integer('amount')->default(1)->comment('产品数量');
             $table->string('unit')->default('PCS')->comment('产品单位');
             $table->string('currency')->default('USD')->comment('币种');
-            $table->decimal('unit_price', 10, 2)->default(1)->comment('产品单价');
+            $table->decimal('price', 10, 2)->default(1)->comment('产品单价');
             $table->string('title', 100)->comment('产品描述');
             $table->string('img', 80)->comment('产品图片');
             $table->text('desc')->comment('产品描述');
