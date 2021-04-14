@@ -13,9 +13,22 @@ class OrderOffer extends Model
         'offer_start',
         'offer_end',
         'term',
+        'exchange_rate',
         'total_amount',
         'rmb_total_amount'
     ];
+
+
+    protected $casts = [
+        'client_info' => 'array'
+    ];
+
+    protected $appends = ['offer_range'];
+
+    public function getOfferRangeAttribute()
+    {
+        return [$this->offer_start, $this->offer_end];
+    }
 
     public function items()
     {

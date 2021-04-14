@@ -21,8 +21,8 @@ class CreateOrderOffersTable extends Migration
             $table->string('currency', 30)->default('USD')->comment('币种');
             $table->decimal('total_amount', 10, 2)->default(0)->comment('总价');
             $table->decimal('rmb_total_amount', 10, 2)->default(0)->comment('人民币总价');
-            $table->dateTime('offer_start')->comment('报价时效开始日期');
-            $table->dateTime('offer_end')->comment('报价时效结束日期');
+            $table->timestamp('offer_start')->comment('报价时效开始日期');
+            $table->timestamp('offer_end')->comment('报价时效结束日期');
             $table->text('term')->comment('条款');
             $table->timestamps();
         });

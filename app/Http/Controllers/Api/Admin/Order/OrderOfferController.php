@@ -12,7 +12,7 @@ use App\Http\Resources\Order\OrderOfferResource;
 use App\Models\Order\OrderOffer;
 use App\Models\Product\Product;
 use DB;
-
+use Carbon\Carbon;
 class OrderOfferController extends Controller
 {
     public function index(Request $request, OrderOfferQuery $offerQuery)
@@ -32,7 +32,10 @@ class OrderOfferController extends Controller
     {
         $orderOffer = DB::transaction(function () use ($orderOffer, $request) {
             $data = $request->all();
-            list($data['offer_start'], $data['offer_end']) = $request->offer_range;
+            list($data['offer_start'], $data['offer_end']) = [
+                Carbon::parse($request['offer_range'][0])->toDateTimeString(),
+                Carbon::parse($request['offer_range'][1])->toDateTimeString()
+            ];
             $orderOffer->fill($data);
             $orderOffer->client()->associate($request->client_id);
             $orderOffer->save();
@@ -67,7 +70,10 @@ class OrderOfferController extends Controller
     {
         $orderOffer = DB::transaction(function () use ($orderOffer, $request) {
             $data = $request->all();
-            list($data['offer_start'], $data['offer_end']) = $request->offer_range;
+            list($data['offer_start'], $data['offer_end']) = [
+                Carbon::parse($request['offer_range'][0])->toDateTimeString(),
+                Carbon::parse($request['offer_range'][1])->toDateTimeString()
+            ];
             $orderOffer->update($data);
             $itemsTotalAmount = 0;//预计订单金额
             $items = collect($request->items);//提交的
@@ -90,6 +96,7 @@ class OrderOfferController extends Controller
                     $orderItem->update([
                         'amount' => $item['amount'],
                         'price' => $item['price'],
+                        'desc' => $item['desc'],
                     ]);
                 }
                 $exitsItems->diff($items->pluck('id'))->each(function ($id) use ($orderOffer) {

@@ -14,6 +14,7 @@ class Product extends Model
         'title',
         'category_id',
         'brief',
+        'offer_desc',
         'is_index',
         'status',
         'seo_title',
