@@ -61,6 +61,8 @@ Route::group([
                 'update',
                 'destroy'
             ]);
+            Route::get('/export/order-offers/{orderOffer}', 'OrderOfferController@export');
+
         });
         //客户
         Route::group(['namespace' => 'Client'], function () {

@@ -13,6 +13,9 @@ use App\Models\Order\OrderOffer;
 use App\Models\Product\Product;
 use DB;
 use Carbon\Carbon;
+use App\Exports\OrderOffersExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class OrderOfferController extends Controller
 {
     public function index(Request $request, OrderOfferQuery $offerQuery)
@@ -129,5 +132,11 @@ class OrderOfferController extends Controller
     {
         $orderOffer->delete();
         return response(null, 204);
+    }
+
+
+    public function export(OrderOffer $orderOffer)
+    {
+        return Excel::download(new OrderOffersExport($orderOffer->id), 'offer.xlsx');
     }
 }
