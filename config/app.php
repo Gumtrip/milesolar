@@ -19,16 +19,21 @@ return [
     'thumb_img'=>[
         'sm'=>[
             'name'=>'sm',//1920/4=480,宽度取1920px
-            'size'=>'480'
+            'size' => '480'
         ],
-        'mid'=>[
-            'name'=>'mid',//1920/2=960,960px
-            'size'=>'960'
+        'mid' => [
+            'name' => 'mid',//1920/2=960,960px
+            'size' => '960'
         ],
-        'big'=>[
-            'name'=>'big',
-            'size'=>'1920'
+        'big' => [
+            'name' => 'big',
+            'size' => '1920'
         ],
+        'thumb' => [
+            'name' => 'thumb',
+            'size' => '60'
+        ],
+
     ],
     'page_size'=>20,
     /*

@@ -15,6 +15,8 @@ class OrderOffer extends Model
         'term',
         'exchange_rate',
         'total_amount',
+        'item_total_amount',
+        'freight',
         'rmb_total_amount'
     ];
 

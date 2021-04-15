@@ -40,13 +40,13 @@ class OrderOfferController extends Controller
             $orderOffer->client()->associate($request->client_id);
             $orderOffer->save();
             $items = $request->items;
-            $itemsTotalAmount = 0;//预计订单金额
+            $itemsTotalAmount = $totalAmount = 0;//预计订单金额
             foreach ($items as $item) {
                 $id = $item['id'];
                 $sku = Product::findOrFail($id);
                 // 创建一个 OrderItem 并直接与当前订单关联
                 $orderItem = $orderOffer->items()->make([
-                    'title' => $sku->title,
+                    'title' => $item['title'] ?? $sku->short_title,
                     'amount' => $item['amount'],
                     'price' => $item['price'],
                     'img' => $item['img'],
@@ -57,9 +57,11 @@ class OrderOfferController extends Controller
                 $orderItem->save();
                 $itemsTotalAmount += $item['price'] * $item['amount'];//总计
             }
+            $totalAmount = $itemsTotalAmount + $request->freight;//加上运费
             $orderOffer->update([
-                'total_amount' => $itemsTotalAmount,
-                'rmb_total_amount' => $itemsTotalAmount * $request->exchange_rate,
+                'total_amount' => $totalAmount,
+                'item_total_amount' => $itemsTotalAmount,
+                'rmb_total_amount' => $totalAmount * $request->exchange_rate,
             ]);
             return $orderOffer;
         });
@@ -75,7 +77,7 @@ class OrderOfferController extends Controller
                 Carbon::parse($request['offer_range'][1])->toDateTimeString()
             ];
             $orderOffer->update($data);
-            $itemsTotalAmount = 0;//预计订单金额
+            $itemsTotalAmount = $totalAmount = 0;//预计订单金额
             $items = collect($request->items);//提交的
             $exitsItems = $orderOffer->items->pluck('id');//数据库
             foreach ($items as $item) {
@@ -83,7 +85,7 @@ class OrderOfferController extends Controller
                 if (!$exitsItems->contains($id)) {//数据库当中没有的，意味着是新的，需要插入
                     $sku = Product::findOrFail($id);
                     $orderItem = $orderOffer->items()->make([
-                        'title' => $sku->title,
+                        'title' => $item['title'] ?? $sku->short_title,
                         'amount' => $item['amount'],
                         'price' => $item['price'],
                         'img' => $item['img'],
@@ -94,6 +96,7 @@ class OrderOfferController extends Controller
                 } else {// 数据库和提交的交集
                     $orderItem = OrderOfferItem::find($id);
                     $orderItem->update([
+                        'title' => $item['title'] ?? $orderItem->title,//留空就用回旧的
                         'amount' => $item['amount'],
                         'price' => $item['price'],
                         'desc' => $item['desc'],
@@ -108,7 +111,12 @@ class OrderOfferController extends Controller
                 });
                 $itemsTotalAmount += $item['price'] * $item['amount'];//总计
             }
-
+            $totalAmount = $itemsTotalAmount + $request->freight;//加上运费
+            $orderOffer->update([
+                'item_total_amount' => $itemsTotalAmount,
+                'total_amount' => $totalAmount,
+                'rmb_total_amount' => $totalAmount * $request->exchange_rate,
+            ]);
 
             return $orderOffer;
         });

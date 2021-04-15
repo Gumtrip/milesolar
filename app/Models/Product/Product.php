@@ -12,6 +12,7 @@ class Product extends Model
     use Sluggable,OrderTrait;
     protected $fillable = [
         'title',
+        'short_title',
         'category_id',
         'brief',
         'offer_desc',
