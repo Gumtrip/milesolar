@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddOrderOfferIdToOrders extends Migration
+class CreatePropertyCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddOrderOfferIdToOrders extends Migration
      */
     public function up()
     {
-        Schema::table('order_offers', function (Blueprint $table) {
-            $table->tinyInteger('order_offer_id')->after('client_id')->nullable()->comment('关联报价订单');
+        Schema::create('property_categories', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('title', 100)->comment('属性分类');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ class AddOrderOfferIdToOrders extends Migration
      */
     public function down()
     {
-        Schema::table('order_offers', function (Blueprint $table) {
-            $table->dropColumn('order_offer_id');
-        });
+        Schema::dropIfExists('property_categories');
     }
 }
