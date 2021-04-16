@@ -12,9 +12,9 @@ use App\Models\Product\ProductCategory;
 class ProductCategoryController extends Controller
 {
     public function index(Request $request,ProductCategory $productCategory){
-        $products = Product::when($productCategory,function($query) use ($productCategory){
+        $products = Product::when($productCategory, function ($query) use ($productCategory) {
             return $query->categoryId($productCategory->id);
-        })->paginate(config('app.page_size'));
+        })->where('status', 1)->paginate(config('app.page_size'));
         $categories = ProductCategory::get()->toTree();
         $breads = [['title'=>'products','url'=>route('products')],
             ['title'=>$productCategory->title,'url'=>route('productCategories',$productCategory)]
