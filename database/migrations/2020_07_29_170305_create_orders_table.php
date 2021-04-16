@@ -17,10 +17,10 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->string('no', 80)->comment('订单号');
             $table->integer('client_id')->comment('客户Id');
-            $table->decimal('total_amount')->default(0)->comment('总额，营业收入');
+            $table->decimal('total_amount', 16, 2)->default(0)->comment('总额，营业收入');
             $table->char('currency', 10)->default('CNY')->comment('货币');
             $table->decimal('exchange_rate', 8, 4)->default(1)->comment('兑换成人民币汇率');
-            $table->decimal('rmb_total_amount')->default(0)->comment('人民币营业收入');
+            $table->decimal('rmb_total_amount', 16, 2)->default(0)->comment('人民币营业收入');
             $table->decimal('cost')->default(0)->comment('成本(货款+其他支出),人民币结算');
             $table->string('status', 60)->default('created')->comment('订单状态');
             $table->string('remark', 200)->nullable()->comment('备注');

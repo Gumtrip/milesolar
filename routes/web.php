@@ -38,6 +38,9 @@ Route::group(['namespace'=>'Frontend'],function(){
     Route::group(['namespace' => 'Page', 'prefix' => 'pages'], function () {
         Route::get('/{page?}/{slug?}', 'PageController@show')->name('pages.show');
     });
+    Route::group(['namespace' => 'Export', 'prefix' => 'export'], function () {
+        Route::get('/offer/{order}', 'OfferExportController@show');
+    });
 
 });
 

@@ -19,7 +19,7 @@ class AuthorizationController extends Controller
     public function store(LoginRequest $request)
     {
 
-        if (!$token = auth(self::GUARD)->attempt($request->all())) {
+        if (!$token = auth(self::GUARD)->attempt($request->only(['mobile', 'password']))) {
             throw new AuthenticationException('用户名或密码错误');
         }
         return $this->respondWithToken($token);
