@@ -21,7 +21,7 @@ class PropertyCategoryController extends Controller
     {
         $propertyCategory->fill($request->all());
         $propertyCategory->save();
-        return response(null, 201);
+        return new PropertyCategoryResource($propertyCategory);
     }
 
     public function show($id, PropertyCategoryQuery $propertyCategoryQuery)

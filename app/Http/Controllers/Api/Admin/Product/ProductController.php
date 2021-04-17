@@ -50,6 +50,7 @@ class ProductController extends Controller
             $info->product()->associate($product);
             $info->save();
         }
+        //添加属性
         return response(null, 201);
     }
 
@@ -88,6 +89,7 @@ class ProductController extends Controller
             }
         }
         $product->update($request->all());
+//添加属性
 
 
         return new ProductResource($product);

@@ -26,8 +26,23 @@ Route::group([
         //产品
         Route::group(['namespace' => 'Product'], function () {
             Route::resource('products', 'ProductController')->only(['index', 'store', 'show', 'update', 'destroy']);
-            Route::resource('product_categories', 'ProductCategoryController')->only(['index', 'store', 'show', 'update', 'destroy']);
+            Route::resource('product_categories', 'ProductCategoryController')->only([
+                'index',
+                'store',
+                'show',
+                'update',
+                'destroy'
+            ]);
             Route::get('product_category_trees', 'ProductCategoryController@showTree');
+            Route::resource('properties', 'PropertyController')->only(['index', 'store', 'show', 'update', 'destroy']);
+            Route::resource('property-categories', 'PropertyCategoryController')->only([
+                'index',
+                'store',
+                'show',
+                'update',
+                'destroy'
+            ]);
+
         });
         //文章
         Route::group(['namespace' => 'Article'], function () {

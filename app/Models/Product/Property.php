@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Property extends Model
 {
-    protected $fillable = ['title'];
+    protected $fillable = ['title', 'property_category_id'];
 
     public function category()
     {

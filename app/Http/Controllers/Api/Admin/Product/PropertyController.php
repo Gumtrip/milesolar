@@ -21,7 +21,7 @@ class PropertyController extends Controller
     {
         $property->fill($request->all());
         $property->save();
-        return response(null, 201);
+        return new PropertyResource($property);
     }
 
     public function show($id, PropertyQuery $propertyQuery)
