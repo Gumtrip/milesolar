@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Property extends Model
 {
-    protected $fillable = ['title', 'property_category_id'];
+    protected $fillable = ['title'];
 
-    public function category()
+    public function propertyCategory()
     {
         return $this->belongsTo(PropertyCategory::class);
     }

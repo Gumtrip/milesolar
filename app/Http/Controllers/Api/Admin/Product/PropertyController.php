@@ -20,6 +20,7 @@ class PropertyController extends Controller
     public function store(PropertyRequest $request, Property $property)
     {
         $property->fill($request->all());
+        $property->propertyCategory()->associate($request->property_category_id);
         $property->save();
         return new PropertyResource($property);
     }
@@ -32,6 +33,7 @@ class PropertyController extends Controller
 
     public function update(PropertyRequest $request, Property $property)
     {
+        $property->propertyCategory()->associate($request->property_category_id);
         $property->update($request->all());
         return new PropertyResource($property);
     }
