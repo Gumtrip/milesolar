@@ -12,6 +12,8 @@ use App\Http\Resources\Product\ProductResource;
 use App\Http\Queries\Product\ProductQuery;
 use App\Services\ImageHandleService;
 use File;
+use DB;
+
 class ProductController extends Controller
 {
     CONST FOLDER = 'product';
@@ -51,7 +53,13 @@ class ProductController extends Controller
             $info->save();
         }
         //添加属性
-        return response(null, 201);
+        $properties = $request->properties;
+        if ($properties) {
+            $propertyIds = $properties->pluck('id');
+            $product->properties()->sync($propertyIds);
+        }
+
+        return new ProductResource($product);
     }
 
     public function show($productId, ProductQuery $productQuery)
@@ -62,34 +70,45 @@ class ProductController extends Controller
 
     public function update(ProductRequest $request, Product $product)
     {
-        $oldImages = $product->images;
-        $oldImageCol = $oldImages->pluck('path');
-        $imageCol = collect($request->images)->pluck('path');
+        $product = DB::transaction(function () use ($product, $request) {
+
+            $oldImages = $product->images;
+            $oldImageCol = $oldImages->pluck('path');
+            $imageCol = collect($request->images)->pluck('path');
+
+
 //图片处理
-        $imageCol->intersect($oldImageCol)->each(function ($img, $key) use ($oldImages, $product) {//交集，更新 key
-            $oldImages->firstWhere('path', $img)->update(['order' => $key]);
-        });
+            $imageCol->intersect($oldImageCol)->each(function ($img, $key) use ($oldImages, $product) {//交集，更新 key
+                $oldImages->firstWhere('path', $img)->update(['order' => $key]);
+            });
 
 
-        $oldImageCol->diff($imageCol)->each(function ($img) use ($oldImages) {//旧集和新集的差集，删除
-            $oldImages->firstWhere('path', $img)->delete();
-        });
-        $imageCol->diff($oldImageCol)->each(function ($img, $key) use ($oldImages, $product) {//新集和旧集差集,插入新值
-            $proImage = new ProductImage(['path' => $img, 'order' => $key]);
-            $proImage->product()->associate($product);
-            $proImage->save();
-        });
+            $oldImageCol->diff($imageCol)->each(function ($img) use ($oldImages) {//旧集和新集的差集，删除
+                $oldImages->firstWhere('path', $img)->delete();
+            });
+            $imageCol->diff($oldImageCol)->each(function ($img, $key) use ($oldImages, $product) {//新集和旧集差集,插入新值
+                $proImage = new ProductImage(['path' => $img, 'order' => $key]);
+                $proImage->product()->associate($product);
+                $proImage->save();
+            });
 
 //富文本处理
-        $proInfo = $product->infos;
-        foreach ($proInfo as $info) {
-            $title = $info->title;
-            if ($content = $request->$title) {
-                $info->update(['content' => $content]);
+            $proInfo = $product->infos;
+            foreach ($proInfo as $info) {
+                $title = $info->title;
+                if ($content = $request->$title) {
+                    $info->update(['content' => $content]);
+                }
             }
-        }
-        $product->update($request->all());
+            $product->update($request->all());
 //添加属性
+            $properties = collect($request->properties);
+            if ($properties) {
+                $propertyIds = $properties->pluck('id');
+                $product->properties()->sync($propertyIds);
+            }
+            return $product;
+        });
 
 
         return new ProductResource($product);

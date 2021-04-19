@@ -12,4 +12,9 @@ class Property extends Model
     {
         return $this->belongsTo(PropertyCategory::class);
     }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
+    }
 }

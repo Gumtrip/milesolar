@@ -13,7 +13,7 @@ class PropertyQuery extends QueryBuilder
     {
         parent::__construct(Property::query());
 
-        $this->allowedIncludes(['property_category'])
+        $this->allowedIncludes(['property_category', 'products'])
             ->allowedFilters([
                 'title',
                 AllowedFilter::scope('property_category_id'),
