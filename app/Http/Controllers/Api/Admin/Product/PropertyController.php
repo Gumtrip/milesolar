@@ -11,6 +11,7 @@ use App\Http\Queries\Product\PropertyQuery;
 
 class PropertyController extends Controller
 {
+
     public function index(Request $request, PropertyQuery $propertyQuery)
     {
         $properties = $propertyQuery->paginate(config('app.page_size'));

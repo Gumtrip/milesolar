@@ -18,6 +18,7 @@ class CreateProductPropertyTable extends Migration
             $table->integer('product_id')->comment('产品ID');
             $table->integer('property_id')->comment('属性ID');
             $table->integer('order')->nullable()->comment('排序');
+            $table->timestamps();
         });
     }
 

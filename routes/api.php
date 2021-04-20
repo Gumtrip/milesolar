@@ -33,6 +33,8 @@ Route::group([
                 'update',
                 'destroy'
             ]);
+            Route::resource('product-properties', 'ProductPropertyController')->only(['store', 'destroy']);
+
             Route::get('product_category_trees', 'ProductCategoryController@showTree');
             Route::resource('properties', 'PropertyController')->only(['index', 'store', 'show', 'update', 'destroy']);
             Route::resource('property-categories', 'PropertyCategoryController')->only([
@@ -42,7 +44,6 @@ Route::group([
                 'update',
                 'destroy'
             ]);
-
         });
         //文章
         Route::group(['namespace' => 'Article'], function () {

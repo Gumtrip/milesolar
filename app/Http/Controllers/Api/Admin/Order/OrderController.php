@@ -26,25 +26,6 @@ class OrderController extends Controller
             $order->fill($request->all());
             $order->client()->associate($request->client_id);
             $order->save();
-            $totalAmount = $request->total_amount;// 因为实际情况，客户可能会少给钱
-            // 遍历用户提交的 SKU
-            $items = $request->order_items;
-            foreach ($items as $item) {
-                $id = $item['id'];
-                $sku = Product::findOrFail($id);
-                // 创建一个 OrderItem 并直接与当前订单关联
-                $orderItem = $order->orderItems()->make([
-                    'name' => $sku ? $sku->title : $item['name'],
-                    'amount' => $item['amount'],
-                    'price' => $item['price'],
-                ]);
-                $orderItem->product()->associate($id);
-                $orderItem->save();
-            }
-            $order->update([
-                'total_amount'=>$totalAmount,
-                'rmb_total_amount'=>$totalAmount * $request->exchange_rate,
-            ]);
             return $order;
         });
 
@@ -62,38 +43,6 @@ class OrderController extends Controller
     {
         $order = DB::transaction(function () use ($order, $request) {
             $order->update($request->all());
-            $itemsTotalAmount = 0;
-            $items = collect($request->order_items);//提交的
-            $exitsItems = $order->orderItems->pluck('id');//数据库
-            foreach ($items as $item) {
-                $id = $item['id'];
-                if (!$exitsItems->contains($id)) {//数据库当中没有的，意味着是新的，需要插入
-                    $sku = Product::findOrFail($id);
-                    $orderItem = $order->orderItems()->make([
-                        'name' => $sku ? $sku->title : $item['name'],
-                        'amount' => $item['amount'],
-                        'price' => $item['price'],
-                    ]);
-                    $orderItem->product()->associate($id);
-                    $orderItem->save();
-                } else {// 数据库和提交的交集
-                    $orderItem = OrderItem::find($id);
-                    $orderItem->update([
-                        'amount' => $item['amount'],
-                        'price' => $item['price'],
-                    ]);
-                }
-                $exitsItems->diff($items->pluck('id'))->each(function ($id) use ($order) {
-// 删掉差值
-                    $orderItem = OrderItem::find($id);
-                    if ($orderItem) {
-                        $orderItem->delete();
-                    }
-                });
-                $itemsTotalAmount += $item['price'] * $item['amount'];//总计
-            }
-
-
             return $order;
         });
         return new OrderResource($order);

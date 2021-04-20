@@ -52,12 +52,6 @@ class ProductController extends Controller
             $info->product()->associate($product);
             $info->save();
         }
-        //添加属性
-        $properties = $request->properties;
-        if ($properties) {
-            $propertyIds = $properties->pluck('id');
-            $product->properties()->sync($propertyIds);
-        }
 
         return new ProductResource($product);
     }
@@ -102,12 +96,6 @@ class ProductController extends Controller
                 }
             }
             $product->update($request->all());
-//添加属性
-            $properties = collect($request->properties);
-            if ($properties) {
-                $propertyIds = $properties->pluck('id');
-                $product->properties()->sync($propertyIds);
-            }
             return $product;
         });
 

@@ -13,7 +13,7 @@ class OrderQuery extends QueryBuilder
         parent::__construct(Order::query());
 
         $this
-            ->allowedIncludes(['order_items', 'expenses', 'proceeds'])
+            ->allowedIncludes(['expenses', 'proceeds'])
             ->allowedFilters([
                 'no',
                 AllowedFilter::exact('client_id'),
