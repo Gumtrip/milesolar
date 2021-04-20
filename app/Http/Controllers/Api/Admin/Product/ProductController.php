@@ -76,8 +76,8 @@ class ProductController extends Controller
             $oldImageCol = $oldImages->pluck('path');
             $imageCol = collect($request->images)->pluck('path');
 
-
 //图片处理
+//todo 待优化  根据id 进行判断：是否插入或者更新
             $imageCol->intersect($oldImageCol)->each(function ($img, $key) use ($oldImages, $product) {//交集，更新 key
                 $oldImages->firstWhere('path', $img)->update(['order' => $key]);
             });
@@ -86,6 +86,7 @@ class ProductController extends Controller
             $oldImageCol->diff($imageCol)->each(function ($img) use ($oldImages) {//旧集和新集的差集，删除
                 $oldImages->firstWhere('path', $img)->delete();
             });
+//todo 待优化  本次提交的数据没有id 的则是需要新插入的
             $imageCol->diff($oldImageCol)->each(function ($img, $key) use ($oldImages, $product) {//新集和旧集差集,插入新值
                 $proImage = new ProductImage(['path' => $img, 'order' => $key]);
                 $proImage->product()->associate($product);
