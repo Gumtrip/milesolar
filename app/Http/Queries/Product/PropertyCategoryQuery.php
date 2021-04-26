@@ -13,6 +13,7 @@ class PropertyCategoryQuery extends QueryBuilder
     {
         parent::__construct(PropertyCategory::query());
         $this->allowedIncludes(['product'])
+            ->allowedFilters([AllowedFilter::scope('id_in')])
             ->defaultSort('-id');
     }
 

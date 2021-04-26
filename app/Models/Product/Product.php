@@ -83,7 +83,7 @@ class Product extends Model
 
     function properties()
     {
-        return $this->belongsToMany(Property::Class);
+        return $this->belongsToMany(Property::Class)->withPivot(['id']);
     }
 
     /** 通过category_id 搜索products

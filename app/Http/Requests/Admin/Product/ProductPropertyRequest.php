@@ -17,7 +17,7 @@ class ProductPropertyRequest extends FormRequest
     {
         return [
             'product_id' => 'required',
-            'property_id' => 'required',
+            'properties' => 'required',
         ];
     }
 }
