@@ -13,7 +13,7 @@ class AddOrderOfferIdToOrders extends Migration
      */
     public function up()
     {
-        Schema::table('order_offers', function (Blueprint $table) {
+        Schema::table('orders', function (Blueprint $table) {
             $table->tinyInteger('order_offer_id')->after('client_id')->nullable()->comment('关联报价订单');
         });
     }
@@ -25,7 +25,7 @@ class AddOrderOfferIdToOrders extends Migration
      */
     public function down()
     {
-        Schema::table('order_offers', function (Blueprint $table) {
+        Schema::table('orders', function (Blueprint $table) {
             $table->dropColumn('order_offer_id');
         });
     }

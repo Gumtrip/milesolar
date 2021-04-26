@@ -38,13 +38,6 @@ class Order extends Model
         return $this->belongsTo(Client::class);
     }
 
-    /**订单产品
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function orderItems()
-    {
-        return $this->hasMany(OrderItem::class);
-    }
 
     /**支出
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -100,6 +93,12 @@ class Order extends Model
         return false;
     }
 
-
+    /**关联报价订单
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function orderOffer()
+    {
+        return $this->belongsTo(OrderOffer::class);
+    }
 
 }

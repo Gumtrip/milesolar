@@ -47,7 +47,6 @@ class OrderOfferController extends Controller
             foreach ($items as $item) {
                 $id = $item['id'];
                 $sku = Product::findOrFail($id);
-                // 创建一个 OrderItem 并直接与当前订单关联
                 $orderItem = $orderOffer->items()->make([
                     'title' => $item['title'] ?? $sku->short_title,
                     'amount' => $item['amount'],

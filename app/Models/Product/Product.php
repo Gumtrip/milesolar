@@ -73,17 +73,17 @@ class Product extends Model
 
     function images()
     {
-        return $this->hasMany(ProductImage::Class);
+        return $this->hasMany(ProductImage::class);
     }
 
     function infos()
     {
-        return $this->hasMany(ProductInfo::Class);
+        return $this->hasMany(ProductInfo::class);
     }
 
     function properties()
     {
-        return $this->belongsToMany(Property::Class)->withPivot(['id']);
+        return $this->belongsToMany(Property::class)->withPivot(['id']);
     }
 
     /** 通过category_id 搜索products
