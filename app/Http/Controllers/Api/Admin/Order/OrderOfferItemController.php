@@ -48,7 +48,7 @@ class OrderOfferItemController extends Controller
                 'price' => 0,
                 'img' => $product->sm_img,
                 'attrs' => $attrData,
-                'desc' => '',
+                'remark' => '',
             ]);
             $orderOfferItem->product()->associate($product->id);
             $orderOfferItem->order_offer()->associate($request->order_offer_id);
