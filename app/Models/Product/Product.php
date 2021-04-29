@@ -35,9 +35,19 @@ class Product extends Model
     function getMainImageAttribute()
     {
         $image = $this->images->sortBy('order')->first();
-        if($image){
-            return asset(getThumbName($image->path,'mid'));
-        }else{
+        if ($image) {
+            return asset(getThumbName($image->path, 'mid'));
+        } else {
+            return null;
+        }
+    }
+
+    function getSmImgAttribute()
+    {
+        $image = $this->images->sortBy('order')->first();
+        if ($image) {
+            return asset(getThumbName($image->path, 'sm'));
+        } else {
             return null;
         }
     }
@@ -48,8 +58,8 @@ class Product extends Model
 
     function getMidImageGroupAttribute()
     {
-        return collect($this->images)->map(function($img){
-            return asset(getThumbName($img->path,'mid'));
+        return collect($this->images)->map(function ($img) {
+            return asset(getThumbName($img->path, 'mid'));
         });
     }
 

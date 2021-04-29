@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Product\ProductProperty;
 use App\Models\Product\Product;
 use App\Http\Requests\Admin\Product\ProductPropertyRequest;
-use App\Http\Resources\Product\ProductPropertyResource;
 
 class ProductPropertyController extends Controller
 {

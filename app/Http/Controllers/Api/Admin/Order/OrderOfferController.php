@@ -51,7 +51,6 @@ class OrderOfferController extends Controller
                     'title' => $item['title'] ?? $sku->short_title,
                     'amount' => $item['amount'],
                     'price' => $item['price'],
-                    'img' => $item['img'],
                     'desc' => $item['desc'],
                 ]);
 
@@ -84,18 +83,7 @@ class OrderOfferController extends Controller
             $exitsItems = $orderOffer->items->pluck('id');//数据库
             foreach ($items as $item) {
                 $id = $item['id'];
-                if (!$exitsItems->contains($id)) {//数据库当中没有的，意味着是新的，需要插入
-                    $sku = Product::findOrFail($id);
-                    $orderItem = $orderOffer->items()->make([
-                        'title' => $item['title'] ?? $sku->short_title,
-                        'amount' => $item['amount'],
-                        'price' => $item['price'],
-                        'img' => $item['img'],
-                        'desc' => $item['desc'],
-                    ]);
-                    $orderItem->product()->associate($id);
-                    $orderItem->save();
-                } else {// 数据库和提交的交集
+                if ($exitsItems->contains($id)) {//数据库当中没有的，意味着是新的，需要插入
                     $orderItem = OrderOfferItem::find($id);
                     $orderItem->update([
                         'title' => $item['title'] ?? $orderItem->title,//留空就用回旧的

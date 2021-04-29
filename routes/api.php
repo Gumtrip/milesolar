@@ -77,8 +77,8 @@ Route::group([
                 'update',
                 'destroy'
             ]);
+            Route::resource('order-offer-items', 'OrderOfferItemController')->only(['store', 'destroy']);
             Route::get('/export/order-offers/{orderOffer}', 'OrderOfferController@export');
-
         });
         //客户
         Route::group(['namespace' => 'Client'], function () {

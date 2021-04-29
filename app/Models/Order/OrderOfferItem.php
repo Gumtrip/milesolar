@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderOfferItem extends Model
 {
-    protected $fillable = ['amount', 'unit', 'price', 'title', 'img', 'desc'];
+    protected $fillable = ['amount', 'unit', 'price', 'title', 'img', 'desc', 'attrs'];
+
+    protected $casts = ['attrs' => 'array'];
 
     public function order_offer()
     {
