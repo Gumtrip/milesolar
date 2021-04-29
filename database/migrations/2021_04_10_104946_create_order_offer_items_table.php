@@ -22,7 +22,7 @@ class CreateOrderOfferItemsTable extends Migration
             $table->decimal('price', 10, 2)->default(1)->comment('产品单价');
             $table->string('title', 100)->comment('产品描述');
             $table->string('img', 80)->comment('产品图片');
-            $table->text('desc')->comment('产品描述');
+            $table->text('remark')->comment('产品备注');
             $table->timestamps();
         });
     }
