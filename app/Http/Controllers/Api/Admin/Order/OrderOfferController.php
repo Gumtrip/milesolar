@@ -51,7 +51,7 @@ class OrderOfferController extends Controller
                     'title' => $item['title'] ?? $sku->short_title,
                     'amount' => $item['amount'],
                     'price' => $item['price'],
-                    'desc' => $item['desc'],
+                    'desc' => $item['desc'] ?? '',
                 ]);
 
                 $orderItem->product()->associate($id);
@@ -89,7 +89,7 @@ class OrderOfferController extends Controller
                         'title' => $item['title'] ?? $orderItem->title,//留空就用回旧的
                         'amount' => $item['amount'],
                         'price' => $item['price'],
-                        'desc' => $item['desc'],
+                        'desc' => $item['desc'] ?? '',
                     ]);
                 }
                 $exitsItems->diff($items->pluck('id'))->each(function ($id) use ($orderOffer) {
