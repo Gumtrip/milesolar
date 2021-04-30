@@ -124,6 +124,7 @@ class OrderOfferController extends Controller
 
     public function export(OrderOffer $orderOffer)
     {
-        return Excel::download(new OrderOffersExport($orderOffer->id), 'offer.xlsx');
+
+        return Excel::download(new OrderOffersExport($orderOffer->id), time() . '_offer.xlsx');
     }
 }

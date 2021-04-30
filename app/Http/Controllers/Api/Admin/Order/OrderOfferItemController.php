@@ -45,7 +45,7 @@ class OrderOfferItemController extends Controller
                 'title' => $product->short_title ? $product->short_title : $product->title,
                 'amount' => 1,
                 'price' => 0,
-                'img' => $product->sm_img,
+                'img' => $product->images->first()->path,
                 'attrs' => $attrData,
                 'remark' => '',
             ]);

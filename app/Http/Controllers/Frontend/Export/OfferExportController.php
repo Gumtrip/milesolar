@@ -12,7 +12,8 @@ class OfferExportController extends Controller
 
     public function show(Request $Request, OrderOffer $order)
     {
-        return view('exports.offer', compact(['order']));
+        $blade = 1;
+        return view('exports.offer', compact(['order', 'blade']));
     }
 
 }

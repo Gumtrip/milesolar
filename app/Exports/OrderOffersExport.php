@@ -9,8 +9,10 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\FromView;
 use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\WithDrawings;
+use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
-class OrderOffersExport implements FromView
+class OrderOffersExport implements FromView, WithDrawings
 {
     private $model, $id;
 
@@ -29,6 +31,19 @@ class OrderOffersExport implements FromView
         ]);
     }
 
-
+    public function drawings()
+    {
+        $result = [];
+        foreach ($this->model->items as $k => $item) {
+            $k += 3;
+            $drawing = new Drawing();
+            $drawing->setName($item->title);
+            $drawing->setDescription($item->title);
+            $drawing->setPath(public_path($item->img));
+            $drawing->setHeight(50);
+            $drawing->setCoordinates('B' . $k);
+        }
+        return $result;
+    }
 
 }
