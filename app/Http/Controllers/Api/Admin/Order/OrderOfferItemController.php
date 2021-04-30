@@ -21,7 +21,6 @@ class OrderOfferItemController extends Controller
         DB::transaction(function () use ($request, $product) {
             $orderOfferItem = new OrderOfferItem();
             $attrData = $attrGroupData = [];
-
             //整理属性存入数据库的格式
             $attrs = Property::whereIn('id', $request->pids)->get();
             $attrCates = PropertyCategory::whereIn('id', $attrs->pluck('property_category_id'))->get();
