@@ -17,7 +17,6 @@ class OrderOfferRequest extends FormRequest
     {
         return [
             'client_id' => 'required',
-            'items' => 'required',
             'offer_range' => 'required',
         ];
     }
@@ -26,7 +25,6 @@ class OrderOfferRequest extends FormRequest
     {
         return [
             'client_id' => '客户',
-            'items' => '产品',
             'offer_range' => '报价时效',
         ];
     }

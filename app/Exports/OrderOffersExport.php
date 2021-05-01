@@ -42,6 +42,7 @@ class OrderOffersExport implements FromView, WithDrawings
             $drawing->setPath(public_path($item->img));
             $drawing->setHeight(50);
             $drawing->setCoordinates('B' . $k);
+            $result[] = $drawing;
         }
         return $result;
     }

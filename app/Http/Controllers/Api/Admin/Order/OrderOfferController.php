@@ -42,28 +42,6 @@ class OrderOfferController extends Controller
             $orderOffer->fill($data);
             $orderOffer->client()->associate($request->client_id);
             $orderOffer->save();
-            $items = $request->items;
-            $itemsTotalAmount = $totalAmount = 0;//预计订单金额
-            foreach ($items as $item) {
-                $id = $item['id'];
-                $sku = Product::findOrFail($id);
-                $orderItem = $orderOffer->items()->make([
-                    'title' => $item['title'] ?? $sku->short_title,
-                    'amount' => $item['amount'],
-                    'price' => $item['price'],
-                    'remark' => $item['remark'] ?? '',
-                ]);
-
-                $orderItem->product()->associate($id);
-                $orderItem->save();
-                $itemsTotalAmount += $item['price'] * $item['amount'];//总计
-            }
-            $totalAmount = $itemsTotalAmount + $request->freight;//加上运费
-            $orderOffer->update([
-                'total_amount' => $totalAmount,
-                'item_total_amount' => $itemsTotalAmount,
-                'rmb_total_amount' => $totalAmount * $request->exchange_rate,
-            ]);
             return $orderOffer;
         });
         return new OrderOfferResource($orderOffer);
@@ -83,7 +61,7 @@ class OrderOfferController extends Controller
             $exitsItems = $orderOffer->items->pluck('id');//数据库
             foreach ($items as $item) {
                 $id = $item['id'];
-                if ($exitsItems->contains($id)) {//数据库当中没有的，意味着是新的，需要插入
+                if ($exitsItems->contains($id)) {//更新
                     $orderItem = OrderOfferItem::find($id);
                     $orderItem->update([
                         'title' => $item['title'] ?? $orderItem->title,//留空就用回旧的
