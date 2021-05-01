@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderProceed extends Model
 {
-    protected $fillable = ['currency', 'exchange_rate', 'total_amount', 'rmb_total_amount'];
+    protected $fillable = ['currency', 'exchange_rate', 'paid_at', 'total_amount', 'image', 'rmb_total_amount'];
 
     public function order()
     {

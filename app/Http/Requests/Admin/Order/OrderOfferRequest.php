@@ -15,10 +15,23 @@ class OrderOfferRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rule = [
             'client_id' => 'required',
             'offer_range' => 'required',
         ];
+        switch (strtolower($this->method())) {
+            case 'post':
+            {
+                return $rule;
+            }
+            case 'patch':
+            {
+                return array_merge($rule, [
+                    'items' => 'required',
+                ]);
+            }
+        }
+
     }
 
     public function attributes()

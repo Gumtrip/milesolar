@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class OrderOfferItem extends Model
 {
     protected $fillable = ['amount', 'unit', 'price', 'title', 'img', 'remark', 'attrs'];
-
+    protected $appends = ['img_url'];
     protected $casts = ['attrs' => 'array'];
 
     public function order_offer()
@@ -19,5 +19,10 @@ class OrderOfferItem extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function getImgUrlAttribute()
+    {
+        return asset($this->img);
     }
 }

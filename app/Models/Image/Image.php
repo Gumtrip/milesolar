@@ -13,4 +13,9 @@ class Image extends Model
     {
         return $this->belongsTo(Page::class, 'foreign_id')->where('type', Page::IMG_FOLDER);
     }
+
+    public function imageable()
+    {
+        return $this->morphTo();
+    }
 }
