@@ -16,7 +16,7 @@ class ClientController extends Controller
         if ($request->page) {
             $clients = $clientQuery->paginate(config('app.page_size'));
         } else {
-            $clients = $clientQuery->all();
+            $clients = $clientQuery->get();
         }
         return ClientResource::collection($clients);
     }
