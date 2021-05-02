@@ -3,16 +3,19 @@
 namespace App\Exports;
 
 use App\Models\Order\OrderOffer;
-use App\Models\Order\OrderOfferItem;
-use Maatwebsite\Excel\Concerns\FromQuery;
-use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\FromView;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\WithDrawings;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Concerns\RegistersEventListeners;
+use Maatwebsite\Excel\Events\BeforeExport;
+use Maatwebsite\Excel\Events\BeforeWriting;
+use Maatwebsite\Excel\Events\BeforeSheet;
+use Maatwebsite\Excel\Events\AfterSheet;
 
-class OrderOffersExport implements FromView, WithDrawings
+class OrderOffersExport implements FromView, WithDrawings, ShouldAutoSize
 {
     private $model, $id;
 
@@ -47,4 +50,17 @@ class OrderOffersExport implements FromView, WithDrawings
         return $result;
     }
 
+
+    /*    public function registerEvents(): array
+        {
+            return [
+                AfterSheet::class  => function(AfterSheet $event) {
+                    //设置行高，$i为数据行数
+                    for ($i = 0; $i<=10; $i++) {
+                        $event->sheet->getDelegate()->getRowDimension($i)->setRowHeight(100);
+                    }
+
+                }
+            ];
+        }*/
 }

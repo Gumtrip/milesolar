@@ -13,8 +13,11 @@ class ClientController extends Controller
 {
     public function index(Request $request, ClientQuery $clientQuery)
     {
-
-        $clients = $clientQuery->paginate(config('app.page_size'));
+        if ($request->page) {
+            $clients = $clientQuery->paginate(config('app.page_size'));
+        } else {
+            $clients = $clientQuery->all();
+        }
         return ClientResource::collection($clients);
     }
 

@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Client extends Model
 {
-    protected $fillable = ['name','email','mobile','skype','whatsapp'];
+    protected $fillable = ['name', 'no', 'email', 'mobile', 'skype', 'whatsapp'];
     use SoftDeletes;
 }
